@@ -53,24 +53,14 @@ A serverless framework, reducing infrastructure management.
 Assurance that each event is delivered at least once.
 
 <Video id="1Tjd3qYm0qY" title="Azure Messaging: Understanding Service Bus, Event Hub, and Event Grid"/>
-{/* <div className="video-container">
-                                                    <iframe className="responsive-iframe" src="https://www.youtube.com/embed/1Tjd3qYm0qY?si=2AUKiQPzbL0E_ylQ" title="Azure Messaging: Understanding Service Bus, Event Hub, and Event Grid" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                                </div> */}
+
 # Choosing the Right Service
-|Feature|	Service Bus|	Event Hub|	Event Grid|
-|:------|:-------------|:------------|:-----------|
-Messaging Patterns|	Queues, Topics, Subscriptions|	Event Streams|	Reactive Programming|
-Protocols Supported|	AMQP 1.0, HTTP/HTTPS, SBMP|	AMQP 1.0, HTTP/HTTPS|	HTTP/HTTPS|
-Specifications Supported|	JMS, WS/SOAP, REST API|	Kafka, Capture, REST API|	CloudEvents
-Cost|	Can get expensive with Premium and Dedicated tiers|	Can get expensive with Premium and Dedicated tiers|	Cheapest
-Service Tiers|	Basic, Standard, Premium|	Basic, Standard, Premium, Dedicated|	Basic, Standard
-Ideal Use Case|	Enterprise Messaging, Ordered Delivery|	Big Data, Telemetry Ingestion|	React to resource status changes|
-Throughput|	Lower than Event Hub|	Designed for High Throughput|	Dynamically Scales Based on Events|
-Ordering|	Supports FIFO|	Limited to Partition|	Event Ordering Not Guaranteed
-Delivery Guarantee|	At Least Once|	At Least Once|	At Least Once, with Retry Policies
-Latency|	Milliseconds|	Low, Milliseconds|	Very Low, Sub-Second
-Maximum Message Size|	Service Bus messaging services (queues and topics/subscriptions) allow application to send messages of size up to 256 KB (standard tier) or 100 MB (premium tier).|	256 KB - Basic ,1 MB - Standard|	MQTT limits in Event Grid namespace - 512 KB
-Retention|	Premium tier - 90 days,Basic tier - 14 days|	Standard tier - 7 days,Premium and dedicated tier - 90 days.|	Minimum value is 1 minute Maximum value is topic's retention Default value is 7 days or topic retention|
+| Left columns  | Right columns |
+| ------------- |:-------------:|
+| left foo      | right foo     |
+| left bar      | right bar     |
+| left baz      | right baz     |
+
 # Architecture Pattern Showing Service Bus, Event Hub and Event Grid
 Following architecture diagram shows a sample architecture pattern where all 3 Azure services are used:
 
