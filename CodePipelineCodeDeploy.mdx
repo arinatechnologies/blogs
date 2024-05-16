@@ -1,4 +1,3 @@
-
 title:'How do I deploy ECS Task in a different account using CodePipeline that uses CodeDeploy'
 date:'2024-02-13'
 image:'https://www.arinatechnologies.com/assets/images/blog/smcodepipeline.webp'
@@ -39,7 +38,7 @@ tags: ['AWS','CodePipeline','DevOps']
 
 ##### Important: Replace codepipeline-source-artifact with the SourceArtifact bucket name for CodePipeline. Replace ACCOUNT_B_NO with the account 2 account number.
 
-
+```
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -93,7 +92,9 @@ tags: ['AWS','CodePipeline','DevOps']
           "Resource": "arn:aws:s3:::current-account-pipeline-bucket"
       }
   ]
-  }Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+  }
+```
+
 6. Choose Save.
 
 # (Account 2) Create a cross-account IAM role
@@ -108,7 +109,7 @@ c. Amazon S3 API actions related to the SourceArtifact
 3. Choose the JSON tab. Then, enter the following policy into the JSON editor:
 
 #### Important: Replace codepipeline-source-artifact with your pipeline's Artifact store's bucket name.
-
+```
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -160,7 +161,9 @@ c. Amazon S3 API actions related to the SourceArtifact
             "Resource": "*"
         }
     ]
-}Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+}
+```
+
 4. Choose Review policy.
 
 5. For Name, enter a name for the policy.
@@ -175,7 +178,7 @@ c. Amazon S3 API actions related to the SourceArtifact
 3. Choose the JSON tab. Then, enter the following policy into the JSON editor:
 
 #### Important: Replace arn:aws:kms:REGION:ACCOUNT_A_NO:key/key-id with your AWS KMS key's ARN that you copied earlier.
-
+```
 {
       "Action": [
         "kms:DescribeKey",
@@ -190,7 +193,9 @@ c. Amazon S3 API actions related to the SourceArtifact
     ],
     "Effect": "Allow",
     "Sid": "KMSAccess"
-  }Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+  }
+```
+
 4. Choose Review policy.
 
 5. For Name, enter a name for the policy.
@@ -224,7 +229,7 @@ c. Amazon S3 API actions related to the SourceArtifact
 5. Choose the JSON tab. Then, enter the following policy into the JSON editor:
 
 #### Important: Replace ACCOUNT_B_NO with the account 2 account number.
-
+```
 {
   "Version": "2012-10-17",
   "Statement": {
@@ -234,7 +239,9 @@ c. Amazon S3 API actions related to the SourceArtifact
       "arn:aws:iam::ACCOUNT_B_NO:role/*"
     ]
   }
-}Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+}
+```
+
 6. Choose Review policy, and then create the policy.
 
 # (Account 2) Create a service role for CodeDeploy and if using EC2 you need to also setup AutoScaling for EC2 service role that includes the required permissions for the services deployed by the stack
@@ -270,7 +277,7 @@ a. The RoleArn inside the action configuration JSON structure for your pipeline.
 b. The roleArn outside the action configuration JSON structure for your pipeline.
 
 ##### Note: In the following code example, RoleArn is the role passed to AWS CloudFormation to launch the stack. CodePipeline uses roleArn to operate an AWS CloudFormation stack.
-
+```
 {
 "pipeline": {
   "name": "svc-pipeline",
@@ -406,22 +413,26 @@ b. The roleArn outside the action configuration JSON structure for your pipeline
   "created": "2024-01-25T16:53:19.957000-06:00",
   "updated": "2024-01-25T18:57:07.565000-06:00"
     }
-}Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+}
+```
 5. Remove the metadata configuration from the pipeline.json file. For example:
-
+```
 "metadata": {
   "pipelineArn": "arn:aws:codepipeline:us-east-1: <<Account 1>>:Account1-pipeline",
   "created": "2024-01-25T16:53:19.957000-06:00",
   "updated": "2024-01-25T18:57:07.565000-06:00"
-}Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+}
+```
 ##### Important: To align with proper JSON formatting, remove the comma before the metadata section.
 
 6. (Optional) To create a pipeline and update the JSON structure, run the following command to update the pipeline with the new configuration file:
-
+```
 aws codepipeline update-pipeline --cli-input-json file://pipeline.jsonCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+```
 7. (Optional) To use a current pipeline and update the JSON structure, run the following command to create a new pipeline:
-
+```
 aws codepipeline create-pipeline --cli-input-json file://pipeline.jsonCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+```
 ##### Important: In your pipeline.json file, make sure that you change the name of your new pipeline.
 
 Deploy ECS tasks across accounts seamlessly with CodePipeline and CodeDeploy for efficient multi-account management.
