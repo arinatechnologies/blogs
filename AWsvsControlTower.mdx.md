@@ -1,5 +1,5 @@
 ---
-title:'AWS Organizations vs AWS Control Tower'
+Title:'AWS Organizations vs AWS Control Tower'
 date:'2024-02-2'
 image:'https://www.arinatechnologies.com/assets/images/blog/smorganizationsvscontrol.webp'
 tags:['aws','aws organization','aws control tower','landing zone','Guardrails']
