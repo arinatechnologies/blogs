@@ -24,9 +24,67 @@ EKS provides a managed Kubernetes service, combining the power of Kubernetes wit
 # ECS vs EKS Comparison
 When comparing ECS and EKS, several factors come into play, including ease of use, deployment complexity, security features, and cloud-agnostic capabilities. ECS excels in simplicity and integration with AWS services, making it ideal for straightforward applications or those heavily reliant on AWS. On the other hand, EKS offers more flexibility, an extensive ecosystem, and compatibility with Kubernetes, suitable for complex or cloud-agnostic applications.
 
-|  R |  Python |    Matlab |
-| --------- |:---|:---------|:-----|
-| library(tidyverse) |import numpy as np|  
+
+                                                <table className="awsvstower">
+                                                <tbody>
+                                                <tr>
+                                                        <th>Feature/Aspect</th>
+                                                        <th>AWS ECS (Elastic Container Service)</th>
+                                                        <th>AWS EKS (Elastic Kubernetes Service)</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Workload Type</th>
+                                                        <td>Microservices, monoliths & containerized workloas</td>
+                                                        <td>containerized & microservices applications</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Ease of Use</th>
+                                                        <td>As AWS provides more deployment options, it is simpler than Kubernetes</td>
+                                                        <td>Can be more complex than ECS setup</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Deployment</th>
+                                                        <td>Primarily AWS Supported tools such as CloudFormation, Terraform, CI/CD pipelines such as CodeDeploy</td>
+                                                        <td>Apart from  Terraform, CloudFormation, CodeDeploy support, more industry support such as ArgoCD, Rancher, etc</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Service Discovery</th>
+                                                        <td>ECS Native</td>
+                                                        <td>Service Mesh setup using Istio, Cillium, OpenMesh etc</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Security</th>
+                                                        <td>Native integration with AWS services such as IAM roles, KMS, etc.</td>
+                                                        <td>Apart from native Kubernetes support, also has seamless integration with AWS services</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Resource Control</th>
+                                                        <td>Resources managed by Services, tasks, Capacity Provider and auto-scaling setup</td>
+                                                        <td>Pod and Node setup</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Cost Model</th>
+                                                        <td>Pay for EC2 or Fargate setup</td>
+                                                        <td>Similar to ECS, need to pay for EC2 or Fargate setup</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Integration with CI/CD</th>
+                                                        <td>Seamless integration with AWS CodePipeline, GitHub Actions, etc.</td>
+                                                        <td>Similar to ECS, there are seamless integration options with AWS services but much more 3rd party services are available</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Customizability</th>
+                                                        <td>Highly customizable account structure and policies.</td>
+                                                        <td>Pre-configured blueprints limit customization but ensure best practices.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Use-Cases</th>
+                                                        <td>ECS is well-suited for microservices, batch processing, and simple applications, offering a quick and easy setup</td>
+                                                        <td>EKS caters to more complex scenarios, hybrid environments, and applications requiring Kubernetes's rich feature set and community support. Cost, complexity, and integration with existing tools and workflows should also influence your choice between ECS and EKS.</td>
+                                                    </tr>
+                                                </tbody>
+                                                    
+                                                </table> 
 
 
 
