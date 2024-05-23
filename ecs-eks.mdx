@@ -22,22 +22,11 @@ ECS is AWS's fully managed container orchestration service designed to run Docke
 EKS provides a managed Kubernetes service, combining the power of Kubernetes with AWS's scalability and integration. It offers easy cluster management, supports the latest Kubernetes versions, and integrates with AWS services like ELB and IAM. EKS taps into Kubernetes's extensive ecosystem, providing access to a wealth of tools and community support for complex orchestration needs.
 
 # ECS vs EKS Comparison
-When comparing ECS and EKS, several factors come into play, including ease of use, deployment complexity, security features, and cloud-agnostic capabilities. ECS excels in simplicity and integration with AWS services, making it ideal for straightforward applications or those heavily reliant on AWS. On the other hand, EKS offers more flexibility, an extensive ecosystem, and compatibility with Kubernetes, suitable for complex or cloud-agnostic applications.asdfsad
+When comparing ECS and EKS, several factors come into play, including ease of use, deployment complexity, security features, and cloud-agnostic capabilities. ECS excels in simplicity and integration with AWS services, making it ideal for straightforward applications or those heavily reliant on AWS. On the other hand, EKS offers more flexibility, an extensive ecosystem, and compatibility with Kubernetes, suitable for complex or cloud-agnostic applications.
 
-
-| Feature/Aspect            | AWS ECS (Elastic Container Service)                                               | AWS EKS (Elastic Kubernetes Service)                                                         |
-| ------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Workload Type             | Microservices, monoliths & containerized workloads                               | Containerized & microservices applications                                                   |
-| Ease of Use               | As AWS provides more deployment options, it is simpler than Kubernetes            | Can be more complex than ECS setup                                                           |
-| Deployment                | Primarily AWS supported tools such as CloudFormation, Terraform, CI/CD pipelines such as CodeDeploy | Apart from Terraform, CloudFormation, CodeDeploy support, more industry support such as ArgoCD, Rancher, etc |
-| Service Discovery         | ECS Native                                                                       | Service Mesh setup using Istio, Cillium, OpenMesh etc                                        |
-| Security                  | Native integration with AWS services such as IAM roles, KMS, etc.                 | Apart from native Kubernetes support, also has seamless integration with AWS services        |
-| Resource Control          | Resources managed by Services, tasks, Capacity Provider and auto-scaling setup   | Pod and Node setup                                                                           |
-| Cost Model                | Pay for EC2 or Fargate setup                                                     | Similar to ECS, need to pay for EC2 or Fargate setup                                         |
-| Integration with CI/CD    | Seamless integration with AWS CodePipeline, GitHub Actions, etc.                 | Similar to ECS, there are seamless integration options with AWS services but much more 3rd party services are available |
-| Customizability           | Highly customizable account structure and policies.                              | Pre-configured blueprints limit customization but ensure best practices.                      |
-| Use-Cases                 | ECS is well-suited for microservices, batch processing, and simple applications, offering a quick and easy setup | EKS caters to more complex scenarios, hybrid environments, and applications requiring Kubernetes's rich feature set and community support. |
-| Cost, complexity, and integration with existing tools and workflows | Should also influence your choice between ECS and EKS.  | Should also influence your choice between ECS and EKS.                             
+|  R |  Python |    Matlab |
+| --------- |:---|:---------|:-----|
+| library(tidyverse) |import numpy as np|  
 
 
 
