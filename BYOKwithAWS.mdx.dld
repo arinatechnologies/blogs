@@ -10,10 +10,12 @@ tags: ['BYOK']
 When managing sensitive data in the cloud, organizations increasingly seek control over their encryption keys. Amazon Web Services (AWS) allows for this with the Bring Your Own Key (BYOK) feature, which integrates seamlessly with AWS Key Management Service (KMS) and CloudHSM. This guide provides a step-by-step approach to setting up BYOK in AWS, enabling you to maintain strict control over key management processes while leveraging AWS's secure infrastructure.
 
 ## Preliminary Steps: Environment Setup
-<Video id="wX1e6sTUliU" title="Integrating BYOK with AWS KMS Using CloudHSM"/>
+
+<Video id="wX1e6sTUliU" title="Integrating BYOK with AWS KMS Using CloudHSM" />
 
 ### 1. Prepare Your EC2 Instance
 First, establish a secure environment on your EC2 instance by creating a new folder specifically for this process:
+
 ```bash
 mkdir /opt/vb-hsm/hsm-10
 cd /opt/vb-hsm/hsm-10
