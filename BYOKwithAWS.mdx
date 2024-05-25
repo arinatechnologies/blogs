@@ -1,0 +1,90 @@
+---
+title: 'Integrating BYOK with AWS KMS Using CloudHSM'
+date: '2024-05-25'
+image: 'https://www.arinatechnologies.com/assets/images/blog/hsm-part2.webp'
+tags: ['BYOK']
+---
+
+# Integrating BYOK with AWS KMS Using CloudHSM: A Practical Guide
+
+When managing sensitive data in the cloud, organizations increasingly seek control over their encryption keys. Amazon Web Services (AWS) allows for this with the Bring Your Own Key (BYOK) feature, which integrates seamlessly with AWS Key Management Service (KMS) and CloudHSM. This guide provides a step-by-step approach to setting up BYOK in AWS, enabling you to maintain strict control over key management processes while leveraging AWS's secure infrastructure.
+
+## Preliminary Steps: Environment Setup
+
+<Video id="wX1e6sTUliU" title="Integrating BYOK with AWS KMS Using CloudHSM" />
+
+### 1. Prepare Your EC2 Instance
+First, establish a secure environment on your EC2 instance by creating a new folder specifically for this process:
+
+```bash
+mkdir /opt/vb-hsm/hsm-10
+cd /opt/vb-hsm/hsm-10
+```
+
+### 2. Create the AWS KMS Key
+Initiate a KMS key with no key material:
+```bash
+aws kms create-key --origin EXTERNAL --region us-east-1
+```
+Record the key ID displayed in the output as you will need it for subsequent steps.
+
+## Configuring the Key Alias
+Create a user-friendly alias for your new KMS key to simplify management:
+```bash
+aws kms create-alias --alias-name alias/byok-mrk --target-key-id YOUR_KEY_ID
+```
+
+## Preparing for Key Import
+
+### 3. Retrieve Import Parameters
+Generate and save the necessary parameters for key import:
+```bash
+aws kms get-parameters-for-import --key-id YOUR_KEY_ID --wrapping-algorithm RSAES_OAEP_SHA_256 --wrapping-key-spec RSA_2048 --region us-east-1 > ./WrappingParameters.json
+```
+
+### 4. Extract and Prepare the Import Token
+Extract the import token and public key, converting them into usable formats:
+```bash
+jq -r '.ImportToken' ./WrappingParameters.json > ./ImportToken.b64
+echo -e "-----BEGIN PUBLIC KEY-----\n$(jq -r '.PublicKey' ./WrappingParameters.json)\n-----END PUBLIC KEY-----" > ./PublicKey.pem
+openssl enc -d -base64 -A -in ./ImportToken.b64 -out ./ImportToken.bin
+```
+
+## Importing the Public Key to CloudHSM
+
+### 5. Initialize Crypto User Environment
+Set the environment variables to operate as a crypto user in CloudHSM:
+```bash
+export CLOUDHSM_ROLE=crypto-user
+export CLOUDHSM_PIN=cu_user1:password123
+```
+
+### 6. Import the Public Key
+Import the public key to your HSM:
+```bash
+/opt/cloudhsm/bin/cloudhsm-cli key import pem --path ./PublicKey.pem --label wrapping-key-example-11 --key-type-class rsa-public --attributes wrap=true
+```
+
+## Key Wrapping and Import
+
+### 7. Generate or Import Your Symmetric Key
+If you do not already possess a symmetric AES key:
+```bash
+/opt/cloudhsm/bin/cloudhsm-cli key generate-symmetric aes --key-length-bytes 32 --label byok-kms-13
+```
+
+### 8. Wrap the Symmetric Key
+Use the imported public key to wrap your symmetric key:
+```bash
+/opt/cloudhsm/bin/cloudhsm-cli key wrap rsa-oaep --payload-filter attr.label=byok-kms-13 --wrapping-filter attr.label=wrapping-key-example-11 --hash-function sha256 --mgf mgf1-sha256 --path ./KMS-BYOK-May2024-11-wrapped.bin
+```
+
+### 9. Import the Key Material to KMS
+Finally, import the wrapped key material into AWS KMS:
+```bash
+aws kms import-key-material --key-id YOUR_KEY_ID --encrypted-key-material fileb://KMS-BYOK-May2024-11-wrapped.bin --import-token fileb://ImportToken.bin --expiration-model KEY_MATERIAL_EXPIRES --valid-to 2024-09-01T12:00:00-08:00 --region us-east-1
+```
+
+## Conclusion
+
+By following these steps, you've successfully integrated BYOK with AWS KMS using CloudHSM, granting you enhanced control over your cryptographic keys. This process not only ensures compliance with stringent regulatory standards but also enhances the security posture of your cloud deployments. Remember, managing your keys securely involves careful planning and execution to protect your data effectively.
