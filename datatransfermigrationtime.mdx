@@ -43,25 +43,39 @@ Simplification is the name of the game when it comes to data transfer. Utilizing
 # Deep Dive Comparison
 We compare data transfer services across AWS, Azure, and Google Cloud, covering direct connectivity options, transfer acceleration mechanisms, physical data transfer appliances, and services tailored for large data movements. Each cloud provider offers unique solutions, from AWS's Direct Connect and Snowball to Azure's ExpressRoute and Data Box, and Google Cloud's Interconnect and Transfer Appliance.
 
-   <table className="Mastering Data Transfer Times for Cloud Migration">
+  
+                                                <table className="Mastering Data Transfer Times for Cloud Migration">
                                                 <tbody>
                                                 <tr>
-                                                        <th>AWS Direct Connect</th>
-                                                        <th>Azure ExpressRoute</th>
-                                                        <th>Cloud Interconnect</th>
+                                                        <th>AWS Direct Connect, Azure ExpressRoute, Cloud Interconnect</th>
                                                     </tr>
                                                     <tr>
-                                                        <th>AWS Direct Connect</th>
-                                                        <td>A Provides a dedicated network connection from on-premises to AWS.</td>
+                                                        <td>A Provides a dedicated network connection from on-premises to AWS., Offers private connections between Azure data centers and infrastructure., Provides direct physical connections to Google Cloud.</td>
+                                                    </tr>
+                                                     <tr>
+                                                        <th>Amazon S3 Transfer Acceleration, Azure Blob Storage Transfer, Google Transfer Appliance
+</th>
+                                                        <td>Speeds up the transfer of files to S3 using optimized network protocols., Accelerates data transfer to Blob storage using Azure's global network., A rackable high-capacity storage server for large data transfers.</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Azure ExpressRoute</th>
-                                                        <td>Offers private connections between Azure data centers and infrastructure.</td>
+                                                        <th>Physical devices for transporting large volumes of data into and out of AWS., Devices to transfer large amounts of data into Azure Storage., Is a high-capacity storage device that can transfer and securely ship data to a Google upload facility. The service is available in two configurations: 100TB or 480TB of raw storage capacity, or up to 200TB or 1PB compressed.</th>
                                                     </tr>
                                                     <tr>
-                                                        <th>Cloud Interconnect</th>
-                                                        <td>Provides direct physical connections to Google Cloud.</td>
+                                                        <th>AWS Storage Gateway, Azure Import/Export, Google Cloud Storage Transfer Service</th>
+                                                        <td>Connects on-premises software applications with cloud-based storage., Service for importing/exporting large amounts of data using hard drives and SSDs., Provides similar but not ditto same services such as DataPrep.</td>
+                                                      </tr>
+                                                    <tr>
+                                                        <th>AWS DataSync, Azure File Sync, Google Cloud Storage Transfer Service</th>
+                                                        <td>Automates data transfer between on-premises storage and AWS services., Synchronizes files across Azure File shares and on-premises servers., Automates data synchronization from and to GCP Storage from external sources.</td>
                                                     </tr>
+                                                    <tr>
+                                                        <th>CloudEndure, Azure Site Recovery, Migrate 4 Compute Engine</th>
+                                                        <td>AWS CloudEndure works with both Linux and Windows VMs hosted on hypervisors, including VMware, Hyper-V and KVM. CloudEndure also supports workloads running on physical servers as well as cloud-based workloads running in AWS, Azure, Google Cloud Platform and other environments., Help your business to keep doing business—even during major IT outages. Azure Site Recovery offers ease of deployment, cost effectiveness, and dependability., To lift & shift on-prem apps to GCP.</td>
+                                                    </tr>
+                                                    </tbody>
+                                                    
+                                                </table> 
+
 # Conclusion
 As we wrap up our exploration of the data transfer speed and corresponding services provided by AWS, Azure, and GCP, it should be clear what options to consider for what data size and that each platform offers a wealth of options designed to meet the diverse needs of businesses moving and managing big data. Whether you require direct network connectivity, physical data transport devices, or services that synchronize your files across cloud environments, there is a solution tailored to your specific requirements.
 
