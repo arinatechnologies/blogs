@@ -47,12 +47,94 @@ Guarantee of delivering each event at least once.
 Azure Event Grid is a fully managed event routing service that enables event-driven, reactive programming. It uses a publish-subscribe model to filter, route, and deliver events efficiently, from Azure services as well as external sources.
 
 # Choosing the Right Service
+ <table className="Azure Messaging: Service Bus, Event Hub & Event Grid">
+                                                <tbody>
+                                                <tr>
+                                                        <th>Feature</th>
+                                                        <th>Service Bus</th>
+                                                        <th>Event Hub</th>
+                                                        <th>Event Grid</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Messaging Patterns</th>
+                                                        <td>Queues,Topics,Subscriptions</td>
+                                                        <td>Event Streams</td>
+                                                        <td>Reactive Programming</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Protocols Supported</th>
+                                                        <td>AMQP 1.0, HTTP/HTTPS, SBMP</td>
+                                                        <td>AMQP 1.0, HTTP/HTTPS</td>
+                                                        <td>HTTP/HTTPS</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Specifications Supported</th>
+                                                        <td>JMS, WS/SOAP, REST API</td>
+                                                        <td>Kafka, Capture, REST API</td>
+                                                        <td>CloudEvents</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Cost</th>
+                                                        <td>Can get expensive with Premium and Dedicated tiers</td>
+                                                        <td>Can get expensive with Premium and Dedicated tiers</td>
+                                                        <td>Cheapest</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Service Tiers</th>
+                                                        <td>Basic, Standard, Premium</td>
+                                                        <td>Basic, Standard, Premium, Dedicated</td>
+                                                        <td>Basic, Standard</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Ideal Use Case</th>
+                                                        <td>Enterprise Messaging, Ordered Delivery</td>
+                                                        <td>Big Data, Telemetry Ingestion</td>
+                                                        <td>React to resource status changes</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Throughput</th>
+                                                        <td>Lower than Event Hub</td>
+                                                        <td>Designed for High Throughput</td>
+                                                        <td>Dynamically Scales Based on Events</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Ordering</th>
+                                                        <td>Supports FIFO</td>
+                                                        <td>Limited to Partition</td>
+                                                        <td>Event Ordering Not Guaranteed</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Delivery Guarantee</th>
+                                                        <td>At Least Once</td>
+                                                        <td>At Least Once</td>
+                                                        <td>At Least Once, with Retry Policies</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Latency</th>
+                                                        <td>Milliseconds</td>
+                                                        <td>Low, Milliseconds</td>
+                                                        <td>Very Low, Sub-Second</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Maximum Message Size</th>
+                                                        <td>Service Bus messaging services (queues and topics/subscriptions) allow application to send messages of size up to 256 KB (standard tier) or 100 MB (premium tier).</td>
+                                                        <td>256 KB - Basic 1 MB - Standard</td>
+                                                        <td>MQTT limits in Event Grid namespace - 512 KB</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Retention</th>
+                                                        <td>Premium tier - 90 days Basic tier - 
+                                                        14 days</td> 
+                                                        <td>Standard tier - 7 days
+Premium and dedicated tier - 90 days</td>   
+                                                        <td>Minimum value is 1 minute
+Maximum value is topic's retention
+Default value is 7 days or topic retention</td>
+                                                </tr>
 
-| Left columns  | Right columns |
-| ------------- |:-------------:|
-| left foo      | right foo     |
-| left bar      | right bar     |
-| left baz      | right baz     |
+                                                </tbody>
+
+                                                </table>
 
 # Architecture Pattern Showing Service Bus, Event Hub and Event Grid
 Following architecture diagram shows a sample architecture pattern where all 3 Azure services are used:
