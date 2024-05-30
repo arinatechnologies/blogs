@@ -42,63 +42,65 @@ Note: In the Advanced options section, leave the origin as KMS.
 
 ##### Important: Replace codepipeline-source-artifact with the SourceArtifact bucket name for CodePipeline. Replace ACCOUNT_B_NO with the account 2 account number.
 
-<Video id="7pY1LNxlIso" title="How do I deploy ECS Task in a different account using CodePipeline that uses CodeDeploy"/>
+<Video id='7pY1LNxlIso' title='How do I deploy ECS Task in a different account using CodePipeline that uses CodeDeploy'/>
 
-
+```
 {
-  "Version": "2012-10-17",
-  "Statement": [
+  'Version': '2012-10-17',
+  'Statement': [
       {
-          "Effect": "Allow",
-          "Principal": {
-              "Service": "logs.us-east-1.amazonaws.com"
+          'Effect': 'Allow',
+          'Principal': {
+              'Service': 'logs.us-east-1.amazonaws.com'
           },
-          "Action": "s3:GetBucketAcl",
-          "Resource": "arn:aws:s3:::current-account-pipeline-bucket",
-          "Condition": {
-              "StringEquals": {
-                  "aws:SourceAccount": " <<Account 1>>"
+          'Action': 's3:GetBucketAcl',
+          'Resource': 'arn:aws:s3:::current-account-pipeline-bucket',
+          'Condition': {
+              'StringEquals': {
+                  'aws:SourceAccount': ' <<Account 1>>'
               },
-              "ArnLike": {
-                  "aws:SourceArn": "arn:aws:logs:us-east-1: <<Account 1>>:*"
+              'ArnLike': {
+                  'aws:SourceArn': 'arn:aws:logs:us-east-1: <<Account 1>>:*'
               }
           }
       },
       {
-          "Effect": "Allow",
-          "Principal": {
-              "Service": "logs.us-east-1.amazonaws.com"
+          'Effect': 'Allow',
+          'Principal': {
+              'Service': 'logs.us-east-1.amazonaws.com'
           },
-          "Action": "s3:PutObject",
-          "Resource": "arn:aws:s3:::current-account-pipeline-bucket/*",
-          "Condition": {
-              "StringEquals": {
-                  "aws:SourceAccount": " <<Account 1>>",
-                  "s3:x-amz-acl": "bucket-owner-full-control"
+          'Action': 's3:PutObject',
+          'Resource': 'arn:aws:s3:::current-account-pipeline-bucket/*',
+          'Condition': {
+              'StringEquals': {
+                  'aws:SourceAccount': ' <<Account 1>>',
+                  's3:x-amz-acl': 'bucket-owner-full-control'
               }
           }
       },
       {
-          "Effect": "Allow",
-          "Principal": {
-              "AWS": "arn:aws:iam::<<Account2>>:root"
+          'Effect': 'Allow',
+          'Principal': {
+              'AWS': 'arn:aws:iam::<<Account2>>:root'
           },
-          "Action": [
-              "s3:Get*",
-              "s3:Put*"
+          'Action': [
+              's3:Get*',
+              's3:Put*'
           ],
-          "Resource": "arn:aws:s3:::current-account-pipeline-bucket/*"
+          'Resource': 'arn:aws:s3:::current-account-pipeline-bucket/*'
       },
       {
-          "Effect": "Allow",
-          "Principal": {
-              "AWS": "arn:aws:iam::<<Account2>>:root"
+          'Effect': 'Allow',
+          'Principal': {
+              'AWS': 'arn:aws:iam::<<Account2>>:root'
           },
-          "Action": "s3:ListBucket",
-          "Resource": "arn:aws:s3:::current-account-pipeline-bucket"
+          'Action': 's3:ListBucket',
+          'Resource': 'arn:aws:s3:::current-account-pipeline-bucket'
       }
   ]
-  }Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+  }
+```
+
 6. Choose Save.
 
 # (Account 2) Create a cross-account IAM role
@@ -116,59 +118,61 @@ c. Amazon S3 API actions related to the SourceArtifact
 3. Choose the JSON tab. Then, enter the following policy into the JSON editor:
 
 Important: Replace codepipeline-source-artifact with your pipeline's Artifact store's bucket name.
-
+```
 {
-    "Version": "2012-10-17",
-    "Statement": [
+    'Version': '2012-10-17',
+    'Statement': [
         {
-            "Effect": "Allow",
-            "Action": [
-                "s3:List*",
-                "s3:DeleteObjectVersion",
-                "s3:*Object",
-                "s3:CreateJob",
-                "s3:Put*",
-                "s3:Get*"
+            'Effect': 'Allow',
+            'Action': [
+                's3:List*',
+                's3:DeleteObjectVersion',
+                's3:*Object',
+                's3:CreateJob',
+                's3:Put*',
+                's3:Get*'
             ],
-            "Resource": [
-                "arn:aws:s3:::current-account-pipeline-bucket/*"
+            'Resource': [
+                'arn:aws:s3:::current-account-pipeline-bucket/*'
             ]
         },
         {
-            "Action": [
-                "kms:DescribeKey",
-                "kms:GenerateDataKey",
-                "kms:Decrypt",
-                "kms:CreateGrant",
-                "kms:ReEncrypt*",
-                "kms:Encrypt"
+            'Action': [
+                'kms:DescribeKey',
+                'kms:GenerateDataKey',
+                'kms:Decrypt',
+                'kms:CreateGrant',
+                'kms:ReEncrypt*',
+                'kms:Encrypt'
             ],
-            "Resource": [
-                "arn:aws:kms:us-east-1: <<Account 1>>:key/f031942c-5c7b-4e9f-9215-56be4cddab51"
+            'Resource': [
+                'arn:aws:kms:us-east-1: <<Account 1>>:key/f031942c-5c7b-4e9f-9215-56be4cddab51'
             ],
-            "Effect": "Allow",
-            "Sid": "KMSAccess"
+            'Effect': 'Allow',
+            'Sid': 'KMSAccess'
         },
         {
-            "Effect": "Allow",
-            "Action": [
-                "s3:Get*",
-                "s3:ListBucket"
+            'Effect': 'Allow',
+            'Action': [
+                's3:Get*',
+                's3:ListBucket'
             ],
-            "Resource": [
-                "arn:aws:s3:::current-account-pipeline-bucket"
+            'Resource': [
+                'arn:aws:s3:::current-account-pipeline-bucket'
             ]
         },
         {
-            "Effect": "Allow",
-            "Action": [
-                "cloudformation:*",
-                "iam:PassRole"
+            'Effect': 'Allow',
+            'Action': [
+                'cloudformation:*',
+                'iam:PassRole'
             ],
-            "Resource": "*"
+            'Resource': '*'
         }
     ]
-}Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+}
+```
+
 4. Choose Review policy.
 
 5. For Name, enter a name for the policy.
@@ -183,22 +187,24 @@ Important: Replace codepipeline-source-artifact with your pipeline's Artifact st
 3. Choose the JSON tab. Then, enter the following policy into the JSON editor:
 
 Important: Replace arn:aws:kms:REGION:ACCOUNT_A_NO:key/key-id with your AWS KMS key's ARN that you copied earlier.
-
+```
 {
-      "Action": [
-        "kms:DescribeKey",
-        "kms:GenerateDataKey",
-        "kms:Decrypt",
-        "kms:CreateGrant",
-        "kms:ReEncrypt*",
-        "kms:Encrypt"
+      'Action' : [
+        'kms:DescribeKey',
+        'kms:GenerateDataKey',
+        'kms:Decrypt',
+        'kms:CreateGrant',
+        'kms:ReEncrypt*',
+        'kms:Encrypt'
     ],
-    "Resource": [
-        "arn:aws:kms:us-east-1: <<Account 1>>:key/f031942c-5c7b-4e9f-9215-56be4cddab51"
+    'Resource': [
+        'arn:aws:kms:us-east-1: <<Account 1>>:key/f031942c-5c7b-4e9f-9215-56be4cddab51'
     ],
-    "Effect": "Allow",
-    "Sid": "KMSAccess"
-  }Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+    'Effect': 'Allow',
+    'Sid': 'KMSAccess'
+  }
+```
+
 4. Choose Review policy.
 
 5. For Name, enter a name for the policy.
@@ -233,16 +239,19 @@ Important: Replace arn:aws:kms:REGION:ACCOUNT_A_NO:key/key-id with your AWS KMS 
 
 ##### Important: Replace ACCOUNT_B_NO with the account 2 account number.
 
+```
 {
-  "Version": "2012-10-17",
-  "Statement": {
-    "Effect": "Allow",
-    "Action": "sts:AssumeRole",
-    "Resource": [
-      "arn:aws:iam::ACCOUNT_B_NO:role/*"
+  'Version': '2012-10-17',
+  'Statement': {
+    'Effect': 'Allow',
+    'Action': 'sts:AssumeRole',
+    'Resource': [
+      'arn:aws:iam::ACCOUNT_B_NO:role/*'
     ]
   }
-}Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+}
+```
+
 6. Choose Review policy, and then create the policy.
 
 # (Account 2) Create a service role for CodeDeploy and if using EC2 you need to also setup AutoScaling for EC2 service role that includes the required permissions for the services deployed by the stack
@@ -256,7 +265,7 @@ Note:
 
 4. Apply permissions to your role based on your use case.
 
-##### Important: Make sure that your trust policy allows resources in Account 1: << Account 1 >> 0 to access services that are deployed by the stack.
+##### Important: Make sure that your trust policy allows resources in Account 1: < Account 1 > 0 to access services that are deployed by the stack.
 
 # (Account 1) Update the CodePipeline configuration to include the resources associated with account 2
 Note: If you receive errors when running AWS Command Line Interface (AWS CLI) commands, confirm that you're running a recent version of the AWS CLI.
@@ -270,7 +279,7 @@ aws codepipeline get-pipeline --name MyFirstPipeline &gt;pipeline.jsonCopy CodeC
 
 Note: For more information on pipeline structure, see create-pipeline in the AWS CLI Command Reference.
 
-Note: The RoleArn inside the "name": "Deploy" configuration JSON structure for your pipeline is the role for the CodePipeline role in Account 2. This is IMPORTANT as using this role the pipeline in Account 1 will be able to know the ECS Service/task is in which account.
+Note: The RoleArn inside the 'name': 'Deploy' configuration JSON structure for your pipeline is the role for the CodePipeline role in Account 2. This is IMPORTANT as using this role the pipeline in Account 1 will be able to know the ECS Service/task is in which account.
 
 4. Verify that the role is updated for both of the following:
 
@@ -280,149 +289,155 @@ b. The roleArn outside the action configuration JSON structure for your pipeline
 
 Note: In the following code example, RoleArn is the role passed to AWS CloudFormation to launch the stack. CodePipeline uses roleArn to operate an AWS CloudFormation stack.
 
+```
 {
-"pipeline": {
-  "name": "svc-pipeline",
-  "roleArn": "arn:aws:iam:: <<Account 1>>:role/codepipeline-role",
-  "artifactStores": {
-      "eu-west-2": {
-          "type": "S3",
-          "location": "codepipeline-eu-west-2-419402304744",
-          "encryptionKey": {
-              "id": "arn:aws:kms:us-east-1: <<Account 1>>:key/f031942c-5c7b-4e9f-9215-56be4cddab51",
-              "type": "KMS"
+'pipeline': {
+  'name': 'svc-pipeline',
+  'roleArn': 'arn:aws:iam:: <<Account 1>>:role/codepipeline-role',
+  'artifactStores': {
+      'eu-west-2': {
+          'type': 'S3',
+          'location': 'codepipeline-eu-west-2-419402304744',
+          'encryptionKey': {
+              'id': 'arn:aws:kms:us-east-1: <<Account 1>>:key/f031942c-5c7b-4e9f-9215-56be4cddab51',
+              'type': 'KMS'
           }
       },
-      "us-east-1": {
-          "type": "S3",
-          "location": "codepipeline-us-east-1- <<Account 1>>"
+      'us-east-1': {
+          'type': 'S3',
+          'location': 'codepipeline-us-east-1- <<Account 1>>'
       }
   },
-  "stages": [
+  'stages': [
       {
-          "name": "Source",
-          "actions": [
+          'name': 'Source',
+          'actions': [
               {
-                  "name": "Source",
-                  "actionTypeId": {
-                      "category": "Source",
-                      "owner": "AWS",
-                      "provider": "CodeCommit",
-                      "version": "1"
+                  'name': 'Source',
+                  'actionTypeId': {
+                      'category': 'Source',
+                      'owner': 'AWS',
+                      'provider': 'CodeCommit',
+                      'version': '1'
                   },
-                  "runOrder": 1,
-                  "configuration": {
-                      "BranchName": "develop",
-                      "OutputArtifactFormat": "CODE_ZIP",
-                      "PollForSourceChanges": "false",
-                      "RepositoryName": "my-ecs-service"
+                  'runOrder': 1,
+                  'configuration': {
+                      'BranchName': 'develop',
+                      'OutputArtifactFormat': 'CODE_ZIP',
+                      'PollForSourceChanges': 'false',
+                      'RepositoryName': 'my-ecs-service'
                   },
-                  "outputArtifacts": [
+                  'outputArtifacts': [
                       {
-                          "name": "SourceArtifact"
+                          'name': 'SourceArtifact'
                       }
                   ],
-                  "inputArtifacts": [],
-                  "region": "us-east-1"
+                  'inputArtifacts': [],
+                  'region': 'us-east-1'
               }
           ]
       },
       {
-          "name": "TST_Develop",
-          "actions": [
+          'name': 'TST_Develop',
+          'actions': [
               {
-                  "name": "Build-TST",
-                  "actionTypeId": {
-                      "category": "Build",
-                      "owner": "AWS",
-                      "provider": "CodeBuild",
-                      "version": "1"
+                  'name': 'Build-TST',
+                  'actionTypeId': {
+                      'category': 'Build',
+                      'owner': 'AWS',
+                      'provider': 'CodeBuild',
+                      'version': '1'
                   },
-                  "runOrder": 1,
-                  "configuration": {
-                      "ProjectName": "codebuild-project"
+                  'runOrder': 1,
+                  'configuration': {
+                      'ProjectName': 'codebuild-project'
                   },
-                  "outputArtifacts": [
+                  'outputArtifacts': [
                       {
-                          "name": "BuildArtifact"
+                          'name': 'BuildArtifact'
                       }
                   ],
-                  "inputArtifacts": [
+                  'inputArtifacts': [
                       {
-                          "name": "SourceArtifact"
+                          'name': 'SourceArtifact'
                       }
                   ],
-                  "region": "us-east-1"
+                  'region': 'us-east-1'
               },
               {
-                  "name": "Build-Docker",
-                  "actionTypeId": {
-                      "category": "Build",
-                      "owner": "AWS",
-                      "provider": "CodeBuild",
-                      "version": "1"
+                  'name': 'Build-Docker',
+                  'actionTypeId': {
+                      'category': 'Build',
+                      'owner': 'AWS',
+                      'provider': 'CodeBuild',
+                      'version': '1'
                   },
-                  "runOrder": 2,
-                  "configuration": {
-                      "PrimarySource": "SourceArtifact",
-                      "ProjectName": "codebuild_docker_prj"
+                  'runOrder': 2,
+                  'configuration': {
+                      'PrimarySource': 'SourceArtifact',
+                      'ProjectName': 'codebuild_docker_prj'
                   },
-                  "outputArtifacts": [
+                  'outputArtifacts': [
                       {
-                          "name": "ImagedefnArtifactTST"
+                          'name': 'ImagedefnArtifactTST'
                       }
                   ],
-                  "inputArtifacts": [
+                  'inputArtifacts': [
                       {
-                          "name": "SourceArtifact"
+                          'name': 'SourceArtifact'
                       },
                       {
-                          "name": "BuildArtifactTST"
+                          'name': 'BuildArtifactTST'
                       }
                   ],
-                  "region": "us-east-1"
+                  'region': 'us-east-1'
               },
               {
-                  "name": "Deploy",
-                  "actionTypeId": {
-                      "category": "Deploy",
-                      "owner": "AWS",
-                      "provider": "ECS",
-                      "version": "1"
+                  'name': 'Deploy',
+                  'actionTypeId': {
+                      'category': 'Deploy',
+                      'owner': 'AWS',
+                      'provider': 'ECS',
+                      'version': '1'
                   },
-                  "runOrder": 3,
-                  "configuration": {
-                      "ClusterName": "<<Account2>>-ecs",
-                      "ServiceName": "<<Account2>>-service"
+                  'runOrder': 3,
+                  'configuration': {
+                      'ClusterName': '<<Account2>>-ecs',
+                      'ServiceName': '<<Account2>>-service'
                   },
-                  "outputArtifacts": [],
-                  "inputArtifacts": [
+                  'outputArtifacts': [],
+                  'inputArtifacts': [
                       {
-                          "name": "ImagedefnArtifactTST"
+                          'name': 'ImagedefnArtifactTST'
                       }
                   ],
-                  "roleArn": "arn:aws:iam::<<Account2>>:role/codepipeline-role",
-                  "region": "eu-west-2"
+                  'roleArn': 'arn:aws:iam::<<Account2>>:role/codepipeline-role',
+                  'region': 'eu-west-2'
               }
           ]
       }
   ],
-  "version": 3,
-  "pipelineType": "V1"
+  'version': 3,
+  'pipelineType': 'V1'
 },
-"metadata": {
-  "pipelineArn": "arn:aws:codepipeline:us-east-1: <<Account 1>>:pipeline",
-  "created": "2024-01-25T16:53:19.957000-06:00",
-  "updated": "2024-01-25T18:57:07.565000-06:00"
+'metadata': {
+  'pipelineArn': 'arn:aws:codepipeline:us-east-1: <<Account 1>>:pipeline',
+  'created': '2024-01-25T16:53:19.957000-06:00',
+  'updated': '2024-01-25T18:57:07.565000-06:00'
     }
-}Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+}
+```
+
 5. Remove the metadata configuration from the pipeline.json file. For example:
 
-"metadata": {
-  "pipelineArn": "arn:aws:codepipeline:us-east-1: <<Account 1>>:Account1-pipeline",
-  "created": "2024-01-25T16:53:19.957000-06:00",
-  "updated": "2024-01-25T18:57:07.565000-06:00"
-}Copy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+```
+'metadata': {
+  'pipelineArn': 'arn:aws:codepipeline:us-east-1: <<Account 1>>:Account1-pipeline',
+  'created': '2024-01-25T16:53:19.957000-06:00',
+  'updated': '2024-01-25T18:57:07.565000-06:00'
+}
+```
+
 Important: To align with proper JSON formatting, remove the comma before the metadata section.
 
 6. (Optional) To create a pipeline and update the JSON structure, run the following command to update the pipeline with the new configuration file:
@@ -434,8 +449,3 @@ aws codepipeline create-pipeline --cli-input-json file://pipeline.jsonCopy CodeC
 ##### Important: In your pipeline.json file, make sure that you change the name of your new pipeline.
 
 Deploy ECS tasks across accounts seamlessly with CodePipeline and CodeDeploy for efficient multi-account management.
-
-
-
-
-                                       

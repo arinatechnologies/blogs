@@ -1,18 +1,18 @@
 ---
-title: "Mastering Data Transfer Times for Cloud Migration"
-date: "2024-03-11"
-image: "https://raw.githubusercontent.com/arinatechnologies/blogs/main/images/data-transfer.webp"
+title: 'Mastering Data Transfer Times for Cloud Migration'
+date: '2024-03-11'
+image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/main/images/data-transfer.webp'
 tags:
   [
-    "AWS",
-    "AWS Snowball",
-    "Azure Data Box",
-    "Google Cloud",
-    "API",
-    "SDK",
-    "CDN",
-    "S3",
-    "Cloud Interconnect",
+    'AWS',
+    'AWS Snowball',
+    'Azure Data Box',
+    'Google Cloud',
+    'API',
+    'SDK',
+    'CDN',
+    'S3',
+    'Cloud Interconnect',
   ]
 ---
 
@@ -27,9 +27,9 @@ Businesses are moving towards cloud services not because they enjoy managing dat
 To give you a clearer picture, we present an indicative reference architecture focusing on Azure (though similar principles apply to AWS and Google Cloud). This architecture includes various components such as virtual networks, subnets, load balancers, applications, databases, and peripheral services like Azure Monitor and API Management. This setup exemplifies a typical scenario for a hybrid application requiring data transfer between cloud and on-premises environments.
 
 <CustomImage
-  src="https://www.arinatechnologies.com/assets/images/blog/reference-arch.png"
-  loading="lazy"
-  alt="Indicative Reference Architecture"
+  src='https://www.arinatechnologies.com/assets/images/blog/reference-arch.png'
+  loading='lazy'
+  alt='Indicative Reference Architecture'
 />
 
 # Calculating Data Transfer Times
@@ -45,9 +45,9 @@ Ref: https://learn.microsoft.com/en-us/azure/storage/common/storage-choose-data-
 Following image from Google documentation provides a good chart on data size with respect to network bandwidth:
 
 <CustomImage
-  src="https://cloud.google.com/static/architecture/images/big-data-transfer-how-to-get-started-transfer-size-and-speed.png"
-  loading="lazy"
-  alt="Calculating Data Transfer Times"
+  src='https://cloud.google.com/static/architecture/images/big-data-transfer-how-to-get-started-transfer-size-and-speed.png'
+  loading='lazy'
+  alt='Calculating Data Transfer Times'
 />
 
 # Cost-Effective Data Transfer Strategies
@@ -61,13 +61,13 @@ Simplification is the name of the game when it comes to data transfer. Utilizing
 [x] Use Content Delivery Networks (CDNs), caching and regions closer to data
 [x] Leverage cloud provider products to its strength and do your own analysis
 
-<Videoid="rRNzkuR6T5g" title="Mastering Data Transfer Times for Cloud Migration"/>
+<Video id='rRNzkuR6T5g' title='Mastering Data Transfer Times for Cloud Migration'/>
 
 # Deep Dive Comparison
 
 We compare data transfer services across AWS, Azure, and Google Cloud, covering direct connectivity options, transfer acceleration mechanisms, physical data transfer appliances, and services tailored for large data movements. Each cloud provider offers unique solutions, from AWS's Direct Connect and Snowball to Azure's ExpressRoute and Data Box, and Google Cloud's Interconnect and Transfer Appliance.
 
-                                                <table className="awsvsazurevsgoogle">
+                                                <table className='awsvsazurevsgoogle'>
 
                                                 <thead>
                                                     <tr>
