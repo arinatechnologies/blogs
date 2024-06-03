@@ -1,0 +1,175 @@
+# Overview
+### - Understanding Permission Sets
+### - Understanding SCPs (Service Control Policies)
+### - Permission Sets vs. SCPs: Defining the Difference
+# Understanding Permission Sets
+## What are Permission Sets?
+### 1. Definition
+Permission Sets are collections of permissions that define what users and groups can do within AWS accounts and applications.
+
+### 2. Analogy: 
+Think of Permission Sets as 'access templates' that you can apply to users across different AWS accounts. 
+A set of IAM policies that can be attached to users or groups to grant them access to AWS resources.
+
+# Characteristics
+### 1. Reusable 
+Once created, a Permission Set can be assigned to any number of users or groups across different AWS accounts.
+### 2. Customizable 
+You can create Permission Sets that align with the specific job roles within your organization, ensuring that each role has access to the resources needed for its responsibilities.
+### 3. Manageable 
+AWS Identity Center allows you to manage Permission Sets centrally, giving you the ability to update permissions across multiple accounts from a single interface.
+# Components of a Permission Set
+### 1. IAM Policies 
+Defines the permissions to access AWS resources. These can be AWS managed policies or custom policies created to match specific requirements.
+### 2. Session Duration 
+Specifies how long the permissions will be granted once a user assumes a role.
+# Use Cases
+### 1. Cross-Account Access 
+Grant users in one AWS account permissions to resources in another account.
+### 2. Application Access 
+Allow users to access specific AWS applications with the necessary permissions.
+### 3. Role-Based Access Control (RBAC) 
+Align Permission Sets with job functions, creating a streamlined RBAC system across AWS accounts.
+# Management Practices
+### 1.Least Privilege Access 
+Only include permissions necessary for the job function to minimize security risks.
+### 2. Auditing and Review 
+Regularly audit Permission Sets for any permissions that need to be updated or revoked to maintain security and compliance.
+### 3. Scaling 
+As your AWS usage grows, Permission Sets can help efficiently manage increasing numbers of users and permissions.
+
+In AWS Identity Center, Permission Sets enable you to implement a consistent and scalable approach to access management across your AWS ecosystem, from development environments to production workloads. They serve as a cornerstone for ensuring that the right people have the right access at the right time, following security best practices.
+
+-The role of Permission Sets in AWS Identity Center.
+
+-Common challenges with Permission Sets
+
+# Understanding SCPs
+## 1.What are SCPs?
+## 2.The significance of SCPs in AWS Organizations
+## 3.Common pitfalls with SCP management
+
+Service Control Policies (SCPs) are a type of policy that you can use in AWS Organizations to manage permissions in your organization. They offer central control over the maximum available permissions for all accounts in your organization, allowing you to ensure your accounts stay within your organization’s access control guidelines.
+SCPs are like a set of guardrails that control what actions users and roles can perform in the accounts to which the SCPs are applied. They don’t grant permissions but instead act as a filter for actions that are allowed by Identity and Access Management (IAM) policies and other permission settings.
+
+## Here’s a breakdown of SCPs’ key features
+
+### 1.Organizational Control 
+SCPs are applied across all accounts within an AWS Organization or within specific organizational units (OUs), providing a uniform policy base across multiple accounts.
+### 2.Whitelist or Blacklist Actions 
+SCPs can whitelist (explicitly allow) or blacklist (explicitly deny) IAM actions, regardless of the permissions granted by IAM policies.
+### 3.Layered Enforcement 
+Multiple SCPs can be applied to an account, providing layered security and policy enforcement. This enables more granular control over permissions for accounts that inherit multiple SCPs from various OUs.
+### 4.Non-Overriding 
+SCPs cannot grant permissions; they can only be used to deny permissions. Even if an IAM policy grants an action, if the SCP denies it, the action cannot be performed.
+### 3.Boundary for IAM Permissions 
+SCPs effectively set the maximum permissions boundary. If an action is not allowed by an SCP, no entity (users or roles) in the account can perform that action, even if they have administrative privileges.
+
+By effectively managing SCPs, organizations can add an extra layer of security to their AWS environment, prevent unintended actions that could lead to security incidents, and maintain consistent governance and compliance across all AWS accounts.
+
+
+# Permission Sets vs. SCPs: Defining the Difference
+-The distinct roles of Permission Sets and SCPs
+
+-How they complement each other in access management
+
+<Video id="l1qrQSUFLv4" title="Enhance Cloud Security: Permission Sets in AWS Org"/>
+
+<table ClassName="AWS Identity Center Vs SCP Permisson sets" >
+                                                    <tbody>
+                                                    <tr>
+                                                    <th>Feature/Aspect</th>
+                                                    <th>Permission Sets</th>
+                                                    <th>SCPs (Service Control Policies)</th>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Definition</td>
+                                                    <td>Collections of permissions that grant a group rights to perform certain actions in AWS.</td>
+                                                    <td>Policies that specify the maximum permissions for an organization or OU in AWS.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Purpose</td>
+                                                    <td>To assign specific permissions to users or groups within AWS accounts.</td>
+                                                    <td>To manage permissions and provide guardrails for all accounts within an org.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Scope</td>
+                                                    <td>Applied at the user or group level within accounts</td>
+                                                    <td>Applied across all accounts or within specific OUs in an organization.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Permission Granting</td>
+                                                    <td>Can grant permissions to perform actions.</td>
+                                                    <td>Do not grant permissions; they only restrict or filter them.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Use Case</td>
+                                                    <td>Tailored access for individuals based 
+                                                    on role or task.</td>
+                                                    <td>Broad control over account actions to enforce compliance and security.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Application Method</td>
+                                                    <td>Assigned to users or groups 
+                                                    in AWS Identity Center.</td>
+                                                    <td>Attached to OUs or accounts within 
+                                                    AWS Organizations.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Overriding Permissions</td>
+                                                    <td>Can potentially override existing permissions with more permissive rules.</td>
+                                                    <td>Cannot override or provide additional permissions beyond what's allowed.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Primary Function</td>
+                                                    <td>To allow specific AWS actions that users/groups can perform.</td>
+                                                    <td>To prevent certain AWS actions, regardless of IAM policies.</td>
+                                                    </tr>
+                                                    <tr> 
+                                                    <td>Flexibility</td>
+                                                    <td>Highly customizable for 
+                                                    individual needs and roles.</td>
+                                                    <td>Provide a consistent set of guardrails for all accounts under its scope.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Interaction with IAM</td>
+                                                    <td>Works in conjunction with IAM permissions.</td>
+                                                    <td>Sits over IAM policies, 
+                                                    acting as a boundary for them.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Type of Control</td>
+                                                    <td>Granular control for specific users/groups.</td>
+                                                    <td>High-level control affecting all users/roles in the accounts.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Visibility</td>
+                                                    <td>Visible and managed within AWS Identity Center.</td>
+                                                    <td>Visible and managed in the 
+                                                    AWS Organizations console.</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>Enforcement Level</td>
+                                                    <td>Enforced at the account level where the permission set is applied.</td>
+                                                    <td>Enforced across the organization or within specified OUs.</td>
+                                                    </tr>
+                                                    </tbody>
+                                                    </table>
+
+
+
+
+
+                                                
+                                            
+
+
+                                            
+
+
+
+
+
+
+
+
