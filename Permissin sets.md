@@ -69,7 +69,7 @@ SCPs can whitelist (explicitly allow) or blacklist (explicitly deny) IAM actions
 Multiple SCPs can be applied to an account, providing layered security and policy enforcement. This enables more granular control over permissions for accounts that inherit multiple SCPs from various OUs.
 ### 4.Non-Overriding 
 SCPs cannot grant permissions; they can only be used to deny permissions. Even if an IAM policy grants an action, if the SCP denies it, the action cannot be performed.
-### 3.Boundary for IAM Permissions 
+### 5.Boundary for IAM Permissions 
 SCPs effectively set the maximum permissions boundary. If an action is not allowed by an SCP, no entity (users or roles) in the account can perform that action, even if they have administrative privileges.
 
 By effectively managing SCPs, organizations can add an extra layer of security to their AWS environment, prevent unintended actions that could lead to security incidents, and maintain consistent governance and compliance across all AWS accounts.
