@@ -24,6 +24,8 @@ Azure File Sync extends the capability to synchronize files across Azure File sh
 # Azure Data Factory - The Pipeline Maestro: 
 As a service for creating data-driven workflows, Azure Data Factory enables data movement and transformation across diverse sources, making it a powerful tool for data integration and processing tasks.
 
+<Video id="IfhBYk2RJZI" title="How to improve data transfer efficiency in Azure"/>
+
 # Comparative Analysis :
  The blog will conduct a comparative analysis of these services, examining their suitability based on data volume, transfer speed, security, cost-effectiveness, and integration capabilities. It aims to provide clear guidance on choosing the right service for different data transfer scenarios.
   <table className="Data Transfer">
