@@ -1,3 +1,10 @@
+---
+title: 'Enhance Cloud Security: Permission Sets in AWS Organizations'
+date: '2024-04-08'
+image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/main/images/HSM%203.webp'
+tags: ['CloudSecurity' , 'AWSOrg' , 'PermissionSets' , 'Cybersecurity' , 'AWSBestPractices' , 'CloudComputing']
+---
+
 # Overview
 ### - Understanding Permission Sets
 ### - Understanding SCPs (Service Control Policies)
@@ -84,8 +91,10 @@ By effectively managing SCPs, organizations can add an extra layer of security t
                                                     </tr>
                                                     <tr>
                                                     <td>Definition</td>
-                                                    <td>Collections of permissions that grant a group rights to perform certain actions in AWS.</td>
-                                                    <td>Policies that specify the maximum permissions for an organization or OU in AWS.</td>
+                                                    <td>Collections of permissions that grant a group rights to perform certain actions 
+                                                    in AWS.</td>
+                                                    <td>Policies that specify the maximum permissions 
+                                                      for an organization or OU in AWS.</td>
                                                     </tr>
                                                     <tr>
                                                     <td>Purpose</td>
