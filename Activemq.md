@@ -171,6 +171,9 @@ handled by tcp (all protocols)  </td>
                                            <td>Management and Monitoring</td>
                                            <td>JMX based management which can be less intuitive and more complex</td>
                                            <td>Improved JMX management, web console and better support for management over the messaging protocol</td>
+                                           </tr>
+                                             <tr>
+                                          <td>Message Filtering</td>
                                            <td>Basic selector-based filtering</td>
                                            <td>Advanced filtering capabilities including custom plugin support</td>
                                            </tr>
