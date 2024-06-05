@@ -69,21 +69,20 @@ Keys are a fundamental component of modern cybersecurity, enabling secure commun
 
 
 # Customer Managed Key (CMK)
-## What is a CMK?
+### What is a CMK?
 CMKs are encryption keys that you, the customer, generate and manage.
 They provide you with full control over your encryption process, including key generation, rotation, and access management.
-## When to Choose CMK
+### When to Choose CMK
 Highly Sensitive Data If you have exceptionally sensitive data, such as personal financial records or medical records, CMKs offer the highest level of control and security.
 Compliance Requirements If your industry has strict regulatory requirements (e.g., HIPAA, GDPR), CMKs allow you to meet those standards by maintaining control over encryption keys.
 Multi-Cloud Environments If your organization operates in a multi-cloud environment (e.g., AWS, Azure, Google Cloud), CMKs can provide a consistent encryption approach across platforms.
 # Cloud Provider Key (CPK)
-## What is a CPK?
+### What is a CPK?
 CPKs are encryption keys managed by your cloud service provider (e.g., AWS, Azure).
 They offer convenience, as the provider takes care of key management tasks.
-## When to Choose CPK
-Simplicity If you're looking for a hassle-free encryption solution and don't want to manage encryption keys, CPKs are a convenient choice.
-General Use Cases For many everyday applications and use cases, especially those without stringent compliance requirements, CPKs can be sufficient.
-## Cost-Efficiency 
+### When to Choose CPK?
+Simplicity If you're looking for a hassle-free encryption solution and don't want to manage encryption keys, CPKs are a convenient choice. General Use Cases For many everyday applications and use cases, especially those without stringent compliance requirements, CPKs can be sufficient.
+### Cost-Efficiency 
 CPKs often come with cost savings because you don't need to allocate resources for key management.
 # Comparison
 
@@ -164,19 +163,21 @@ CPKs often come with cost savings because you don't need to allocate resources f
                                                   </tbody>
                                                     </table> 
 
-## Security
+### Security
 CMKs offer the highest level of control and security, making them ideal for highly sensitive data.
 CPKs are generally secure but might be a better fit for less sensitive use cases.
-## Compliance
+
+### Compliance
 CMKs are often preferred when strict compliance with industry regulations is necessary.
 CPKs can meet compliance requirements in many cases but may require additional configurations.
-## Management Overhead
+
+### Management Overhead
 CMKs require more management effort, including key rotation, access control, and disaster recovery planning.
 CPKs offload key management tasks to the cloud provider, reducing management overhead.
-## Use Case
+
+### Use Case
 CMKs are well-suited for scenarios with unique security needs, while also offering flexibility in multi-cloud ## environments.
 CPKs are a great choice for standard use cases and when simplicity is a priority.
+
 # Conclusion 
 The choice between Customer Managed Keys (CMKs) and Cloud Provider Keys (CPKs) ultimately depends on your organization's specific requirements. Both approaches have their merits, and a well-thought-out encryption strategy can help you strike the right balance between security, compliance, and convenience. Consider your data's sensitivity, industry regulations, and management preferences when making your decision.
-
-                                
