@@ -159,7 +159,7 @@ tags: ['AWS' , 'Google' , 'Azure']
                               </tr>
                               </tbody>
                               </table>
-                                      |
+                                      
 
 ### Security and Compliance
 - **Discussion**: Security features and compliance certifications across platforms.
