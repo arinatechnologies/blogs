@@ -7,39 +7,38 @@ tags: ['aws','godaddy','Domain','Top-level-domain(TLD)','aws transfer','Route 53
 
 Are you considering switching your domain registrar from GoDaddy to Amazon Web Services (AWS)? Whether you're seeking more control, better pricing, or enhanced features, transferring your domain doesn't have to be complicated. In this comprehensive guide, we'll walk you through the process of migrating your domain from GoDaddy to AWS.
 
-Seamlessly transition your domain: Follow our step-by-step guide to transfer from GoDaddy to AWS hassle-free.
+**Seamlessly transition your domain:** Follow our step-by-step guide to transfer from GoDaddy to AWS hassle-free.
 
-## Before You Begin: Transfer Requirements
+### Before You Begin: Transfer Requirements
 To prevent abuse and preserve domain ownership integrity, domain registrars, including GoDaddy and AWS, adhere to certain transfer requirements:
-
 The domain must be registered with the current registrar or transferred to the current registrar for at least 60 days.If restored from expiration, the domain must be at least 60 days post-restoration.Ensure the domain doesn't have prohibitive status codes like clientTransferProhibited, pendingDelete, pendingTransfer, redemptionPeriod, or serverTransferProhibited. You can find the current status by searching for your domain on the ICANN WHOIS website.Make any required changes (like to the domain owner) well in advance, as certain TLDs restrict transfers during updates.If you encounter issues or need more information on status codes, consult ICANN's policies or check out their EPP status codes website.
 
 <Video id="y47qSZTW0Og" title="How To Transfer Your Domain from GoDaddy to AWS"/>
 
-### Step 1: Confirm AWS Support for Your Domain's TLD
+**Step 1: Confirm AWS Support for Your Domain's TLD**
 Start by checking whether Route 53 supports your domain's top-level domain (TLD). Visit to check availability.
 
-### Step 2: Connect with GoDaddy Support
+**Step 2: Connect with GoDaddy Support**
 The first step in transferring your domain is to get in touch with GoDaddy's customer support. You will:
 Sign in to your GoDaddy account.
 Unlock the domain from GoDaddy's interface.
 Obtain your account number.
 Keep in mind that after making changes, it can take 2 to 3 days for them to propagate.
 
-### Step 3: Prepare for AWS Transfer
+**Step 3: Prepare for AWS Transfer**
 Now, head over to your AWS account. Here are the things you need to take care of:
 Make sure your domain is not in a locked state; AWS cannot transfer a locked domain.
 Discontinue auto-renew as it won't be necessary anymore.
 Contact GoDaddy's help center to receive important domain transfer information.
 
-### Step 4: Update Settings with GoDaddy
+**Step 4: Update Settings with GoDaddy**
 Ensure the registrant contact email is current for communication and transfer authorization purposes.
 Unlock the domain to allow transfer.
 Verify the domain is in a transferable state.
 If DNSSEC is enabled, disable it for the transfer (reactivate it in AWS later).
 Secure an authorization code from GoDaddy, except for certain TLDs like .co.za, .es, .uk, and .co.uk, which have different requirements (e.g., updating IPS tags for .uk domains).
 
-### Step 5: Request Domain Transfer on AWS
+**Step 5: Request Domain Transfer on AWS**
 Initiate the domain transfer request using AWS Route 53, which will verify the domain status for you. After initiating the transfer, it will officially take 2 to 5 days to complete. Within the AWS Route 53 console:
 Click on 'Registered Domains'.
 Opt for either transferring a single domain or multiple domains.
@@ -47,7 +46,7 @@ Hit 'Check' to confirm the domain is transferable.
 Follow AWS's prompts to proceed with the transfer.
 AWS will provide status updates on the transfer request through the console.
 
-### Step 6: Post-Transfer Setup
+**Step 6: Post-Transfer Setup**
 Once the domain is in AWS's hands, you'll receive a notification. You'll then need to:
 Update the Name Servers in Route 53.
 Verify that hosted records match your desired configuration.
@@ -55,12 +54,12 @@ Configure auto-renew to avoid losing your domain at the end of the registration 
 Enable the transfer lock for additional security.
 Go to the hosted zone to review domain status and Name Server records.
 
-### Step 7: Additional Checks and Settings
+**Step 7: Additional Checks and Settings**
 This involves making sure all DNS settings, including MX records and other configurations, are properly set up for your email and website. For example:
 If you've moved from GoDaddy's Outlook email to another provider, update the MX records accordingly.
 Add any additional DNS records, like TXT for email domain validation and others required for your domain to function correctly.
 
-### Step 8: Final Confirmation and Testing
+**Step 8: Final Confirmation and Testing**
 Ensure that everything works as expected by:
 Configure auto-renewal and transfer lock settings to protect your domain.
 Verify and update any DNS settings in Route 53 to map correctly to your services.
@@ -68,15 +67,10 @@ Confirming the Name Server records match.
 Testing traffic routing to your website.
 Performing email send and receive tests to confirm that email delivery is functional.
 
-## Conclusion
-When choosing to transfer your domain to AWS Route 53:
-
+# Conclusion
+**When choosing to transfer your domain to AWS Route 53:**
 Remember that DNS records, including MX and TXT records, need to be reconfigured in AWS.
 Be aware of special considerations for certain TLDs, including those related to renewal periods and IPS tags (.uk and .co.uk domains, for instance).
 Have all name server data ready if you plan to use DNS services outside of AWS after the transfer.
 If utilizing DNSSEC, coordinate between GoDaddy and AWS to ensure proper transfer of DNSSEC keys, or risk DNS resolution failure.
 By following these steps and understanding the requirements, you can ensure a hassle-free transition of your domain from GoDaddy to AWS Route 53, reaping the benefits of a robust, scalable hosting environment for your website and applications.
-
-Transferring your domain from GoDaddy to AWS Route 53 can give you greater control and might align better with your needs. While the transfer process can take a few days, following these steps will help ensure a smooth migration. Remember to consult AWS's detailed documentation, and don't hesitate to reach out to their support if you encounter any issues.
-
-Feel confident and secure in your decision to transfer, and enjoy the benefits AWS has to offer!
