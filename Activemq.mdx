@@ -78,19 +78,6 @@ Both ActiveMQ and Artemis offer robust messaging solutions, but their approaches
                                          <td>$ bin/activemq start</td>
                                          <td>$ bin/artemis-service start</td>
                                          </tr>
-                                         <tr>
-                                         <td>Connectors</td>    
-                                         <td>OpenWire,NIO,AMQP,STOMP,VM (OpenWire only),HTTP (OpenWire-based),MQTT,WebSocket (STOMP and 
-                                         MQTT)</td>        
-                                          <td>protocols=OpenWire (version 10+), -, protocols=AMQP, protocols=STOMP,    
-                                          InVM (all protocols,peer to tcp), -, protocols=MQTT, handled by tcp (all protocols)</td>   
-                                           </tr>
-                                           <tr>
-                                           <td>Destinations</td>
-                                           <td>Destinations are 0re-defined in the destinations section of the conf/activemq.xml
-                                           configuration file.</td>      
-                                           <td>Addresses are defined in addresses section of the etc/broker.xml configuration file.</td>
-                                           </tr>
                                            <tr>
                                            <td>JMS  Support</td>
                                            <td>JMS 1.1 Supported</td>
