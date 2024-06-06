@@ -25,146 +25,228 @@ Both ActiveMQ and Artemis offer robust messaging solutions, but their approaches
 **Management and Configuration:** Artemis simplifies management through an updated configuration structure and provides out-of-the-box support for features like WebSockets, which are not as straightforward in ActiveMQ.
 
 <table className="ActiveMQ">
-                                         <tbody>
-                                         <tr>
-                                         <th>Criteria</th>
-                                         <th>ActiveMQ Classic</th>
-                                         <th>Artemis</th>
-                                         </tr>
-                                         <tr>
-                                         <td>IO connectivity layer</td>
-                                         <td>Uses tcp (synchronous one) and nio (non-blocking one)</td>
-                                         <td>Implemented using Netty, which is a nio framework. Thus need to choose between different implementations as the non-blocking one is used by default. One acceptor can handle multiple messaging protocols on the same port. Web Sockets are supported out of the box. So, there's no need for the separate ws transport like in ActiveMQ, the tcp (Netty) acceptor in Artemis will detect Web Socket clients and handle them accordingly.</td>
-                                         </tr>
-                                         <tr>
-                                         <td>Message store</td>
-                                         <td>Uses KahaDB that consists of a message journal for fast sequential storing of messages (and other command packets) and an index for retrieving messages when needed.</td>
-                                         <td>Own message store, which consists only of the append-only message journal and doesn't require message index.</td>
-                                         </tr>
-                                         <tr>
-                                         <td>Paging (process that happens when broker can't hold all incoming messages in its memory)</td>
-                                         <td>Uses cursors, which are basically a cache of messages ready to be dispatched to the consumer. Cursors try to keep all incoming messages in cache. When we run out of the available memory, messages are added to the store, but the caching stops. When the space become available again, the broker will fill the cache again by pulling messages from the store in batches. Because of this, we need to read the journal from time to time during a broker runtime. In order to do that, we need to maintain a journal index, so that messages' position can be tracked inside the journal.</td>
-                                         <td>The whole message journal is kept in memory and messages are dispatched directly from it. When we run out of memory, messages are paged on the producer side (before they hit the broker). They are stored in sequential page files in the same order as they arrived. Once the memory is freed, messages are moved from these page files into the journal. With paging working like this, messages are read from the file journal only when the broker starts up, in order to recreate this in-memory version of the journal. In this case, the journal is only read sequentially, meaning that there's no need to keep an index of messages in the journal.</td>
-                                         </tr>
-                                         <tr>
-                                         <td>Message addressing and routing</td>
-                                         <td>All other supported protocols, like MQTT and AMQP are translated internally into OpenWire.</td>
-                                         <td>Anycast routing is used implement point-to-point semantics, where there'll be only one queue for the address and all consumers will subscribe to it and this addressing and routing scheme is used across all protocols.</td>
-                                         </tr>
-                                         <tr>
-                                         <td>Broker Instance (keeping installation and configuration of the broker separate makes it easier to upgrade and maintain the broker in the future)</td>
-                                         <td>Optional step</td>
-                                         <td>Need to explicitly create a broker instance</td>
-                                         </tr>
-                                         <tr>
-                                         <td>Configuration file to configure most of the aspects of the broker, like connector ports, destination names, security policies, etc</td>
-                                         <td>conf/activemq.xml</td>
-                                         <td>etc/broker.xml</td>
-                                         </tr>
-                                         <tr>
-                                         <td>Configure environment variables such as JVM args related to SSL context, debugging, etc</td>
-                                         <td>bin/env</td>
-                                         <td>etc/artemis.profile</td>
-                                         </tr>
-                                         <tr>
-                                         <td>Logging configuration</td>
-                                         <td>etc/logging.properties</td>
-                                         <td>etc/logging.properties</td>
-                                         </tr>
-                                         <tr>
-                                         <td>Start the broker in the foreground</td>
-                                         <td>$ bin/activemq console</td>
-                                         <td>$ bin/artemis run</td>
-                                         </tr>
-                                         <tr>
-                                         <td>Broker as a service</td>
-                                         <td>$ bin/activemq start</td>
-                                         <td>$ bin/artemis-service start</td>
-                                         </tr>
-                                           <tr>
-                                           <td>JMS  Support</td>
-                                           <td>JMS 1.1 Supported</td>
-                                           <td>JMS 2.0 Supported</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Creation of Durable Subscribers</td>
-                                           <td>Creates a durable subscriber per destination. As demand migrates across a network, duplicate durable subs get created on each node in the network but they do not migrate. The end result can result in duplicate message storage and ultimately duplicate delivery, which is not good.</td>
-                                           <td>Because a durable subscriber is modeled as a queue, this problem does not arise.</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Authentication</td>
-                                           <td>Called Groups. JAAS configuration  through the appropriate broker plugin in conf/activemq.xml</td>
-                                           <td>Called Roles.</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Authorization</td>
-                                           <td>Specified in conf/activemq.xml</td>
-                                           <td>Specified in etc/broker.xml</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Policies</td>
-                                           <td>Defined on destination names. To send messages need to define write policy in respective 
-                                           brokers</td>
-                                           <td>applied to core queues and are more fine grained. To send messages need to define send 
-                                           policy in respective brokers</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Project Status</td>
-                                           <td>Mature, widely adopted</td>
-                                           <td>Active, successor to Classic</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Performance</td>
-                                           <td>Good, with some limitations</td>
-                                           <td>Improved, high performance</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Persistence Mechanism</td>
-                                           <td>Uses KahaDB or JDBC</td>
-                                           <td>Uses a fast journal for message persistence</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Broker Architecture</td>
-                                           <td>Traditional broker architecture, which can become a bottleneck in high-throughput scenarios</td>
-                                           <td>Designed as an asynchronous broker that can handle high-throughput scenarios more efficiently</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Broker Architecture</td>
-                                           <td>Traditional broker architecture, which can become a bottleneck in high-throughput scenarios</td>
-                                           <td>Designed as an asynchronous broker that can handle high-throughput scenarios more efficiently</td>
-                                           </tr>
-                                           <tr>
-                                           <td>High Availability</td>
-                                           <td>Master-slave configuration for high availability</td>
-                                           <td>Built-in support for automatic failover and shared-nothing live-backup configurations</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Clustering</td>
-                                           <td>Basic clustering support with network of brokers</td>
-                                           <td>Advanced clustering with automatic client failover</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Management and Monitoring</td>
-                                           <td>JMX based management which can be less intuitive and more complex</td>
-                                           <td>Improved JMX management, web console and better support for management over the messaging protocol</td>
-                                           </tr>
-                                             <tr>
-                                          <td>Message Filtering</td>
-                                           <td>Basic selector-based filtering</td>
-                                           <td>Advanced filtering capabilities including custom plugin support</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Security</td>
-                                           <td>Supports authentication and authorization</td>
-                                           <td>Enhanced security features, including support for SSL/TLS, JAAS</td>
-                                           </tr>
-                                           <tr>
-                                           <td>Federation</td>
-                                           <td>Requires custom configurations to set up federation</td>
-                                           <td>Native support for geographically distributed clusters</td>
-                                           </tr>
-                                           </tbody>
-                                           </table>
+  <tbody>
+    <tr>
+      <th>Criteria</th>
+      <th>ActiveMQ Classic</th>
+      <th>Artemis</th>
+    </tr>
+    <tr>
+      <td>IO connectivity layer</td>
+      <td>Uses tcp (synchronous one) and nio (non-blocking one)</td>
+      <td>
+        Implemented using Netty, which is a nio framework. Thus need to choose
+        between different implementations as the non-blocking one is used by
+        default. One acceptor can handle multiple messaging protocols on the
+        same port. Web Sockets are supported out of the box. So, there's no need
+        for the separate ws transport like in ActiveMQ, the tcp (Netty) acceptor
+        in Artemis will detect Web Socket clients and handle them accordingly.
+      </td>
+    </tr>
+    <tr>
+      <td>Message store</td>
+      <td>
+        Uses KahaDB that consists of a message journal for fast sequential
+        storing of messages (and other command packets) and an index for
+        retrieving messages when needed.
+      </td>
+      <td>
+        Own message store, which consists only of the append-only message
+        journal and doesn't require message index.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Paging (process that happens when broker can't hold all incoming
+        messages in its memory)
+      </td>
+      <td>
+        Uses cursors, which are basically a cache of messages ready to be
+        dispatched to the consumer. Cursors try to keep all incoming messages in
+        cache. When we run out of the available memory, messages are added to
+        the store, but the caching stops. When the space become available again,
+        the broker will fill the cache again by pulling messages from the store
+        in batches. Because of this, we need to read the journal from time to
+        time during a broker runtime. In order to do that, we need to maintain a
+        journal index, so that messages' position can be tracked inside the
+        journal.
+      </td>
+      <td>
+        The whole message journal is kept in memory and messages are dispatched
+        directly from it. When we run out of memory, messages are paged on the
+        producer side (before they hit the broker). They are stored in
+        sequential page files in the same order as they arrived. Once the memory
+        is freed, messages are moved from these page files into the journal.
+        With paging working like this, messages are read from the file journal
+        only when the broker starts up, in order to recreate this in-memory
+        version of the journal. In this case, the journal is only read
+        sequentially, meaning that there's no need to keep an index of messages
+        in the journal.
+      </td>
+    </tr>
+    <tr>
+      <td>Message addressing and routing</td>
+      <td>
+        All other supported protocols, like MQTT and AMQP are translated
+        internally into OpenWire.
+      </td>
+      <td>
+        Anycast routing is used implement point-to-point semantics, where
+        there'll be only one queue for the address and all consumers will
+        subscribe to it and this addressing and routing scheme is used across
+        all protocols.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Broker Instance (keeping installation and configuration of the broker
+        separate makes it easier to upgrade and maintain the broker in the
+        future)
+      </td>
+      <td>Optional step</td>
+      <td>Need to explicitly create a broker instance</td>
+    </tr>
+    <tr>
+      <td>
+        Configuration file to configure most of the aspects of the broker, like
+        connector ports, destination names, security policies, etc
+      </td>
+      <td>conf/activemq.xml</td>
+      <td>etc/broker.xml</td>
+    </tr>
+    <tr>
+      <td>
+        Configure environment variables such as JVM args related to SSL context,
+        debugging, etc
+      </td>
+      <td>bin/env</td>
+      <td>etc/artemis.profile</td>
+    </tr>
+    <tr>
+      <td>Logging configuration</td>
+      <td>etc/logging.properties</td>
+      <td>etc/logging.properties</td>
+    </tr>
+    <tr>
+      <td>Start the broker in the foreground</td>
+      <td>$ bin/activemq console</td>
+      <td>$ bin/artemis run</td>
+    </tr>
+    <tr>
+      <td>Broker as a service</td>
+      <td>$ bin/activemq start</td>
+      <td>$ bin/artemis-service start</td>
+    </tr>
+    <tr>
+      <td>JMS Support</td>
+      <td>JMS 1.1 Supported</td>
+      <td>JMS 2.0 Supported</td>
+    </tr>
+    <tr>
+      <td>Creation of Durable Subscribers</td>
+      <td>
+        Creates a durable subscriber per destination. As demand migrates across
+        a network, duplicate durable subs get created on each node in the
+        network but they do not migrate. The end result can result in duplicate
+        message storage and ultimately duplicate delivery, which is not good.
+      </td>
+      <td>
+        Because a durable subscriber is modeled as a queue, this problem does
+        not arise.
+      </td>
+    </tr>
+    <tr>
+      <td>Authentication</td>
+      <td>
+        Called Groups. JAAS configuration through the appropriate broker plugin in conf/activemq.xml
+      </td>
+      <td>Called Roles.</td>
+    </tr>
+    <tr>
+      <td>Authorization</td>
+      <td>Specified in conf/activemq.xml</td>
+      <td>Specified in etc/broker.xml</td>
+    </tr>
+    <tr>
+      <td>Policies</td>
+      <td>
+        Defined on destination names. To send messages need to define write policy in respective brokers
+      </td>
+      <td>
+        applied to core queues and are more fine grained. To send messages need to define send policy in respective brokers
+      </td>
+    </tr>
+    <tr>
+      <td>Project Status</td>
+      <td>Mature, widely adopted</td>
+      <td>Active, successor to Classic</td>
+    </tr>
+    <tr>
+      <td>Performance</td>
+      <td>Good, with some limitations</td>
+      <td>Improved, high performance</td>
+    </tr>
+    <tr>
+      <td>Persistence Mechanism</td>
+      <td>Uses KahaDB or JDBC</td>
+      <td>Uses a fast journal for message persistence</td>
+    </tr>
+    <tr>
+      <td>Broker Architecture</td>
+      <td>
+        Traditional broker architecture, which can become a bottleneck in
+        high-throughput scenarios
+      </td>
+      <td>
+        Designed as an asynchronous broker that can handle high-throughput scenarios more efficiently
+      </td>
+    </tr>
+    <tr>
+      <td>Broker Architecture</td>
+      <td>
+        Traditional broker architecture, which can become a bottleneck in high-throughput scenarios
+      </td>
+      <td>
+        Designed as an asynchronous broker that can handle high-throughput scenarios more efficiently
+      </td>
+    </tr>
+    <tr>
+      <td>High Availability</td>
+      <td>Master-slave configuration for high availability</td>
+      <td>
+        Built-in support for automatic failover and shared-nothing live-backup configurations
+      </td>
+    </tr>
+    <tr>
+      <td>Clustering</td>
+      <td>Basic clustering support with network of brokers</td>
+      <td>Advanced clustering with automatic client failover</td>
+    </tr>
+    <tr>
+      <td>Management and Monitoring</td>
+      <td>JMX based management which can be less intuitive and more complex</td>
+      <td>
+        Improved JMX management, web console and better support for management
+        over the messaging protocol
+      </td>
+    </tr>
+    <tr>
+      <td>Message Filtering</td>
+      <td>Basic selector-based filtering</td>
+      <td>Advanced filtering capabilities including custom plugin support</td>
+    </tr>
+    <tr>
+      <td>Security</td>
+      <td>Supports authentication and authorization</td>
+      <td>Enhanced security features, including support for SSL-TLS, JAAS</td>
+    </tr>
+    <tr>
+      <td>Federation</td>
+      <td>Requires custom configurations to set up federation</td>
+      <td>Native support for geographically distributed clusters</td>
+    </tr>
+  </tbody>
+</table>
 
 
 ### Practical Applications
