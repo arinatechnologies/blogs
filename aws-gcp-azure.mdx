@@ -1,232 +1,986 @@
 ---
-title: 'AWS vs Google vs Azure: Decoding the Ultimate Cloud Battle'
-date: '2024-02-12'
-image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/main/images/awsggpazure.webp'
-tags: ['AWS' , 'Google' , 'Azure']
+title: "AWS vs Google vs Azure: Decoding the Ultimate Cloud Battle"
+date: "2024-02-12"
+image: "https://raw.githubusercontent.com/arinatechnologies/blogs/main/images/awsggpazure.webp"
+tags: ["AWS", "Google", "Azure"]
 ---
 
-### Introduction
+                                                <p>In the ever-evolving world of technology, one question frequently arises among professionals and businesses alike: which cloud provider is the best fit for my needs? With a plethora of options available, including giants like AWS (Amazon Web Services), Microsoft Azure, and Google Cloud, the decision can seem daunting. This blog aims to shed light on the key differences and strengths of these leading cloud services, helping you navigate the complex landscape of cloud computing.</p>
 
-- Introduction to cloud computing.
-- Brief overview of AWS, GCP, and Azure.
-- Importance of understanding different cloud services for informed decision-making.
+                                                <blockquote>
+                                                    <div className="icon-box"><i className="icon-47"></i></div>
+                                                    <p>Choose wisely: AWS's global reach and vast services, Azure's seamless integration with Microsoft's ecosystem, and Google Cloud's leading data analytics and machine learning capabilities are shaping the future of the cloud, driving innovation, and redefining what's possible in technology.</p>
+                                                </blockquote>
+                                                <h3>Understanding Cloud Computing</h3>
+                                                <p>Cloud computing has revolutionized the way we store, manage, and process data. At its core, cloud computing allows users to access and utilize computing resources over the internet, offering flexibility, scalability, and cost-efficiency. As the demand for these services grows, so does the landscape of providers, with AWS, Azure, and Google Cloud leading the charge. But what makes cloud computing so significant, and how has it evolved over the years? This section delves into the basics of cloud computing, its importance, and the transformative impact it has had on businesses and technology strategies worldwide.</p>
 
-### Data Movement and Bulk Transfers
+                                                <h3>Comparing Cloud Providers</h3>
+                                                <p>When it comes to selecting a cloud service provider, the choice often boils down to AWS, Azure, and Google Cloud. Each provider offers unique strengths and services tailored to different business needs.</p>
+                                                <h3>AWS</h3>
+                                                <p>Amazon Web Services (AWS) is a pioneer in the cloud computing domain, offering an extensive range of services. From powerful compute options like EC2 to innovative technologies such as AWS Lambda for serverless computing, AWS caters to a wide array of computing needs. Its global network of data centers ensures high availability and reliability for businesses worldwide.</p>
 
-- **Discussion**: Overview of how each platform handles large-scale data transfers.
-- **Table 1: Data Movement Services**
+                                                <h3>Azure</h3>
+                                                <p>Microsoft Azure provides a seamless integration with Microsoft's software ecosystem, making it an attractive option for enterprises heavily invested in Microsoft products. Azure excels in hybrid cloud solutions, allowing businesses to bridge their on-premises infrastructure with the cloud. Azure's AI and machine learning services are also noteworthy, offering cutting-edge tools for businesses to leverage.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <th>Service</th>
-      <th>AWS</th>
-      <th>GCP</th>
-      <th>Azure</th>
-    </tr>
-    <tr>
-      <td>Bulk Data Transfer</td>
-      <td>Snowball</td>
-      <td>Storage Transfer</td>
-      <td>Azure Data Box</td>
-    </tr>
-    <tr>
-      <td>Online Transfer</td>
-      <td>AWS Direct Connect</td>
-      <td>Google Cloud Interconnect</td>
-      <td>ExpressRoute</td>
-    </tr>
-  </tbody>
-</table>
+                                                <h3>Google Cloud</h3>
+                                                <p>Google Cloud stands out for its data analytics and machine learning services, building on Google's extensive experience in data management and AI. With solutions like BigQuery and TensorFlow, Google Cloud is ideal for projects that require advanced data analysis and machine learning capabilities.</p>
 
-### Networking and Content Delivery
+                                                <h3>Other Providers</h3>
+                                                <p>Beyond these giants, the cloud landscape includes other notable providers such as IBM Cloud, Oracle Cloud, and Alibaba Cloud, each offering unique services and regional strengths.</p>
 
-- **Discussion**: Compare virtual networking, DNS services, and content delivery networks.
-- **Table 2: Networking and Content Delivery**
+                                                <h3>Choosing the Right Cloud Provider</h3>
+                                                <p>Selecting the right cloud provider depends on several factors:</p>
+                                                <ul>
+                                                    <li><b>Cost Efficiency:</b> Comparing pricing models is crucial as costs can vary significantly based on resource consumption, storage needs, and network usage.</li>
+                                                    <li><b>Service Offerings:</b> Consider the range of services offered and how they align with your project requirements.</li>
+                                                    <li><b>Scalability and Flexibility:</b> Assess the provider's ability to scale resources up or down based on demand.</li>
+                                                    <li><b>Security and Compliance:</b> Ensure the provider meets your industry's security standards and compliance requirements.</li>
+                                                    <li><b>Support and Community:</b> Consider the level of support offered and the active community around the cloud services.</li>
+                                                </ul>
 
-<table>
-  <tbody>
-    <tr>
-      <th>Feature</th>
-      <th>AWS</th>
-      <th>GCP</th>
-      <th>Azure</th>
-    </tr>
-    <tr>
-      <td>Virtual Private Cloud (VPC)</td>
-      <td>VPC</td>
-      <td>VPC</td>
-      <td>VPC</td>
-    </tr>
-    <tr>
-      <td>DNS</td>
-      <td>Route 53</td>
-      <td>Google DNS</td>
-      <td>Azure DNS</td>
-    </tr>
-    <tr>
-      <td>CDN</td>
-      <td>CloudFront</td>
-      <td>Google Cloud CDN</td>
-      <td>Azure CDN</td>
-    </tr>
-  </tbody>
-</table>
-
-### Compute and Load Balancing - **Discussion**: Types of compute options and load
-balancing functionalities. - **Table 3: Compute and Load Balancing**
-
-<table>
-  <tbody>
-    <tr>
-      <th>Feature</th>
-      <th>AWS</th>
-      <th>GCP</th>
-      <th>Azure</th>
-    </tr>
-    <tr>
-      <td>Compute Services</td>
-      <td>EC2</td>
-      <td>Compute Engine</td>
-      <td>Azure Virtual Machines</td>
-    </tr>
-    <tr>
-      <td>VLoad Balancer</td>
-      <td>Elastic Load Balancer</td>
-      <td>Cloud Load Balancing</td>
-      <td>Azure Load Balancer</td>
-    </tr>
-  </tbody>
-</table>
-
-### Storage Solutions
-
-- **Discussion**: Storage options including object storage and databases.
-- **Table 4: Storage and Database Services**
-
-<table>
-  <tbody>
-    <tr>
-      <th>Storage Type</th>
-      <th>AWS</th>
-      <th>GCP</th>
-      <th>Azure</th>
-    </tr>
-    <tr>
-      <td>Object Storage</td>
-      <td>S3</td>
-      <td>Cloud Storage</td>
-      <td>Azure Blob Storage</td>
-    </tr>
-    <tr>
-      <td>Relational Database</td>
-      <td>RDS</td>
-      <td>Cloud SQL</td>
-      <td>SQL Database</td>
-    </tr>
-    <tr>
-      <td>NoSQL Database</td>
-      <td>DynamoDB</td>
-      <td>Firestore, Bigtable</td>
-      <td>Cosmos DB</td>
-    </tr>
-  </tbody>
-</table>
-
-### Disaster Recovery and Backups
-
-- **Discussion**: How cloud providers handle disaster recovery and backups.
-- **Table 5: Disaster Recovery and Backup**
-
-<table>
-  <tbody>
-    <tr>
-      <th>Feature</th>
-      <th>AWS</th>
-      <th>GCP</th>
-      <th>Azure</th>
-    </tr>
-    <tr>
-      <td>Disaster Recovery</td>
-      <td>AWS Disaster Recovery</td>
-      <td>GCP's Disaster Recovery</td>
-      <td>Azure Site Recovery</td>
-    </tr>
-    <tr>
-      <td>Backup Solutions</td>
-      <td>AWS Backup</td>
-      <td>N/A (third-party options)</td>
-      <td>Azure Backup</td>
-    </tr>
-  </tbody>
-</table>
-
-### Security and Compliance
-
-- **Discussion**: Security features and compliance certifications across platforms.
-- **Table 6: Security and Compliance**
-
-<table> 
-                             <tbody>
-                             <tr>
-                             <th>Feature</th>
-                             <th>AWS</th>
-                             <th>GCP</th>
-                             <th>Azure</th>
-                             </tr>
-                             <tr>
-                             <td>Identity Management</td>
-                             <td>IAM</td>
-                             <td>Cloud IAM</td>
-                             <td>Azure Active Directory</td>
-                             </tr>
-                             <tr>
-                             <td>Compliance</td>
-                             <td>Multiple Certifications</td>
-                             <td>Multiple Certifications</td>
-                             <td>Multiple Certifications</td>
-                             </tr>
-                             </tbody>
-                             </table>
-
-### AI and Machine Learning
-
-- **Discussion**: AI services provided by each cloud provider.
-- **Table 7: AI and Machine Learning Services**
-
-<table>
-  <tbody>
-    <tr>
-      <th>Service</th>
-      <th>AWS</th>
-      <th>GCP</th>
-      <th>Azure</th>
-    </tr>
-    <tr>
-      <td>AI Services</td>
-      <td>Comprehend, Polly</td>
-      <td>Natural Language, Vision AI</td>
-      <td>Cognitive Services</td>
-    </tr>
-    <tr>
-      <td>Machine Learning</td>
-      <td>SageMaker</td>
-      <td>AI Platform</td>
-      <td>Azure Machine Learning</td>
-    </tr>
-  </tbody>
-</table>
+                                                <h3>The Future of Cloud Computing</h3>
+                                                <p>The future of cloud computing is poised for exponential growth, with emerging trends such as edge computing, serverless architectures, and AI-driven cloud services shaping the next wave of innovation. Businesses must stay abreast of these developments to leverage cloud computing effectively and maintain a competitive edge.</p>
 
 
-### Conclusion
+                                                <div className="video-container">
+                                                    <iframe className="responsive-iframe" src="https://www.youtube.com/embed/CngDd4-3Vlg?si=g0NtfJQruUvdeUiv" title="AWS vs Azure vs GCP" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                                </div>
 
-- Summary of key points.
-- Recommendations on choosing the right provider based on specific needs.
+                                                <h3 className="fw-bold text-center mb-0">Service Comparison: AWS vs Azure vs Google Cloud</h3>
+                                                <h4 className="fw-bold text-center mb-0">Compute</h4>
+                                                <table className="awsvsazurevsgoogle">
 
-### Call to Action
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Service</th>
+                                                            <th>Amazon Web Services</th>
+                                                            <th>Google Cloud Plateform</th>
+                                                            <th>Microsoft Azure</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">Deploy, manage, and maintain virtual servers</td>
+                                                            <td rowSpan="2"><a href="https://aws.amazon.com/ec2/" target="_blank">Elastic Compute Cloud (EC2)</a></td>
+                                                            <td rowSpan="2"><a href="https://cloud.google.com/compute/?hl=en" target="_blank">Compute Engine</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/virtual-machines/" target="_blank">Virtual Machines</a></td>
 
-- Invite comments, questions, or requests for more detailed comparisons.
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/virtual-machine-scale-sets/" target="_blank">Virtual Machine Scale Sets</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Virtual private servers made easy</td>
+                                                            <td><a href="https://aws.amazon.com/lightsail/" target="_blank">Lightsail</a></td>
+                                                            <td></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/virtual-machines/" target="_blank">Virtual Machine Images</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Shared Web hosting</td>
+                                                            <td>AWS Amplify</td>
+                                                            <td>Web Apps</td>
+                                                            <td>Firebase</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">Management support for Docker/Kubernetes containers</td>
+                                                            <td><a href="https://aws.amazon.com/ecs/" target="_blank">EC2 Container Service (ECS)</a></td>
+                                                            <td><a href="https://cloud.google.com/kubernetes-engine/?hl=en" target="_blank">Kubernetes Engine</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/kubernetes-service/" target="_blank">Container Service</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://aws.amazon.com/eks/" target="_blank">Kubernetes (EKS)</a></td>
+                                                            <td><a href="https://cloud.google.com/kubernetes-engine?hl=en" target="_blank">Container Engine</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/kubernetes-service/" target="_blank">Container Service (AKS)</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Docker container registry</td>
+                                                            <td><a href="https://aws.amazon.com/ecr/" target="_blank">EC2 Container Registry (ECR)</a></td>
+                                                            <td><a href="https://cloud.google.com/artifact-registry" target="_blank">Container Registry</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/container-registry/" target="_blank">Container Registry</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Orchestrate and manage microservice-based applications</td>
+                                                            <td>AWS Elastic Beanstalk</td>
+                                                            <td><a href="https://cloud.google.com/appengine/?hl=en" target="_blank">App Engine</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-in/products/service-fabric/" target="_blank">Service Fabric</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Integrate systems and run backend logic processes</td>
+                                                            <td><a href="https://aws.amazon.com/lambda/" target="_blank">Lambda</a></td>
+                                                            <td><a href="https://cloud.google.com/functions/?hl=en" target="_blank">Cloud Functions</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/functions/" target="_blank">Functions</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Run large-scale parallel and high-performance batch computing</td>
+                                                            <td><a href="https://aws.amazon.com/batch/" target="_blank">Batch</a></td>
+                                                            <td>Preemptible VMs</td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/batch/" target="_blank">Batch</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="3">Automatically scale instances</td>
+                                                            <td rowSpan="3"><a href="https://aws.amazon.com/autoscaling/" target="_blank">Auto Scaling</a></td>
+                                                            <td rowSpan="3"><a href="https://cloud.google.com/compute/docs/instance-groups/" target="_blank">Instance Groups</a></td>
+                                                            <td><a href="https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview" target="_blank">Virtual Machine Scale Sets</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up" target="_blank">App Service Scale Capability (PAAS)</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://learn.microsoft.com/en-us/azure/app-service/environment/app-service-environment-auto-scale" target="_blank">AutoScaling</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <br />
 
-### Additional Resources
+                                                <h3>Service Comparison:
+                                                    AWS vs Azure vs Google Cloud</h3>
+                                                <h4 className="fw-bold text-center mb-0">Storage</h4>
+                                                <table className="awsvsazurevsgoogle">
 
-- Links to official documentation for each service by AWS, GCP, and Azure.
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Service</th>
+                                                            <th>Amazon Web Services</th>
+                                                            <th>Google Cloud Plateform</th>
+                                                            <th>Microsoft Azure</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Object storage service for use cases</td>
+                                                            <td><a href="https://aws.amazon.com/s3/" target="_blank">Simple Storage Services (S3)</a></td>
+                                                            <td><a href="https://cloud.google.com/storage/?hl=en" target="_blank">Google Cloud Storage</a></td>
+                                                            <td><a href="https://learn.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs#about-block-blobs" target="_blank">Storage (Block Blob)</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Virtual server disk infrastructure</td>
+                                                            <td><a href="https://aws.amazon.com/ebs/" target="_blank">Elastic Block Store (EBS)</a></td>
+                                                            <td><a href="https://cloud.google.com/compute/docs/disks/persistent-disks" target="_blank">Compute Engine Persistent Disks</a></td>
+                                                            <td><a href="https://learn.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs#about-page-blobs" target="_blank">Storage (Page Blobs)</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="3">Archive storage</td>
+                                                            <td><a href="https://aws.amazon.com/s3/storage-classes/">S3 Infrequent Access (IA)</a></td>
+                                                            <td><a href="https://cloud.google.com/storage?hl=en" target="_blank">Nearline</a></td>
+                                                            <td><a href="https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview" target="_blank">Storage (Cool)</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://aws.amazon.com/s3/storage-classes/glacier/" target="_blank">Glacier</a></td>
+                                                            <td><a href="https://cloud.google.com/storage?hl=en" target="_blank">Coldline</a></td>
+                                                            <td><a href="https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview" target="_blank">Storage (Archive)</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://aws.amazon.com/ru/archive/" target="_blank">Data Archive</a></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">Create and configure shared file systems</td>
+                                                            <td><a href="https://aws.amazon.com/efs/" target="_blank">Elastic File System (EFS)</a></td>
+                                                            <td><a href="https://www.microsoft.com/en-us/avere" target="_blank">ZFS / Avere</a></td>
+                                                            <td>Azure Files</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td><a href="https://www.microsoft.com/en-us/avere" target="_blank">File Store</a></td>
+                                                            <td>Azure NetApp Files</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Hybrid storage</td>
+                                                            <td>Storage Gateway</td>
+                                                            <td><a href="https://cloud.google.com/files/kubernetes-your-hybrid-cloud-strategy.pdf?hl=en" target="_blank">Egnyte Sync</a></td>
+                                                            <td><a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-files-migration-storsimple-8000" target="_blank">StorSimple</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="3">Bulk data transfer solutions</td>
+                                                            <td><a href="https://docs.aws.amazon.com/" target="_blank">Import/Export Disk</a></td>
+                                                            <td><a href="https://cloud.google.com/storage-transfer-service?hl=en" target="_blank">Storage Transfer Service</a></td>
+                                                            <td><a href="https://learn.microsoft.com/en-us/azure/import-export/storage-import-export-service" target="_blank">Import/Export</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://aws.amazon.com/snowball/" target="_blank">Snowball Edge</a></td>
+                                                            <td></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/databox/" target="_blank">Azure Data Box</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://aws.amazon.com/snowmobile/" target="_blank">Snowmobile</a></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="3">Backup</td>
+                                                            <td><a href="https://aws.amazon.com/s3/" target="_blank">Object Storage</a></td>
+                                                            <td></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/backup/" target="_blank">Backup</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://aws.amazon.com/s3/storage-classes/glacier/" target="_blank">Cold Archive Storage</a></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://aws.amazon.com/storagegateway/" target="_blank">Storage Gateway</a></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Automatic protection and disaster recovery</td>
+                                                            <td><a href="https://aws.amazon.com/disaster-recovery/" target="_blank">Disaster Recovery</a></td>
+                                                            <td><a href="https://cloud.google.com/architecture/dr-scenarios-planning-guide?hl=en" target="_blank">Disaster Recovery Cookbook</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/site-recovery/" target="_blank">Site Recovery</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <br />
+                                                <h3 className="fw-bold text-center mb-0">Service Comparison: AWS vs Azure vs Google Cloud</h3>
+                                                <h4 className="fw-bold text-center mb-0">Networking and Content Delivery</h4>
+                                                <table className="awsvsazurevsgoogle">
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Service</th>
+                                                            <th>Amazon Web Services</th>
+                                                            <th>Google Cloud Plateform</th>
+                                                            <th>Microsoft Azure</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Isolated, private cloud private networking</td>
+                                                            <td><a href="https://aws.amazon.com/vpc/" target="_blank">Virtual Private Cloud</a></td>
+                                                            <td><a href="https://cloud.google.com/vpc/?hl=en" target="_blank">Virtual Private Cloud</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/virtual-network/" target="_blank">Virtual Network</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Cross-premises connectivity</td>
+                                                            <td><a href="https://aws.amazon.com/api-gateway/" target="_blank">API Gateway</a></td>
+                                                            <td><a href="https://cloud.google.com/network-connectivity/docs/how-to/choose-product#cloud-vpn" target="_blank">Cloud VPN</a></td>
+                                                            <td><a href="https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways" target="_blank">VPN Gateway</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">Manage DNS names and records</td>
+                                                            <td><a href="https://aws.amazon.com/route53/" target="_blank">Route 53</a></td>
+                                                            <td><a href="https://cloud.google.com/dns/?hl=en" target="_blank">Google Cloud DNS</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/dns/" target="_blank"></a>Azure DNS</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/traffic-manager/" target="_blank">Traffic Manager</a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowSpan="2">Global content delivery networks</td>
+                                                            <td><a href="https://aws.amazon.com/cloudfront/" target="_blank">CloudFront</a></td>
+                                                            <td><a href="https://cloud.google.com/hybrid-connectivity?hl=en" target="_blank">Cloud Interconnect</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/cdn/" target="_blank">Content Delivery Network</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td><a href="https://cloud.google.com/cdn/docs/" target="_blank">Cloud CDN</a></td>
+                                                            <td></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Dedicated, private network connection</td>
+                                                            <td><a href="https://aws.amazon.com/directconnect/" target="_blank">Direct Connect</a></td>
+                                                            <td><a href="https://cloud.google.com/hybrid-connectivity?hl=en" target="_blank">Cloud Interconnect</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/expressroute/" target="_blank">ExpressRoute</a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowSpan="2">Load balancing configuration</td>
+                                                            <td><a href="https://aws.amazon.com/elasticloadbalancing/" target="_blank">Elastic Load Balancing</a></td>
+                                                            <td><a href="https://cloud.google.com/load-balancing/?hl=en" target="_blank">Cloud Load Balancing</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/load-balancer/" target="_blank">Load Balancer</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/application-gateway/" target="_blank">Application Gateway</a></td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                                <br />
+
+                                                <h3 className="fw-bold text-center mb-0">Service Comparison: AWS vs Azure vs Google Cloud</h3>
+                                                <h4 className="fw-bold text-center mb-0">Database</h4>
+                                                <table className="awsvsazurevsgoogle">
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Service</th>
+                                                            <th>Amazon Web Services</th>
+                                                            <th>Google Cloud Plateform</th>
+                                                            <th>Microsoft Azure</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="3">Managed relational database-as-a-service</td>
+                                                            <td><a href="https://aws.amazon.com/rds/">RDS</a></td>
+                                                            <td><a href="https://cloud.google.com/sql/?hl=en" target="_blank">Cloud SQL</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/azure-sql/database/" target="_blank">SQL Database</a></td>
+
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td></td>
+                                                            <td><a href="https://cloud.google.com/spanner/?hl=en" target="_blank">Cloud Spanner</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/mysql/" target="_blank">Database for MySQL</a></td>
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/postgresql/" target="_blank">Database for PostgreSQL</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">NoSQL (Indexed)</td>
+                                                            <td><a href="https://aws.amazon.com/dynamodb/" target="_blank">DynamoDB</a></td>
+                                                            <td><a href="https://cloud.google.com/datastore/" target="_blank">Cloud Datastore</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/cosmos-db/" target="_blank">Cosmos DB</a></td>
+                                                        </tr>
+
+                                                        <tr>
+
+                                                            <td></td>
+                                                            <td><a href="https://cloud.google.com/bigtable/?hl=en" target="_blank">Cloud Bigtable</a></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">NoSQL (Key-value)</td>
+                                                            <td><a href="https://aws.amazon.com/dynamodb/" target="_blank">DynamoDB</a></td>
+                                                            <td><a href="https://cloud.google.com/datastore/" target="_blank">Cloud Datastore</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/storage/tables/" target="_blank">Table Storage</a></td>
+                                                        </tr>
+                                                        <tr>
+
+                                                            <td><a href="https://aws.amazon.com/simpledb/" target="_blank">SimpleDB</a></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Application or Memory Caching</td>
+                                                            <td><a href="https://aws.amazon.com/elasticache/" target="_blank">ElastiCache</a></td>
+                                                            <td><a href="https://cloud.google.com/appengine/docs/legacy/standard/python/memcache" target="_blank">Mem Cache</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/cache/" target="_blank">Redis Cache</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Database migration</td>
+                                                            <td><a href="https://aws.amazon.com/dms/" target="_blank">Database Migration Service</a></td>
+                                                            <td></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/database-migration/" target="_blank">Database Migration Service</a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Managed data warehouse</td>
+                                                            <td><a href="https://aws.amazon.com/redshift/" target="_blank">Redshift</a></td>
+                                                            <td><a href="https://cloud.google.com/bigquery/?hl=en" target="_blank">Big Query</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/synapse-analytics/?v=17.44" target="_blank">SQL Data Warehouse</a></td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                                <br />
+
+                                                <h3 className="fw-bold text-center mb-0">Service Comparison: AWS vs Azure vs Google Cloud</h3>
+                                                <h4 className="fw-bold text-center mb-0">Big Data & Advanced Analytics</h4>
+                                                <table className="awsvsazurevsgoogle">
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Service</th>
+                                                            <th>Amazon Web Services</th>
+                                                            <th>Google Cloud Plateform</th>
+                                                            <th>Microsoft Azure</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Big Data Managed Cluster as a Service </td>
+                                                            <td>EMR</td>
+                                                            <td>Cloud DataProc</td>
+                                                            <td>Azure HDInsight</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowSpan="2">Cloud Search</td>
+                                                            <td>CloudSearch</td>
+                                                            <td>Search</td>
+                                                            <td>Azure Search</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>OpenSearch Service</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowSpan="2">Streaming Service </td>
+                                                            <td>Kinesis</td>
+                                                            <td>Cloud Dataflow</td>
+                                                            <td>Azure Stream Analytics</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Kinesis Video Streams</td>
+                                                            <td></td>
+                                                            <td>Azure Event Hub</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Data Warehouse </td>
+                                                            <td>Redshift</td>
+                                                            <td>BigQuery</td>
+                                                            <td>Azure SQL Data Warehouse</td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td rowSpan="2">Business Intelligence & Data Visualization</td>
+                                                            <td>QuickSight</td>
+                                                            <td>Google Data Studio</td>
+                                                            <td>PowerBI</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>LookerLooker</td>
+                                                            <td></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowSpan="3">Cloud ETL</td>
+                                                            <td>AWS Data Pipeline</td>
+                                                            <td>Cloud DataPrep</td>
+                                                            <td>Azure Data Factory</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AWS Glue AWS Glue</td>
+                                                            <td> Cloud Data Fusion</td>
+                                                            <td>Azure Data Catalog</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Simple Workflow Service (SWF)</td>
+                                                            <td>Cloud Composer</td>
+                                                            <td>Logic Apps</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Third party data exchange</td>
+                                                            <td>AWS Data Exchange</td>
+                                                            <td>Analytics Hub</td>
+                                                            <td>Azure Data Share</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Data Analytics platform</td>
+                                                            <td>Redshift</td>
+                                                            <td>Big Query</td>
+                                                            <td>Azure Databricks</td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                                <br />
+
+                                                <h3 className="fw-bold text-center mb-0">Service Comparison: AWS vs Azure vs Google Cloud</h3>
+                                                <h4 className="fw-bold text-center mb-0">Artificial Intelligence</h4>
+                                                <table className="awsvsazurevsgoogle">
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Service</th>
+                                                            <th>Amazon Web Services</th>
+                                                            <th>Google Cloud Plateform</th>
+                                                            <th>Microsoft Azure</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="3">Language Processing AI</td>
+                                                            <td>Amazon Lex</td>
+                                                            <td>Natural Language API</td>
+                                                            <td>LUIS (Language Understanding Intelligent Service)</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Amazon Comprehend</td>
+                                                            <td>Cloud Text-to-Speech</td>
+                                                            <td>Azure Bot Service</td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>DialogFlow Enterprise Edition</td>
+                                                            <td>Azure Text Analytic</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowSpan="3">Speech Recognition AI </td>
+                                                            <td>Amazon Polly</td>
+                                                            <td>Translation API</td>
+                                                            <td>Speaker Recognition</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amazon Transcribe</td>
+                                                            <td>Speech API</td>
+                                                            <td>Speech To Text</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amazon Translate</td>
+                                                            <td></td>
+                                                            <td>Speech Translation</td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td rowSpan="3">Image Recognition AI</td>
+                                                            <td>Amazon Recognition</td>
+                                                            <td>Vision API</td>
+                                                            <td>Emotion API</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>Cloud Video Intelligence</td>
+                                                            <td>Computer Vision</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>Face API</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowSpan="3">Machine Learning </td>
+                                                            <td>Amazon Machine Learning</td>
+                                                            <td>Cloud DataLab</td>
+                                                            <td>Azure Machine Learning</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amazon Sage​Maker</td>
+                                                            <td>Cloud AutoML</td>
+                                                            <td>Azure Machine Learning Workbench</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AWS Neuron</td>
+                                                            <td>Vertex AI</td>
+                                                            <td>Azure Machine Learning Model Management</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="3">Machine Learning Frameworks </td>
+                                                            <td>TensorFlow on AWS</td>
+                                                            <td>Vertex AI (TensorFlow, PyTorch, XGBoost, Scikit-Learn)</td>
+                                                            <td>Azure Machine Learning</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>PyTorch on AWS</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Apache MXNet on AWS</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="5">Business analysis</td>
+                                                            <td>Amazon Forecast</td>
+                                                            <td>Vertex AI (TensorFlow, PyTorch, XGBoost, Scikit-Learn)</td>
+                                                            <td>Azure Analysis Service</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amazon Fraud Detector</td>
+                                                            <td></td>
+                                                            <td>Azure Metrics Advisor</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amazon Lookout for Metrics</td>
+                                                            <td></td>
+                                                            <td>Personalize</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amazon Augmented AI (Amazon A2I)</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amazon Personalize </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Machine Learning Inference</td>
+                                                            <td>Amazon Elastic Inference</td>
+                                                            <td>Vertex AI Predictions</td>
+                                                            <td>Time Series Insights reference data sets</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <br />
+
+                                                <h3 className="fw-bold text-center mb-0">Service Comparison: AWS vs Azure vs Google Cloud</h3>
+                                                <h4 className="fw-bold text-center mb-0">Management and Monitoring</h4>
+                                                <table className="awsvsazurevsgoogle">
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Service</th>
+                                                            <th>Amazon Web Services</th>
+                                                            <th>Google Cloud Plateform</th>
+                                                            <th>Microsoft Azure</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Cloud advisor capabilities</td>
+                                                            <td><a href="https://aws.amazon.com/premiumsupport/technology/trusted-advisor/"
+                                                                target="_blank"> Trusted Advisor</a></td>
+                                                            <td><a href="https://cloud.google.com/security/" target="_blank">Cloud Platform
+                                                                Security</a></td>
+                                                            <td> <a href="https://azure.microsoft.com/en-us/products/advisor/"
+                                                                target="_blank">Advisor</a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowSpan="2">DevOps deployment orchestration</td>
+                                                            <td> <a href="https://aws.amazon.com/opsworks/"
+                                                                target="_blank">OpsWorks (Chef-based)</a></td>
+                                                            <td><a href="https://cloud.google.com/deployment-manager/docs" target="_blank">Cloud
+                                                                Deployment Manager</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/automation/"
+                                                                target="_blank">Automation</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                              <a href="https://aws.amazon.com/cloudformation/" target="_blank">CloudFormation</a>
+                                                            </td>
+                                                            <td></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/get-started/azure-portal/resource-manager/"
+                                                                target="_blank">Resource Manager</a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowSpan="5">Cloud resources management & monitoring</td>
+                                                            <td><a href="https://aws.amazon.com/cloudwatch/" target="_blank">CloudWatch</a></td>
+                                                            <td><a href="https://cloud.google.com/monitoring/?hl=en" target="_blank">Stackdriver
+                                                                Monitoring</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/get-started/azure-portal/"
+                                                                target="_blank">Portal</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://aws.amazon.com/xray/" target="_blank">X-Ray</a></td>
+                                                            <td><a href="https://cloud.google.com/shell" target="_blank">Cloud Shell</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/monitor/"
+                                                                target="_blank">Monitor</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                              <a href="https://aws.amazon.com/console/" target="_blank">Management Console</a>
+                                                            </td>
+                                                            <td><a href="https://cloud.google.com/stackdriver/docs/deprecations/debugger-deprecation"
+                                                                target="_blank">Debugger</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/monitor/"
+                                                                target="_blank">Application Insights</a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td></td>
+                                                            <td><a href="https://cloud.google.com/trace/" target="_blank">Trace</a></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td><a href="https://cloud.google.com/error-reporting/" target="_blank">Error
+                                                                Reporting</a></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="4">Administration</td>
+                                                            <td>
+                                                            <a href="https://aws.amazon.com/application-discovery/" target="_blank">Application
+                                                                Discovery Service</a>
+                                                                </td>
+                                                            <td>
+                                                            <a href="https://cloud.google.com/cloud-console/" target="_blank">Cloud Console</a>
+                                                            </td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/monitor/" target="_blank">Log
+                                                                Analytics</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://aws.amazon.com/systems-manager/" target="_blank">Systems
+                                                                Manager</a></td>
+                                                            <td></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/virtual-machines/secure-well-managed-iaas/"
+                                                                target="_blank">Operations Management Suite</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://aws.amazon.com/premiumsupport/technology/aws-health/"
+                                                                target="_blank">Personal Health Dashboard</a></td>
+                                                            <td></td>
+                                                            <td><a href="https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview"
+                                                                target="_blank">Resource Health</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/storage/storage-explorer/"
+                                                                target="_blank">Storage Explorer</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Billing</td>
+                                                            <td><a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/Welcome.html"
+                                                                target="_blank">Billing API</a></td>
+                                                            <td><a href="https://cloud.google.com/billing/docs" target="_blank">Cloud Billing
+                                                                API</a></td>
+                                                            <td><a href="https://learn.microsoft.com/en-us/azure/cost-management-billing/automate/automation-overview"
+                                                                target="_blank">Billing API</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <br />
+
+                                                <h3 className="fw-bold text-center mb-0">Service Comparison: AWS vs Azure vs Google Cloud</h3>
+                                                <h4 className="fw-bold text-center mb-0">Security</h4>
+                                                <table className="awsvsazurevsgoogle">
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Service</th>
+                                                            <th>Amazon Web Services</th>
+                                                            <th>Google Cloud Plateform</th>
+                                                            <th>Microsoft Azure</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">Authentication and authorization</td>
+                                                            <td><a href="https://aws.amazon.com/iam/" target="_blank">Identity and Access Management
+                                                                (IAM)</a></td>
+                                                            <td><a href="https://cloud.google.com/security/products/iam" target="_blank">Cloud
+                                                                IAM</a></td>
+                                                            <td>Active DirectoryActive Directory Premium</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>
+                                                            <a href="https://aws.amazon.com/organizations/" target="_blank">Organizations</a>
+                                                            </td>
+                                                            <td><a href="https://cloud.google.com/security/products/iap?hl=en" target="_blank">Cloud
+                                                                Identity-Aware Proxy</a></td>
+                                                            <td></td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Information Protection</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td><a href="" target="_blank">Information Protection</a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Protect and safeguard with data encryption</td>
+                                                            <td>
+                                                            <a href="https://aws.amazon.com/kms/" target="_blank">Key Management Service</a>
+                                                            </td>
+                                                            <td></td>
+                                                            <td><a href="https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption"
+                                                                target="_blank">Storage Service Encryption</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">Hardware-based security modules</td>
+                                                            <td><a href="https://aws.amazon.com/cloudhsm/" target="_blank">CloudHSM</a></td>
+                                                            <td><a href="https://cloud.google.com/security/products/security-key-management?hl=en"
+                                                                target="_blank">Cloud Key</a></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/key-vault/" target="_blank">Key
+                                                                Vault</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td><a href="https://cloud.google.com/security/products/security-key-management?hl=en"
+                                                                target="_blank">Management Service</a></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Firewall</td>
+                                                            <td>
+                                                            <a href="https://aws.amazon.com/waf/" target="_blank">Web Application Firewall</a>
+                                                            </td>
+                                                            <td>Cloud Armor</td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/updates/application-gateway-web-application-firewall-in-public-preview/"
+                                                                target="_blank">Application Gateway</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">Cloud security assessment and certification services</td>
+                                                            <td><a href="https://aws.amazon.com/inspector/" target="_blank">Inspector</a></td>
+                                                            <td rowSpan="2">Security Command Center</td>
+                                                            <td rowSpan="2"><a href="https://azure.microsoft.com/en-us/products/defender-for-cloud/"
+                                                                target="_blank">Security Center</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="https://aws.amazon.com/certificate-manager/" target="_blank">Certificate Manager</a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Directory services</td>
+                                                            <td><a href="https://aws.amazon.com/directoryservice/?hp=tile&so-exp=below"
+                                                                target="_blank">AWS Directory Service</a></td>
+                                                            <td>Identity Platform</td>
+                                                            <td><a href="https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id"
+                                                                target="_blank">Active Directory Domain Services</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Identity management</td>
+                                                            <td><a href="https://aws.amazon.com/cognito/" target="_blank">Cognito</a></td>
+                                                            <td><a href="https://comparecloud.in/" target="_blank">Firebase Authentication</a></td>
+                                                            <td><a href="https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id"
+                                                                target="_blank">Active Directory B2C</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Support cloud directories</td>
+                                                            <td><a href="https://aws.amazon.com/directoryservice/" target="_blank">Directory
+                                                                Service</a></td>
+                                                            <td></td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/products/microsoft-entra-ds/"
+                                                                target="_blank">Windows Server Active Directory</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Compliance</td>
+                                                            <td><a href="https://aws.amazon.com/artifact/" target="_blank">Artifact</a></td>
+                                                            <td></td>
+                                                            <td><a href="https://www.microsoft.com/en-in/trust-center" target="_blank">Service Trust
+                                                                Portal</a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Cloud services with protection</td>
+                                                            <td><a href="https://aws.amazon.com/shield/" target="_blank">Shield</a></td>
+                                                            <td>Cloud Armor</td>
+                                                            <td><a href="https://azure.microsoft.com/en-us/blog/azure-ddos-protection-service-preview/"
+                                                                target="_blank">DDoS Protection Service</a></td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <br />
+
+                                                <h3 className="fw-bold text-center mb-0">Service Comparison: AWS vs Azure vs Google Cloud</h3>
+                                                <h4 className="fw-bold text-center mb-0">Developer Tools</h4>
+                                                <table className="awsvsazurevsgoogle">
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Service</th>
+                                                            <th>Amazon Web Services</th>
+                                                            <th>Google Cloud Plateform</th>
+                                                            <th>Microsoft Azure</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="4">Media transcoding</td>
+                                                            <td rowSpan="4"><a href="" target="_blank">Elastic Transcoder</a></td>
+                                                            <td rowSpan="4">Transcoder API</td>
+                                                            <td><a href="" target="_blank">Live On Demand Streaming</a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td><a href="" target="_blank">Azure Media Player</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">Content Protection</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">Media Analytics</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">Improve and optimize workflow</td>
+                                                            <td rowSpan="2"><a href="" target="_blank">Step Functions</a></td>
+                                                            <td>Workflows</td>
+                                                            <td rowSpan="2"><a href="" target="_blank">Logic Apps</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>EventArc</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>API management</td>
+                                                            <td><a href="" target="_blank">API Gateway</a></td>
+                                                            <td>API Gateway (APIgee)</td>
+                                                            <td><a href="" target="_blank">API Management</a></td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td>App testing</td>
+                                                            <td><a href="" target="_blank">Device Farm</a></td>
+                                                            <td><a href="" target="_blank">Cloud Test Lab</a></td>
+                                                            <td><a href="" target="_blank">App Center Test</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">Git Repositories</td>
+                                                            <td><a href="" target="_blank">Application Repositories</a></td>
+                                                            <td rowSpan="2">Cloud Source Repositories</td>
+                                                            <td rowSpan="2">Azure DevOps</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>CodeCommit</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td rowSpan="10">DevOps</td>
+                                                            <td>
+                                                            <a href="" target="_blank">AWS Cloud9</a>
+                                                            </td>
+                                                            <td rowSpan="10">Cloud Build</td>
+                                                            <td rowSpan="10">Following are part of Azure DevOps:
+                                                                <ul>
+                                                                    <li>Azure Boards</li>
+                                                                    <li>Azure Pipelines</li>
+                                                                    <li>Azure Repos</li>
+                                                                    <li>Azure Test Plans</li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">AWS Code Star</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">AWS CodeCommit</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">AWS CodeBuild</a></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td><a href="" target="_blank">AWS CodeDeploy</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">AWS CodePipeline </a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">AWS X-Ray </a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">DevOps Guru</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">CodeGuru </a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">AWS Fault Injection Simulator </a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="2">Programmatic access</td>
+                                                            <td><a href="" target="_blank">AWS Tools & SDKs</a></td>
+                                                            <td><a href="" target="_blank">Cloud Tools for Powershell</a></td>
+                                                            <td><a href="" target="_blank">Azure SDK Visual Studio</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">AWS Cloud Development Kit</a></td>
+                                                            <td><a href="" target="_blank">Cloud SDK</a></td>
+                                                            <td><a href="" target="_blank">PowerShell</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Predefined templates</td>
+                                                            <td><a href="" target="_blank">Quick Start</a></td>
+                                                            <td><a href="" target="_blank">Quickstart templates</a></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowSpan="3">Managed hosting platforms</td>
+                                                            <td rowSpan="3"><a href="" target="_blank">Elastic Beanstalk</a></td>
+                                                            <td rowSpan="3"><a href="" target="_blank">App Engine Standard Environment</a></td>
+                                                            <td><a href="" target="_blank">Web Apps (App Service)</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">Cloud Services</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><a href="" target="_blank">API Apps (App Service)</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <h3 className="mt_35">Conclusion</h3>
+                                                <p>Choosing between AWS, Azure, and Google Cloud depends on your specific needs, budget, and long-term technology strategy. By understanding the strengths and offerings of each provider, businesses can make informed decisions that align with their objectives. As the cloud computing landscape continues to evolve, staying informed and adaptable will be key to leveraging the power of the cloud to drive business success.</p>
