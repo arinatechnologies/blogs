@@ -1,0 +1,50 @@
+---
+title: 'One Bucket, One Key: Simplify Your Cloud Storage!'
+date: '2024-06-18'
+image: 'https://github.com/arinatechnologies/blogs/blob/main/images/OneKey%20OneBucket.webp'
+tags: ['Azure',AWS','Google Cloud','KMS','S3']
+---
+# Securing AWS S3 Buckets with Custom KMS Keys: A Step-by-Step Guide
+
+In today’s cloud-centric environment, data security is more crucial than ever. One of the common challenges faced by organizations is ensuring that sensitive data stored in AWS S3 buckets is accessible only under strict conditions. This blog post delves into a hands-on session where we set up an AWS Key Management Service (KMS) policy to restrict access to a single S3 bucket using a customer's own encryption key.
+
+<Video id="gRDUTEiiTYg" title="One Bucket, One Key: Simplify Your Cloud Storage!"/>
+
+## Introduction to AWS S3 and KMS
+
+Amazon Web Services (AWS) offers robust solutions for storage and security. S3 (Simple Storage Service) provides scalable object storage, and KMS offers managed creation and control of encryption keys.
+
+## Scenario Overview
+
+The need: A customer wants to use their own encryption key and restrict its usage to a single S3 bucket. This ensures that no other buckets can access the key.
+
+## Setting Up the KMS Key
+
+### Step 1: Creating the Key
+- **Navigate to the Key Management Service**: Start by opening the AWS Management Console and selecting KMS.
+- **Create a new key**: Choose the appropriate options for your key. For simplicity, skip tagging and advanced options during this tutorial.
+
+### Step 2: Configuring Key Policies
+- **Permission settings**: Initially, you might be tempted to apply broad permissions. However, to enhance security, restrict the key’s usage to a specific IAM user and apply a policy that denies all other requests.
+
+## Crafting a Bucket Policy
+
+### Step 1: Creating the Bucket
+- **Unique bucket name**: Remember, S3 bucket names need to be globally unique. Create the bucket intended for the exclusive use of the KMS key.
+- **Disable bucket versioning**: If not required, keep this setting disabled to manage storage costs.
+
+### Step 2: Policy Configuration
+- **Deny other buckets**: The crucial part of this setup involves crafting a bucket policy that uses a "Deny" statement. This statement should specify that if the bucket name doesn’t match your specific bucket, access should be denied.
+- **Set conditions**: Use conditions to enforce that the KMS key can only encrypt/decrypt objects when the correct S3 bucket is specified.
+
+## Testing the Configuration
+- **Validate with another bucket**: Create an additional S3 bucket and try to use the KMS key. The attempt should fail, confirming that your policy works.
+- **Verify with the correct bucket**: Finally, test the key with the correct bucket to ensure that operations like uploading and downloading are seamless.
+
+## Conclusion
+
+This setup not only strengthens your security posture but also adheres to best practices of least privilege by limiting how and where the encryption key can be used. Implementing such precise controls is critical for managing sensitive data in the cloud.
+
+
+
+                                                 
