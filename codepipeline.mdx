@@ -6,24 +6,40 @@ tags: ['KMS Console',AWS','Azure','S3','ARN','ECS Task', 'GoogleCloud', 'CloudCo
 ---
 ### (Account 1) Create a customer-managed AWS KMS key that grants usage permissions to account 1's CodePipeline service role and account 2
 **1.** In account 1, open the AWS KMS console.
+
 **2.** In the navigation pane, choose Customer managed keys.
+
 **3.** Choose Create key. Then, choose Symmetric.
+
 **Note:** In the Advanced options section, leave the origin as KMS.
+
 **4.** For Alias, enter a name for your key.
+
 **5.** (Optional) Add tags based on your use case. Then, choose Next.
+
 **6.** On the Define key administrative permissions page, for Key administrators, choose your AWS Identity and Access Management (IAM) user. Also, add any other users or groups that you want to serve as administrators for the key. Then, choose Next.
+
 **7.** On the Define key usage permissions page, for This account, add the IAM identities that you want to have access to the key. For **example:** The CodePipeline service role.
+
 **8.** In the Other AWS accounts section, choose Add another AWS account. Then, enter the Amazon Resource Name (ARN) of the IAM role in account 2.
+
 **9.** Choose Next. Then, choose Finish.
+
 **10.** In the Customer managed keys section, choose the key that you just created. Then, copy the key's ARN.
+
 **Important:** You must have the AWS KMS key's ARN when you update your pipeline and configure your IAM policies.
 
 ### (Account 1) Create an Amazon S3 bucket with a bucket policy that grants account 2 access to the bucket
 **1.** In account 1, open the Amazon S3 console.
+
 **2.** Choose an existing Amazon S3 bucket or create a new S3 bucket to use as the ArtifactStore for CodePipeline.
+
 **3.** On the Amazon S3 details page for your bucket, choose Permissions.
+
 **4.** Choose Bucket Policy.
+
 **5.** In the bucket policy editor, enter the following policy:
+
 **Important:** Replace codepipeline-source-artifact with the SourceArtifact bucket name for CodePipeline. Replace ACCOUNT_B_NO with the account 2 account number.
 
 <Video id='7pY1LNxlIso' title='How do I deploy ECS Task in a different account using CodePipeline that uses CodeDeploy'/>
@@ -90,12 +106,17 @@ tags: ['KMS Console',AWS','Azure','S3','ARN','ECS Task', 'GoogleCloud', 'CloudCo
 ### (Account 2) Create a cross-account IAM role
 **Create an IAM policy that allows the following**
 a. The pipeline in account 1 to assume the cross-account IAM role in account 2
+
 b. CodePipeline and CodeDeploy API actions
+
 c. Amazon S3 API actions related to the SourceArtifact
 
 **1.** In account 2, open the IAM console.
+
 **2.** In the navigation pane, choose Policies. Then, choose Create policy.
+
 **3.** Choose the JSON tab. Then, enter the following policy into the JSON editor:
+
 **Important:** Replace codepipeline-source-artifact with your pipeline's Artifact store's bucket name.
 ```
 {
@@ -153,13 +174,18 @@ c. Amazon S3 API actions related to the SourceArtifact
 ```
 
 **4.** Choose Review policy.
+
 **5.** For Name, enter a name for the policy.
+
 **6.** Choose Create policy.
 
 ### Create a second IAM policy that allows AWS KMS API actions
 **1.** In account 2, open the IAM console.
+
 **2.** In the navigation pane, choose Policies. Then, choose Create policy.
+
 **3.** Choose the JSON tab. Then, enter the following policy into the JSON editor:
+
 **Important:** Replace arn:aws:kms:REGION:ACCOUNT_A_NO:key/key-id with your AWS KMS key's ARN that you copied earlier.
 ```
 {
@@ -180,23 +206,35 @@ c. Amazon S3 API actions related to the SourceArtifact
 ```
 
 **4.** Choose Review policy.
+
 **5.** For Name, enter a name for the policy.
+
 **6.** Choose Create policy.
 
 ### Create the cross-account IAM role using the policies that you created
 **1.** In account 2, open the IAM console.
+
 **2.** In the navigation pane, choose Roles.
+
 **3.** Choose Create role.
+
 **4.** Choose Another AWS account.
+
 **5.** For Account ID, enter the account 1 account ID.
+
 **6.** Choose Next: Permissions. Then, complete the steps to create the IAM role.
+
 **7.** Attach the cross-account role policy and KMS key policy to the role that you created. For instructions, see Adding and removing IAM identity permissions.
 
 ### (Account 1) Add the AssumeRole permission to the account 1 CodePipeline service role to allow it to assume the cross-account role in account 2
 **1.** In account 1, open the IAM console.
+
 **2.** In the navigation pane, choose Roles.
+
 **3.** Choose the IAM service role that you're using for CodePipeline.
+
 **4.** Choose Add inline policy.
+
 **5.** Choose the JSON tab. Then, enter the following policy into the JSON editor:
 
 ##### Important: Replace ACCOUNT_B_NO with the account 2 account number.
@@ -220,8 +258,11 @@ c. Amazon S3 API actions related to the SourceArtifact
 Note:
 
 **1.** In account 2, open the IAM console.
+
 **2.** In the navigation pane, choose Roles.
+
 **3.** Create a role for AWS CloudFormation to use when launching services on your behalf.
+
 **4.** Apply permissions to your role based on your use case.
 
 **Important:** Make sure that your trust policy allows resources in Account 1: < Account 1 > 0 to access services that are deployed by the stack.
@@ -233,6 +274,7 @@ You can't use the CodePipeline console to create or edit a pipeline that uses re
 
 **1. Get the pipeline JSON structure by running the following AWS CLI command:**
 aws codepipeline get-pipeline --name MyFirstPipeline &gt;pipeline.jsonCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+
 **2.** In your local pipeline.json file, confirm that the encryptionKey ID under artifactStore contains the ID with the AWS KMS key's ARN.
 **Note:** For more information on pipeline structure, see create-pipeline in the AWS CLI Command Reference.
 
@@ -240,7 +282,9 @@ aws codepipeline get-pipeline --name MyFirstPipeline &gt;pipeline.jsonCopy CodeC
 'Deploy' configuration JSON structure for your pipeline is the role for the CodePipeline role in Account 2. This is IMPORTANT as using this role the pipeline in Account 1 will be able to know the ECS Service/task is in which account.
 
 **4. Verify that the role is updated for both of the following:**
+
 a. The RoleArn inside the action configuration JSON structure for your pipeline.
+
 b. The roleArn outside the action configuration JSON structure for your pipeline.
 
 **Note:** In the following code example, RoleArn is the role passed to AWS CloudFormation to launch the stack. CodePipeline uses roleArn to operate an AWS CloudFormation stack.
@@ -398,6 +442,7 @@ b. The roleArn outside the action configuration JSON structure for your pipeline
 
 **6.** (Optional) To create a pipeline and update the JSON structure, run the following command to update the pipeline with the new configuration file:
 aws codepipeline update-pipeline --cli-input-json file://pipeline.jsonCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
+
 **7.** (Optional) To use a current pipeline and update the JSON structure, run the following command to create a new pipeline:
 aws codepipeline create-pipeline --cli-input-json file://pipeline.jsonCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy CodeCopy Code
 ### Important: In your pipeline.json file, make sure that you change the name of your new pipeline.
