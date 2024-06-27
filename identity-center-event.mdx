@@ -23,9 +23,9 @@ AWS EventBridge is an event bus service that enables you to build event-driven a
 
 **Step 2: Creating EventBridge Rules**
 
-1. Navigate to the AWS Management Console and open the Amazon EventBridge service.
-2. Create a Rule: Set up an event pattern to detect specific activities such as user additions, permission changes, or group deletions within AWS Identity Center.
-3. Configure the Event Pattern: You may not find pre-configured templates for Identity Center, so you'll need to create a custom pattern. Here's an example of what your event pattern might look like:
+1.Navigate to the AWS Management Console and open the Amazon EventBridge service.
+2.Create a Rule: Set up an event pattern to detect specific activities such as user additions, permission changes, or group deletions within AWS Identity Center.
+3.Configure the Event Pattern: You may not find pre-configured templates for Identity Center, so you'll need to create a custom pattern. Here's an example of what your event pattern might look like:
 
 ```json
 {
@@ -39,9 +39,9 @@ AWS EventBridge is an event bus service that enables you to build event-driven a
 ```
 **Step 3: Configuring AWS Lambda**
 
-1. Create a Lambda Function: Navigate to AWS Lambda and create a new function to process the events.
-2. Set Up Permissions: Ensure your Lambda function has the necessary permissions to access EventBridge and perform actions based on the event data.
-3. Implement Logic: Write the code to handle different types of events. For example, send notification emails or log entries to an S3 bucket for further analysis.
+1.Create a Lambda Function: Navigate to AWS Lambda and create a new function to process the events.
+2.Set Up Permissions: Ensure your Lambda function has the necessary permissions to access EventBridge and perform actions based on the event data.
+3.Implement Logic: Write the code to handle different types of events. For example, send notification emails or log entries to an S3 bucket for further analysis.
 
 **Step 4: Integrating EventBridge with Lambda**
 
