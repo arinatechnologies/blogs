@@ -27,6 +27,8 @@ Amazon Web Services (AWS) CloudHSM offers a robust solution for securing cryptog
 ### Key Management
 - **Generate Key Pair**: Before initializing, generate a new RSA key pair referred to as the customer key pair. This involves creating a private key and a corresponding self-signed certificate using OpenSSL commands.
 
+[Read about Keys](https://www.arinatechnologies.com/posts/Keys)
+
 ### Cluster Initialization
 - **CSR Process**: Navigate to the 'Initialize' action in the CloudHSM console and create an HSM instance in your cluster. You will need to download a Certificate Signing Request (CSR).
 - **Sign CSR**: Use the previously generated private key to sign the CSR. This confirms your ownership of the HSM cluster.
