@@ -84,6 +84,7 @@ Finally, import the wrapped key material into AWS KMS:
 ```bash
 aws kms import-key-material --key-id YOUR_KEY_ID --encrypted-key-material fileb://KMS-BYOK-May2024-11-wrapped.bin --import-token fileb://ImportToken.bin --expiration-model KEY_MATERIAL_EXPIRES --valid-to 2024-09-01T12:00:00-08:00 --region us-east-1
 ```
+[Read about Key Management](https://www.arinatechnologies.com/posts/cloudhsm)
 
 ## Conclusion
 
