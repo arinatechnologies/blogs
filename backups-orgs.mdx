@@ -15,10 +15,10 @@ AWS Organizations enables centralized management of billing, control access, com
 
 ### **Advantages of Centralized Management:**
 
-1. **Efficiency:** Manage multiple AWS accounts from a single control point.
-2. **Cost Savings:** Reduce operational costs through centralized management.
-3. **Enhanced Security:** Apply consistent policies and compliance standards across all accounts.
-4. **Simplified Operations:** Streamline monitoring, backup, and administrative tasks.
+a. **Efficiency:** Manage multiple AWS accounts from a single control point.
+b. **Cost Savings:** Reduce operational costs through centralized management.
+c. **Enhanced Security:** Apply consistent policies and compliance standards across all accounts.
+d. **Simplified Operations:** Streamline monitoring, backup, and administrative tasks.
 
 ### **Step-by-Step Guide to Centralized Backup Management**
 
@@ -26,49 +26,49 @@ Managing backups across multiple AWS accounts can be complex. AWS Backup allows 
 
 #### **1. Setting Up AWS Organizations:**
 
-1. **Create an AWS Organization:**
-   - Navigate to the AWS Organizations console.
-   - Click on "Create organization" and follow the prompts.
+a. **Create an AWS Organization:**
+   i) Navigate to the AWS Organizations console.
+  ii) Click on "Create organization" and follow the prompts.
 
-2. **Add Accounts to Your Organization:**
-   - Add existing accounts or create new ones.
-   - Ensure all accounts you want to manage are part of the organization.
+b. **Add Accounts to Your Organization:**
+   i) Add existing accounts or create new ones.
+  ii) Ensure all accounts you want to manage are part of the organization.
 
 #### **2. Enabling Centralized Backup:**
 
-1. **Navigate to AWS Backup:**
-   - Open the AWS Backup console from the management account.
-   - This is where you'll configure backup plans and policies.
+a. **Navigate to AWS Backup:**
+   i) Open the AWS Backup console from the management account.
+  ii) This is where you'll configure backup plans and policies.
 
-2. **Create a Backup Plan:**
-   - Click on "Create backup plan."
-   - Define your backup rules (e.g., frequency, retention period).
+b. **Create a Backup Plan:**
+   i) Click on "Create backup plan."
+  ii) Define your backup rules (e.g., frequency, retention period).
    - Specify the resources to back up (e.g., EC2 instances, RDS databases).
 
-3. **Assign the Backup Plan:**
-   - Use tags to assign resources to the backup plan.
-   - For instance, tag all EC2 instances you want to back up with `Backup:Production`.
+c. **Assign the Backup Plan:**
+   i) Use tags to assign resources to the backup plan.
+  ii) For instance, tag all EC2 instances you want to back up with `Backup:Production`.
 
 #### **3. Delegating Administration:**
 
-1. **Create a Delegated Administrator Account:**
-   - Designate one account as the delegated administrator.
-   - This account will handle backup management for all other accounts.
+a. **Create a Delegated Administrator Account:**
+   i) Designate one account as the delegated administrator.
+  ii) This account will handle backup management for all other accounts.
 
-2. **Set Up Cross-Account Roles:**
-   - Create IAM roles in each member account.
-   - Assign these roles the necessary permissions for backup operations.
-   - Ensure the roles allow cross-account access to the delegated administrator account.
+b. **Set Up Cross-Account Roles:**
+   i) Create IAM roles in each member account.
+  ii) Assign these roles the necessary permissions for backup operations.
+ iii) Ensure the roles allow cross-account access to the delegated administrator account.
 
 #### **4. Configuring Backup Policies:**
 
-1. **Enable Backup Policies:**
-   - From the AWS Backup console, enable backup policies.
-   - Define and apply these policies to all accounts within the organization.
+a. **Enable Backup Policies:**
+   i) From the AWS Backup console, enable backup policies.
+  ii) Define and apply these policies to all accounts within the organization.
 
-2. **Monitor Backups:**
-   - Use AWS Backup's centralized dashboard to monitor the status of your backups.
-   - Set up notifications for backup failures or successes.
+b. **Monitor Backups:**
+   i) Use AWS Backup's centralized dashboard to monitor the status of your backups.
+  ii) Set up notifications for backup failures or successes.
 
 #### **5. Using Additional AWS Services:**
 
