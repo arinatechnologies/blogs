@@ -105,6 +105,11 @@ For detailed guides and additional information, check out the AWS documentation 
 
 Feel free to reach out with any questions or comments, and don’t forget to subscribe for more updates!
 
+# Other Blogs
+[Comprehensive Guide to Centralized Backups in AWS Organizations](https://www.arinatechnologies.com/posts/backups-orgs) <br/>
+[AWS services that support Containers: Containers!=Kubernetes.](https://www.arinatechnologies.com/posts/aws-container-decision-tree) <br/>
+[A Detailed Overview Of AWS SES and Monitoring](https://www.arinatechnologies.com/posts/AWS%20SES) <br/>
+
 
 
 
