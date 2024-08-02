@@ -1,8 +1,9 @@
-title: 'Simplifying AWS Notifications: A Guide to User Notifications '
+---
+title: 'Simplifying AWS Notifications: A Guide to User Notifications'
 date: '2024-07-22'
 image: 'https://github.com/arinatechnologies/blogs/blob/main/images/awsaccountmigration.webp'
 tags: ['Azure',AWS','GoogleCloud','Architecture','Security','Application/Data','Cost Optimization','Account Migration']
-
+---
 # Simplifying AWS Notifications: A Guide to User Notifications
 
 ## Introduction
@@ -40,7 +41,7 @@ Here’s a step-by-step guide on how to set up notifications using the new servi
 
    - Go to the AWS Management Console and search for "User Notifications."
    - Open the User Notifications configuration page.
-
+   
 2. *Create a New Notification Configuration*
 
    - Click “Create Notification Configuration.”
