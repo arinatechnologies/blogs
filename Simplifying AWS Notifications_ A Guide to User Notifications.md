@@ -42,11 +42,15 @@ Here’s a step-by-step guide on how to set up notifications using the new servi
    - Go to the AWS Management Console and search for "User Notifications."
    - Open the User Notifications configuration page.
    
+![search](https://github.com/user-attachments/assets/406aee74-9946-4fc1-a362-7a10354e321f)
+
 2. *Create a New Notification Configuration*
 
    - Click “Create Notification Configuration.”
    - Provide a name for the notification, such as "GuardDuty Notification."
    - Optionally, add a description.
+
+![Screenshot (19)](https://github.com/user-attachments/assets/b58f4a9c-b28a-48df-a7da-7e4b984b154f)
 
 3. *Choose the Notification Source*
 
@@ -59,14 +63,21 @@ Here’s a step-by-step guide on how to set up notifications using the new servi
    - Set up advanced filters if needed. This helps narrow down the events you want to capture, like focusing only on critical findings.
    - Decide on the aggregation period (e.g., 5 minutes, 12 hours) if you want to aggregate notifications.
 
+![region](https://github.com/user-attachments/assets/8a15dffe-b669-4ced-a43e-fbc959ec075a)
+
 5. *Specify Notification Recipients*
 
    - Enter the email addresses or other notification channels where alerts should be sent. You can use AWS’s built-in options or integrate with chat channels.
+
+![email](https://github.com/user-attachments/assets/bcbe4f43-6555-4d38-8489-49ad757395c8)
 
 6. *Review and Create*
 
    - Review your configuration.
    - Click "Create Notification Configuration" to finalize.
+
+![create](https://github.com/user-attachments/assets/dcab9fc5-2dc0-4f3b-bafd-1e9bbff1d290)
+
 
 ## Comparing AWS User Notifications with Traditional Methods
 
@@ -93,3 +104,8 @@ AWS User Notifications is a game-changer for simplifying the notification setup 
 For detailed guides and additional information, check out the AWS documentation and stay updated with the latest AWS features.
 
 Feel free to reach out with any questions or comments, and don’t forget to subscribe for more updates!
+
+
+
+
+
