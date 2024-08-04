@@ -4,6 +4,7 @@ date: '2024-07-22'
 image: 'https://github.com/arinatechnologies/blogs/blob/main/images/awsaccountmigration.webp'
 tags: ['Azure',AWS','GoogleCloud','Architecture','Security','Application/Data','Cost Optimization','Account Migration']
 ---
+<Video id="CHoPaOGFt69XKoQx" title="Simplifying AWS Notifications: A Guide to User Notifications"/>
 # Simplifying AWS Notifications: A Guide to User Notifications
 
 ## Introduction
