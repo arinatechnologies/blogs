@@ -1,16 +1,14 @@
 ---
 title: 'Secure EC2 Private Subnet Access Without Bastion Hosts - Save Costs'
-date: '2024-07-29'
+date: '2024-08-05'
 image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/d21a1a2433b9e80bf1af2abd516aab06ef3f0995/images/ec2sabtion.webp'
-tags: ['Azure',AWS','GoogleCloud','Architecture','Security','Application/Data','Cost Optimization','Account Migration']
+tags: ['Azure',AWS','GoogleCloud','Architecture','Security', 'Cost Optimization','Account Migration']
 ---
 ## How to Connect an EC2 Instance in a Private Subnet without a Bastion Host
 
 ### Introduction
 
-Welcome back to our blog! Today, we're diving into a topic that simplifies the process of connecting to an EC2 instance in a private subnet without using a bastion host. This approach not only streamlines the connection process but also saves costs associated with maintaining a bastion host. Let's get started!
-
-<Video id="pr1O8ZVzKgY" title="Understanding AWS Account Migration: A Step-by-Step Guide"/>
+This approach of using EC2 Endpoint compared to a Bastion host not only streamlines the connection process but also saves costs associated with maintaining a bastion host.
 
 ### The Traditional Method
 
@@ -23,6 +21,8 @@ Typically, to connect to an EC2 instance in a private subnet, you would use a ba
 3. **Using the bastion host** to access the EC2 instance in the private subnet.
 
 While this method is effective, it can be cumbersome and costly.
+
+<Video id="pr1O8ZVzKgY" title="Understanding AWS Account Migration: A Step-by-Step Guide"/>
 
 ### The New Approach: EC2 Instance Connect Endpoint
 
