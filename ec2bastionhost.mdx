@@ -45,6 +45,7 @@ First, create a Virtual Private Cloud (VPC) with both public and private subnets
    - No need for an S3 gateway in this setup.
 
 #### Step 2: Launching the EC2 Instance
+![EC2 launch instant](https://raw.githubusercontent.com/arinatechnologies/blogs/e2636545d7d468c496d1326457cac8575446713e/images/ec2step2%20launch%20instance.webp)
 
 1. **Launch an EC2 Instance in the Private Subnet:**
    - Go to the EC2 console and launch a new instance.
@@ -57,6 +58,7 @@ First, create a Virtual Private Cloud (VPC) with both public and private subnets
    - Ensure the security group is attached to your EC2 instance.
 
 #### Step 3: Creating the EC2 Instance Endpoint
+![EC2 endpoint](https://raw.githubusercontent.com/arinatechnologies/blogs/e2636545d7d468c496d1326457cac8575446713e/images/ec2%20endpointscreeenshot.webp)
 
 1. **Create an Endpoint:**
    - Navigate to the VPC console and select “Endpoints.”
@@ -67,6 +69,7 @@ First, create a Virtual Private Cloud (VPC) with both public and private subnets
    - Ensure the public security group for the endpoint allows inbound traffic from your local IP.
 
 #### Step 4: Connecting via AWS CLI
+![EC2 connecting ](https://raw.githubusercontent.com/arinatechnologies/blogs/e2636545d7d468c496d1326457cac8575446713e/images/ec2connectingviaawscli.webp)
 
 1. **Install and Configure AWS CLI:**
    - Ensure AWS CLI is installed on your local machine.
@@ -76,7 +79,9 @@ First, create a Virtual Private Cloud (VPC) with both public and private subnets
    - Use the `ssh` command with the correct private key and endpoint details to connect to the EC2 instance.
 
 #### Step 5: Connecting via WinSCP
-
+![EC2 winscp](https://raw.githubusercontent.com/arinatechnologies/blogs/e2636545d7d468c496d1326457cac8575446713e/images/ec2step%205%20winscp.webp)
+![EC2 continue](https://github.com/arinatechnologies/blogs/blob/e2636545d7d468c496d1326457cac8575446713e/images/ec2step%205%20continue.webp)
+![EC2 cont](https://raw.githubusercontent.com/arinatechnologies/blogs/e2636545d7d468c496d1326457cac8575446713e/images/ec2step5%20cont.webp)
 1. **Download and Install WinSCP:**
    - Install WinSCP for a graphical interface to manage files on your EC2 instance.
 
