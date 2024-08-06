@@ -18,15 +18,15 @@ Inviting a management account that is part of an existing AWS organization into 
 ### Step-by-Step Process
 
 #### 1. **Understanding the Current Setup**
-
+![Current Setup](https://raw.githubusercontent.com/arinatechnologies/blogs/51ce31fcb238c54792ca31a4b414d2191ec9c528/images/awsaccountmigrationblogimages/currentsetup.webp)
 You have an AWS account (Account A) that you wish to invite into a new organization. However, this account is a management account and is already part of another organization. 
 
 #### 2. **Sending the Invitation**
-
+![Sending the Invitation](https://raw.githubusercontent.com/arinatechnologies/blogs/51ce31fcb238c54792ca31a4b414d2191ec9c528/images/awsaccountmigrationblogimages/sendinginvitation.webp)
 Initially, you might think of sending an invitation to this account directly. However, if the account is already a management account within another organization, it will not receive the invitation due to existing restrictions.
 
 #### 3. **Removing the Management Account from Its Current Organization**
-
+![Management Account](https://raw.githubusercontent.com/arinatechnologies/blogs/51ce31fcb238c54792ca31a4b414d2191ec9c528/images/awsaccountmigrationblogimages/managmentaccount.webp)
 To proceed, you need to remove the management account from its current organization. Here's how you can do it:
 
 - **Access the Management Account**: Log in to the management account that you want to migrate.
@@ -35,11 +35,12 @@ To proceed, you need to remove the management account from its current organizat
   Ensure that all critical resources are noted and checked to confirm they will remain unaffected post-deletion.
 
 #### 4. **Deleting the Organization**
-
+![Deleting the Organization](https://raw.githubusercontent.com/arinatechnologies/blogs/51ce31fcb238c54792ca31a4b414d2191ec9c528/images/awsaccountmigrationblogimages/deltorganization.webp)
+![Deleting the Organization](https://raw.githubusercontent.com/arinatechnologies/blogs/51ce31fcb238c54792ca31a4b414d2191ec9c528/images/awsaccountmigrationblogimages/deletingtheorganization.webp)
 Type the organization ID when prompted and proceed to delete the organization. This step will disband the organization but will not affect the account's resources. This deletion is necessary to migrate the management account to another organization.
 
 #### 5. **Accepting the Invitation**
-
+![Accepting Invitation](https://raw.githubusercontent.com/arinatechnologies/blogs/51ce31fcb238c54792ca31a4b414d2191ec9c528/images/awsaccountmigrationblogimages/acceptinginvitation.webp)
 Once the organization is deleted:
 - **Check Invitations**: Go back to the account and check for the pending invitations.
 - **Accept the Invitation**: You should now see the invitation from the new organization. Accept this invitation to complete the migration.
