@@ -21,6 +21,7 @@ c. **Enhanced Security:** Apply consistent policies and compliance standards acr
 d. **Simplified Operations:** Streamline monitoring, backup, and administrative tasks.
 
 ### **Step-by-Step Guide to Centralized Backup Management**
+![Backup](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/awsbackup.webp)
 
 Managing backups across multiple AWS accounts can be complex. AWS Backup allows you to centralize and automate data protection across AWS services. Here’s how you can set up centralized backup management using AWS Organizations:
 
@@ -35,12 +36,14 @@ b. **Add Accounts to Your Organization:**
   ii) Ensure all accounts you want to manage are part of the organization.
 
 #### **2. Enabling Centralized Backup:**
+![Enabling](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/backuppolicies.webp)
 
 a. **Navigate to AWS Backup:**
    i) Open the AWS Backup console from the management account.
   ii) This is where you'll configure backup plans and policies.
 
 b. **Create a Backup Plan:**
+![Create](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/createpolicy.webp)
    i) Click on "Create backup plan."
   ii) Define your backup rules (e.g., frequency, retention period).
    - Specify the resources to back up (e.g., EC2 instances, RDS databases).
@@ -50,6 +53,7 @@ c. **Assign the Backup Plan:**
   ii) For instance, tag all EC2 instances you want to back up with `Backup:Production`.
 
 #### **3. Delegating Administration:**
+![Delegating](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/delgadministartion.webp)
 
 a. **Create a Delegated Administrator Account:**
    i) Designate one account as the delegated administrator.
