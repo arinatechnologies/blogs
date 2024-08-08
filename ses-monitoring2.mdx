@@ -26,11 +26,13 @@ Managing bounces and complaints efficiently is crucial for maintaining your orga
 ## Step-by-Step Setup
 
 ### Step 1: Configuring SES
+![SES](https://raw.githubusercontent.com/arinatechnologies/blogs/aedf4b9c0a4842187ad87ef072d284ae8353c946/images/awssesmonitoringpart2/ses.webp)
 First, configure your AWS SES to handle outgoing emails. This involves:
 - Setting up verified email identities (email addresses or domains from which you'll send emails).
 - Creating configuration sets in SES to specify how emails should be handled and tracked.
 
 ### Step 2: Integrating SNS for Notifications
+
 The next step is to set up AWS SNS to receive notifications from SES. This is crucial for real-time alerts on email bounces or complaints:
 - Create an SNS topic that SES will publish to when specified events (like bounces or complaints) occur.
 - Configure your SES configuration set to send notifications to the created SNS topic.
@@ -187,11 +189,13 @@ def lambda_handler(event, context):
 ```
 
 ### Step 4: Testing and Validation
+![Send test emails](https://raw.githubusercontent.com/arinatechnologies/blogs/aedf4b9c0a4842187ad87ef072d284ae8353c946/images/awssesmonitoringpart2/sendtestmail.webp)
 Once configured, it's important to test the setup:
 - Send test emails that will trigger bounce or complaint notifications.
 - Verify that these notifications are received by SNS and correctly trigger the Lambda function.
 
 ### Step 5: Monitoring and Adjustments
+![AWS CloudWatch](https://raw.githubusercontent.com/arinatechnologies/blogs/aedf4b9c0a4842187ad87ef072d284ae8353c946/images/awssesmonitoringpart2/cloudwatch.webp)
 Regularly monitor the setup through AWS CloudWatch and adjust configurations as necessary to handle any new types of email issues or to refine the process.
 
 ## Advanced Considerations
