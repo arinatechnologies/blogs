@@ -21,19 +21,27 @@ The need: A customer wants to use their own encryption key and restrict its usag
 ## Setting Up the KMS Key
 
 ### Step 1: Creating the Key
+![Creating the Key](https://raw.githubusercontent.com/arinatechnologies/blogs/ded38ad93daca1dbb4b235b63f2a0fdb0bec5158/images/onebucketonekey/createkey.webp)
+
 - **Navigate to the Key Management Service**: Start by opening the AWS Management Console and selecting KMS.
 - **Create a new key**: Choose the appropriate options for your key. For simplicity, skip tagging and advanced options during this tutorial.
 
 ### Step 2: Configuring Key Policies
+![Configuring Key Policies](https://raw.githubusercontent.com/arinatechnologies/blogs/ded38ad93daca1dbb4b235b63f2a0fdb0bec5158/images/onebucketonekey/kmsconfi.webp)
+
 - **Permission settings**: Initially, you might be tempted to apply broad permissions. However, to enhance security, restrict the key’s usage to a specific IAM user and apply a policy that denies all other requests.
 
 ## Crafting a Bucket Policy
 
 ### Step 1: Creating the Bucket
+![Creating the Bucket](https://raw.githubusercontent.com/arinatechnologies/blogs/ded38ad93daca1dbb4b235b63f2a0fdb0bec5158/images/onebucketonekey/createbucket.webp)
+
 - **Unique bucket name**: Remember, S3 bucket names need to be globally unique. Create the bucket intended for the exclusive use of the KMS key.
 - **Disable bucket versioning**: If not required, keep this setting disabled to manage storage costs.
 
 ### Step 2: Policy Configuration
+![Policy Configuration](https://raw.githubusercontent.com/arinatechnologies/blogs/ded38ad93daca1dbb4b235b63f2a0fdb0bec5158/images/onebucketonekey/createbucketconfi.webp)
+
 - **Deny other buckets**: The crucial part of this setup involves crafting a bucket policy that uses a "Deny" statement. This statement should specify that if the bucket name doesn’t match your specific bucket, access should be denied.
 - **Set conditions**: Use conditions to enforce that the KMS key can only encrypt/decrypt objects when the correct S3 bucket is specified.
 
