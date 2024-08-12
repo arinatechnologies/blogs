@@ -15,6 +15,7 @@ To prevent abuse and preserve domain ownership integrity, domain registrars, inc
 The domain must be registered with the current registrar or transferred to the current registrar for at least 60 days.If restored from expiration, the domain must be at least 60 days post-restoration.Ensure the domain doesn't have prohibitive status codes like clientTransferProhibited, pendingDelete, pendingTransfer, redemptionPeriod, or serverTransferProhibited. You can find the current status by searching for your domain on the ICANN WHOIS website.Make any required changes (like to the domain owner) well in advance, as certain TLDs restrict transfers during updates.If you encounter issues or need more information on status codes, consult ICANN's policies or check out their EPP status codes website.
 
 **Step 1: Confirm AWS Support for Your Domain's TLD**
+![AWS Support](https://raw.githubusercontent.com/arinatechnologies/blogs/7a15b8eb4f8301b44413a258a88364dfe53bd7ab/images/godaddy/step1.webp)
 Start by checking whether Route 53 supports your domain's top-level domain (TLD). Visit to check availability.
 
 **Step 2: Connect with GoDaddy Support**
@@ -31,6 +32,7 @@ Discontinue auto-renew as it won't be necessary anymore.
 Contact GoDaddy's help center to receive important domain transfer information.
 
 **Step 4: Update Settings with GoDaddy**
+![Update Settings](https://raw.githubusercontent.com/arinatechnologies/blogs/7a15b8eb4f8301b44413a258a88364dfe53bd7ab/images/godaddy/step%204.webp)
 Ensure the registrant contact email is current for communication and transfer authorization purposes.
 Unlock the domain to allow transfer.
 Verify the domain is in a transferable state.
@@ -38,6 +40,7 @@ If DNSSEC is enabled, disable it for the transfer (reactivate it in AWS later).
 Secure an authorization code from GoDaddy, except for certain TLDs like .co.za, .es, .uk, and .co.uk, which have different requirements (e.g., updating IPS tags for .uk domains).
 
 **Step 5: Request Domain Transfer on AWS**
+![Domain Transfer on AWS](https://raw.githubusercontent.com/arinatechnologies/blogs/7a15b8eb4f8301b44413a258a88364dfe53bd7ab/images/godaddy/step%205.webp)
 Initiate the domain transfer request using AWS Route 53, which will verify the domain status for you. After initiating the transfer, it will officially take 2 to 5 days to complete. Within the AWS Route 53 console:
 Click on 'Registered Domains'.
 Opt for either transferring a single domain or multiple domains.
@@ -46,6 +49,7 @@ Follow AWS's prompts to proceed with the transfer.
 AWS will provide status updates on the transfer request through the console.
 
 **Step 6: Post-Transfer Setup**
+![Post-Transfer Setup](https://raw.githubusercontent.com/arinatechnologies/blogs/7a15b8eb4f8301b44413a258a88364dfe53bd7ab/images/godaddy/step%206.webp)
 Once the domain is in AWS's hands, you'll receive a notification. You'll then need to:
 Update the Name Servers in Route 53.
 Verify that hosted records match your desired configuration.
@@ -54,6 +58,8 @@ Enable the transfer lock for additional security.
 Go to the hosted zone to review domain status and Name Server records.
 
 **Step 7: Additional Checks and Settings**
+![Additional Checks](https://raw.githubusercontent.com/arinatechnologies/blogs/7a15b8eb4f8301b44413a258a88364dfe53bd7ab/images/godaddy/step%207.webp)
+![Settings](https://raw.githubusercontent.com/arinatechnologies/blogs/7a15b8eb4f8301b44413a258a88364dfe53bd7ab/images/godaddy/step%207..webp)
 This involves making sure all DNS settings, including MX records and other configurations, are properly set up for your email and website. For example:
 If you've moved from GoDaddy's Outlook email to another provider, update the MX records accordingly.
 Add any additional DNS records, like TXT for email domain validation and others required for your domain to function correctly.
