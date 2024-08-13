@@ -12,6 +12,10 @@ Amazon Web Services (AWS) CloudHSM offers a robust solution for securing cryptog
 <Video id="eWqvLaBWFvk" title="Your Data, Your Keys, Your Control: Bring your own keys to AWS CloudHSM - Part 1"/>
 
 ## Initial Setup: EC2 and CloudHSM Cluster
+[CloudHSM Cluster](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/cloudhsm%20cluster%20creation%201.webp)
+[CloudHSM Cluster](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/cloudhsm%20cluster%20creation%202.webp)
+[CloudHSM Cluster](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/cloudhsm%20cluster%20creation%203.webp)
+[CloudHSM Cluster](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/cloudhsm%20cluster%20creation%204.webp)
 
 ### EC2 Configuration
 - **Instance Selection**: Start by provisioning an Amazon EC2 instance, choosing either a `t2.micro` or `t2.small` with Amazon Linux 2.
@@ -23,11 +27,14 @@ Amazon Web Services (AWS) CloudHSM offers a robust solution for securing cryptog
 - **Cluster Configuration**: After providing necessary configurations like backups and tags, create the cluster. Once created, the cluster status will initially show as Uninitialized.
 
 ## Initializing the CloudHSM Cluster
+[Initializing](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/cluster%20initi%201.webp)
+[Initializing](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/cluster%20initi%202.webp)
 
 ### Key Management
+[Key Management](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/keymanagment%201.webp)
+[Key Management](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/keymanagment%202.webp)
 - **Generate Key Pair**: Before initializing, generate a new RSA key pair referred to as the customer key pair. This involves creating a private key and a corresponding self-signed certificate using OpenSSL commands.
 
-[Read about Keys](https://www.arinatechnologies.com/posts/Keys)
 
 ### Cluster Initialization
 - **CSR Process**: Navigate to the 'Initialize' action in the CloudHSM console and create an HSM instance in your cluster. You will need to download a Certificate Signing Request (CSR).
