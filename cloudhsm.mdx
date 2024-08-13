@@ -27,8 +27,6 @@ Amazon Web Services (AWS) CloudHSM offers a robust solution for securing cryptog
 - **Cluster Configuration**: After providing necessary configurations like backups and tags, create the cluster. Once created, the cluster status will initially show as Uninitialized.
 
 ## Initializing the CloudHSM Cluster
-[Initializing](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/cluster%20initi%201.webp)
-[Initializing](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/cluster%20initi%202.webp)
 
 ### Key Management
 [Key Management](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/keymanagment%201.webp)
@@ -37,6 +35,8 @@ Amazon Web Services (AWS) CloudHSM offers a robust solution for securing cryptog
 
 
 ### Cluster Initialization
+[Initializing](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/cluster%20initi%201.webp)
+[Initializing](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/cluster%20initi%202.webp)
 - **CSR Process**: Navigate to the 'Initialize' action in the CloudHSM console and create an HSM instance in your cluster. You will need to download a Certificate Signing Request (CSR).
 - **Sign CSR**: Use the previously generated private key to sign the CSR. This confirms your ownership of the HSM cluster.
 
@@ -47,6 +47,7 @@ openssl x509 -req -days 3652 -in <Cluster_ID>_ClusterCsr.csr \
 ```
 
 ### Upload Certificates
+[Upload Certificates](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/upload%20certificate%201.webp)
 - **Finalizing Initialization**: Back in the AWS CloudHSM console, upload the signed cluster certificate and your issuing certificate. After uploading, finalize the initialization.
 
 ## Activating the Cluster
@@ -59,8 +60,11 @@ cluster activate
 ```
 
 ## Configuring HSM CLI and User Management
+[Configuring HSM CLI and User Management](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/configuring%20hsm%20cli%20and%20user%20management.webp)
+[Configuring HSM CLI and User Management](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/configuring%20hsm%20cli%20and%20user%20managment.webp)
 
 ### HSM CLI Setup
+[CLI Setup](https://raw.githubusercontent.com/arinatechnologies/blogs/98348ce82c582656b8cab6708553a19f20bcffdc/images/hsm%20part%201/hsm%20cli%20setup.webp)
 - **Install CLI**: Download and install the CloudHSM CLI tools on your EC2 instance.
 
 ```bash
