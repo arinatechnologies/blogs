@@ -22,6 +22,7 @@ cd /opt/vb-hsm/hsm-10
 ```
 
 ### 2. Create the AWS KMS Key
+[AWS KMS Key](https://raw.githubusercontent.com/arinatechnologies/blogs/c16f2ee7bfc7edbc1a1b69a82b37706219c2a343/images/hsm%20part%202/Step2a%20keys2.webp)
 Initiate a KMS key with no key material:
 ```bash
 aws kms create-key --origin EXTERNAL --region us-east-1
@@ -29,6 +30,7 @@ aws kms create-key --origin EXTERNAL --region us-east-1
 Record the key ID displayed in the output as you will need it for subsequent steps.
 
 ## Configuring the Key Alias
+[Configuring the Key Alias](https://raw.githubusercontent.com/arinatechnologies/blogs/c16f2ee7bfc7edbc1a1b69a82b37706219c2a343/images/hsm%20part%202/Step2%20b%20keys2.webp)
 Create a user-friendly alias for your new KMS key to simplify management:
 ```bash
 aws kms create-alias --alias-name alias/byok-mrk --target-key-id YOUR_KEY_ID
@@ -37,12 +39,14 @@ aws kms create-alias --alias-name alias/byok-mrk --target-key-id YOUR_KEY_ID
 ## Preparing for Key Import
 
 ### 3. Retrieve Import Parameters
+[Retrieve Import Parameters](https://raw.githubusercontent.com/arinatechnologies/blogs/c16f2ee7bfc7edbc1a1b69a82b37706219c2a343/images/hsm%20part%202/Step3%20keys2.webp)
 Generate and save the necessary parameters for key import:
 ```bash
 aws kms get-parameters-for-import --key-id YOUR_KEY_ID --wrapping-algorithm RSAES_OAEP_SHA_256 --wrapping-key-spec RSA_2048 --region us-east-1 > ./WrappingParameters.json
 ```
 
 ### 4. Extract and Prepare the Import Token
+[Extract and Prepare the Import Token](https://raw.githubusercontent.com/arinatechnologies/blogs/c16f2ee7bfc7edbc1a1b69a82b37706219c2a343/images/hsm%20part%202/Step4%20keys2.webp)
 Extract the import token and public key, converting them into usable formats:
 ```bash
 jq -r '.ImportToken' ./WrappingParameters.json > ./ImportToken.b64
@@ -53,6 +57,7 @@ openssl enc -d -base64 -A -in ./ImportToken.b64 -out ./ImportToken.bin
 ## Importing the Public Key to CloudHSM
 
 ### 5. Initialize Crypto User Environment
+[Crypto User Environment](https://raw.githubusercontent.com/arinatechnologies/blogs/c16f2ee7bfc7edbc1a1b69a82b37706219c2a343/images/hsm%20part%202/step5%20keys2.webp)
 Set the environment variables to operate as a crypto user in CloudHSM:
 ```bash
 export CLOUDHSM_ROLE=crypto-user
@@ -60,6 +65,7 @@ export CLOUDHSM_PIN=cu_user1:password123
 ```
 
 ### 6. Import the Public Key
+[Import the Public Key](https://raw.githubusercontent.com/arinatechnologies/blogs/c16f2ee7bfc7edbc1a1b69a82b37706219c2a343/images/hsm%20part%202/Step6%20keys2.webp)
 Import the public key to your HSM:
 ```bash
 /opt/cloudhsm/bin/cloudhsm-cli key import pem --path ./PublicKey.pem --label wrapping-key-example-11 --key-type-class rsa-public --attributes wrap=true
@@ -68,12 +74,14 @@ Import the public key to your HSM:
 ## Key Wrapping and Import
 
 ### 7. Generate or Import Your Symmetric Key
+[Generate or Import Your Symmetric Key](https://raw.githubusercontent.com/arinatechnologies/blogs/c16f2ee7bfc7edbc1a1b69a82b37706219c2a343/images/hsm%20part%202/Step7%20keys2.webp)
 If you do not already possess a symmetric AES key:
 ```bash
 /opt/cloudhsm/bin/cloudhsm-cli key generate-symmetric aes --key-length-bytes 32 --label byok-kms-13
 ```
 
 ### 8. Wrap the Symmetric Key
+[Wrap the Symmetric Key](https://raw.githubusercontent.com/arinatechnologies/blogs/c16f2ee7bfc7edbc1a1b69a82b37706219c2a343/images/hsm%20part%202/Step8%20keys2.webp)
 Use the imported public key to wrap your symmetric key:
 ```bash
 /opt/cloudhsm/bin/cloudhsm-cli key wrap rsa-oaep --payload-filter attr.label=byok-kms-13 --wrapping-filter attr.label=wrapping-key-example-11 --hash-function sha256 --mgf mgf1-sha256 --path ./KMS-BYOK-May2024-11-wrapped.bin
