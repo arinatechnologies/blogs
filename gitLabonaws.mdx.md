@@ -1,0 +1,134 @@
+---
+title: 'Step-by-Step Guide: Install and Configure GitLab on AWS EC2 | DevOps CI/CD with GitLab on AWS '
+date: '2024-08-12'
+image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/a1230c7dad61f35ee5d53b0234db4f665f5a43f5/images/gitlab%20thumbnail.webp'
+tags: ['GitLab','CI/CD','AWS','Git Bash','CloudFormation','GitLab Runner','GitLab Runner','Terraform','AWS EC2','DevOps Tools','Automation','Infrastructure as Code','Shell Scripting','Continuous Integration']
+
+---
+# Setting Up GitLab Runners on SGK AWS Environment
+
+## Introduction
+This document outlines the steps taken to deploy and configure GitLab Runners, including the installation of Terraform, ensuring that the application team can focus solely on writing pipelines.
+
+## Architecture
+The following diagram displays the solution architecture.
+
+![Architecture](https://raw.githubusercontent.com/arinatechnologies/blogs/f3a91c10ffdc5ea068ce76fca1e967c1ca856ea8/images/gitlabrunnersimage.webp)
+
+AWS CloudFormation is used to create the infrastructure hosting the GitLab Runner. The main steps are as follows:
+<Video id="OuLrnbNW-7Y" title="Setting Up GitLab Runners on AWS Environment"/>
+
+1. The user runs a deploy script to deploy the CloudFormation template. The template is parameterized, and the parameters are defined in a properties file. The properties file specifies the infrastructure configuration and the environment in which to deploy the template.
+2. The deploy script calls CloudFormation CreateStack API to create a GitLab Runner stack in the specified environment.
+3. During stack creation, an EC2 autoscaling group is created with the desired number of EC2 instances. Each instance is launched via a launch template created with values from the properties file. An IAM role is created and attached to the EC2 instance, containing permissions required for the GitLab Runner to execute pipeline jobs. A lifecycle hook is attached to the autoscaling group on instance termination events, ensuring graceful instance termination.
+4. During instance launch, GitLab Runner will be configured and installed. Terraform, Git, and other software will also be installed as needed.
+5. The user may repeat the same steps to deploy GitLab Runner into another environment.
+
+## Infrastructure Setup with CloudFormation
+
+### Customizing the CloudFormation Template
+The initial step in deploying GitLab Runners involved setting up the infrastructure using AWS CloudFormation. The standard CloudFormation template was customized to fit the unique requirements of the SGK environment.
+
+**CloudFormation Template Location:** [GitLab Runner Template](https://sgk-runner-gitlab.s3.us-west-2.amazonaws.com/gitlab-runner.yaml)
+
+**Parameters used:**
+![Parameters](https://raw.githubusercontent.com/arinatechnologies/blogs/f3a91c10ffdc5ea068ce76fca1e967c1ca856ea8/images/parametermitlab.webp)
+
+### Deploying the CloudFormation Stack
+To deploy the CloudFormation stack, use the following command. This command assumes you have AWS CLI configured with the appropriate credentials:
+
+```bash
+aws cloudformation create-stack --stack-name amazon-ec2-gitlab-runner-demo1 --template-body file://gitlab-runner.yaml --capabilities CAPABILITY_NAMED_IAM
+```
+
+To update the stack, use the following command:
+
+```bash
+aws cloudformation update-stack --stack-name amazon-ec2-gitlab-runner-demo1 --template-body file://gitlab-runner.yaml --capabilities CAPABILITY_NAMED_IAM
+```
+
+This command will provision a CloudFormation stack similar to [this link](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/stackinfo?stackId=arn%3Aaws%3Acloudformation%3Aus-west-2%3A533267450200%3Astack%2Famazon-ec2-gitlab-runner%2Fce23d680-55ed-11ef-b4ec-02b5a44c5779) that creates the following resources:
+
+| Logical ID | Physical ID | Type |
+| ---------- | ----------- | ---- |
+| ASGBucketPolicy | arn:aws:iam::533267450200:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGBucketPolicy | AWS::IAM::ManagedPolicy |
+| ASGInstanceProfile | amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGInstanceProfile-MM31yammSlL2 | AWS::IAM::InstanceProfile |
+| ASGLaunchTemplate | lt-0ae6b1f22e6fb59d3 | AWS::EC2::LaunchTemplate |
+| ASGRebootRole | amazon-ec2-gitlab-runner-RnrASG-1TE6F-ASGRebootRole-qY5TrCFgM17Z | AWS::IAM::Role |
+| ASGSelfAccessPolicy | arn:aws:iam::533267450200:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGSelfAccessPolicy | AWS::IAM::ManagedPolicy |
+| CFCustomResourceLambdaRole | amazon-ec2-gitlab-runner--CFCustomResourceLambdaRol-QGhwhUWsmzOs | AWS::IAM::Role |
+| EC2SelfAccessPolicy | arn:aws:iam::533267450200:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-EC2SelfAccessPolicy | AWS::IAM::ManagedPolicy |
+| InstanceASG | amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-InstanceASG-o3DHi2HsGB7Y | AWS::AutoScaling::AutoScalingGroup |
+| LookupVPCInfo | 2024/08/09/[$LATEST]74897306b3a74abd98a9c637a27c19a7 | Custom::VPCInfo |
+| LowerCasePlusRandomLambda | amazon-ec2-gitlab-runner--LowerCasePlusRandomLambd-oGUYEJJRIG0O | AWS::Lambda::Function |
+| S3BucketNameLower | 2024/08/09/[$LATEST]e3cb7909bd224ab594c81514708e7827 | Custom::Lowercase |
+| VPCInfoLambda | amazon-ec2-gitlab-runner-RnrASG-1TE6-VPCInfoLambda-kL65a1M75SYR | AWS::Lambda::Function |
+
+## Shell-Based Installation Approach
+In the SGK environment, we opted to use shell scripts for installing GitLab Runner and Terraform directly on the EC2 instances rather than using Docker. This decision was based on the specific infrastructure and operational needs at SGK:
+
+- **Simpler Debugging:** Direct installation via shell scripts simplifies the debugging process. If something goes wrong, engineers can SSH into the instance and troubleshoot directly rather than dealing with Docker container issues.
+- **Performance Considerations:** Running the runner directly on the EC2 instance reduces the overhead introduced by containerization, potentially improving performance.
+
+### Installation Commands
+Below are the key commands used in the shell script for installing GitLab Runner and Terraform:
+
+```bash
+#!/bin/bash
+# Update and install necessary packages
+yum update -y
+yum install -y amazon-ssm-agent git unzip wget jq
+
+# Install Terraform
+wget https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip
+unzip terraform_1.0.11_linux_amd64.zip
+mv terraform /usr/local/bin/
+
+# Install GitLab Runner
+sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+sudo chmod +x /usr/local/bin/gitlab-runner
+sudo useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash
+sudo gitlab-runner install --user=gitlab-runner --working-directory=/home/gitlab-runner
+sudo gitlab-runner start
+
+# Source GitBash
+echo 'export PATH=$PATH:/home/gitlab-runner' >> ~/.bashrc
+source ~/.bashrc
+```
+
+## Configuration and Usage
+
+### Registering the GitLab Runner
+Once the GitLab Runner is installed, it needs to be registered with your GitLab instance. This process can be automated or done manually. Below is an example of how you can register the runner using the `gitlab-runner register` command:
+
+```bash
+gitlab-runner register \
+  --non-interactive \
+  --url "https://gitlab.com/" \
+  --registration-token "YOUR_REGISTRATION_TOKEN" \
+  --executor "shell" \
+  --description "SGK GitLab Runner" \
+  --tag-list "shell,sgkci/cd" \
+  --run-untagged="true" \
+  --locked="false"
+```
+
+A simple command:
+
+```bash
+sudo gitlab-runner register --url https://gitlab.com/ --registration-token GR1348941Du4BazUzERU5M1m_LeLU
+```
+
+This command registers the GitLab Runner to your GitLab project, allowing it to execute CI/CD pipelines directly on the EC2 instance using the shell executor.
+
+### Attaching Runner to GitLab Repo
+![Attaching Runner](https://raw.githubusercontent.com/arinatechnologies/blogs/77688fb53780078c7c1ea48f6ccfacaac8cac183/images/gitlab%20runners%20image.webp)
+Navigate to **Repo** → **Settings** → **CI/CD**. Your runner should show up. Click "Enable for this project," after which the runner should be visible.
+
+*Note: To ensure that the runner picks up your job, ensure that the right tag is in place, and you may need to disable the Instance Runners.*
+```
+
+# Other Blogs
+[Azure Messaging: Service Bus, Event Hub & Event Grid](https://www.arinatechnologies.com/posts/az-messaging) <br/>
+[How to improve data transfer efficiency in Azure](https://www.arinatechnologies.com/posts/azure-data-transfer) <br/>
+[AWS vs Google vs Azure: Decoding the Ultimate Cloud Battle](https://www.arinatechnologies.com/posts/aws-gcp-azure) <br/>
