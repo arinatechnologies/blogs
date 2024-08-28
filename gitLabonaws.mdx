@@ -2,10 +2,10 @@
 title: 'Step-by-Step Guide: Install and Configure GitLab on AWS EC2 | DevOps CI/CD with GitLab on AWS '
 date: '2024-08-12'
 image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/a1230c7dad61f35ee5d53b0234db4f665f5a43f5/images/gitlab%20thumbnail.webp'
-tags: ['GitLab','CI/CD','AWS','Git Bash','CloudFormation','GitLab Runner','GitLab Runner','Terraform','AWS EC2','DevOps Tools','Automation','Infrastructure as Code','Shell Scripting','Continuous Integration']
+tags: ['GitLab','CI/CD','AWS','Git Bash','CloudFormation','GitLab Runner','CodeCommit','Terraform','AWS EC2','DevOps','Automation','Infrastructure as Code','Shell Scripting','Pipeline']
 
 ---
-# Setting Up GitLab Runners on SGK AWS Environment
+# Setting Up GitLab Runners on AWS Environment
 
 ## Introduction
 This document outlines the steps taken to deploy and configure GitLab Runners, including the installation of Terraform, ensuring that the application team can focus solely on writing pipelines.
@@ -27,9 +27,11 @@ AWS CloudFormation is used to create the infrastructure hosting the GitLab Runne
 ## Infrastructure Setup with CloudFormation
 
 ### Customizing the CloudFormation Template
-The initial step in deploying GitLab Runners involved setting up the infrastructure using AWS CloudFormation. The standard CloudFormation template was customized to fit the unique requirements of the SGK environment.
+The initial step in deploying GitLab Runners involved setting up the infrastructure using AWS CloudFormation. The standard CloudFormation template was customized to fit the unique requirements of the environment.
 
 **CloudFormation Template Location:** [GitLab Runner Template](https://sgk-runner-gitlab.s3.us-west-2.amazonaws.com/gitlab-runner.yaml)
+
+For any automation requirement or issues, please reach out to us [ Contact Us](https://www.arinatechnologies.com/contact) <br/>
 
 **Parameters used:**
 ![Parameters](https://raw.githubusercontent.com/arinatechnologies/blogs/f3a91c10ffdc5ea068ce76fca1e967c1ca856ea8/images/parametermitlab.webp)
@@ -51,13 +53,13 @@ This command will provision a CloudFormation stack similar to [this link](https:
 
 | Logical ID | Physical ID | Type |
 | ---------- | ----------- | ---- |
-| ASGBucketPolicy | arn:aws:iam::533267450200:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGBucketPolicy | AWS::IAM::ManagedPolicy |
+| ASGBucketPolicy | arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGBucketPolicy | AWS::IAM::ManagedPolicy |
 | ASGInstanceProfile | amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGInstanceProfile-MM31yammSlL2 | AWS::IAM::InstanceProfile |
 | ASGLaunchTemplate | lt-0ae6b1f22e6fb59d3 | AWS::EC2::LaunchTemplate |
 | ASGRebootRole | amazon-ec2-gitlab-runner-RnrASG-1TE6F-ASGRebootRole-qY5TrCFgM17Z | AWS::IAM::Role |
-| ASGSelfAccessPolicy | arn:aws:iam::533267450200:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGSelfAccessPolicy | AWS::IAM::ManagedPolicy |
+| ASGSelfAccessPolicy | arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGSelfAccessPolicy | AWS::IAM::ManagedPolicy |
 | CFCustomResourceLambdaRole | amazon-ec2-gitlab-runner--CFCustomResourceLambdaRol-QGhwhUWsmzOs | AWS::IAM::Role |
-| EC2SelfAccessPolicy | arn:aws:iam::533267450200:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-EC2SelfAccessPolicy | AWS::IAM::ManagedPolicy |
+| EC2SelfAccessPolicy | arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-EC2SelfAccessPolicy | AWS::IAM::ManagedPolicy |
 | InstanceASG | amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-InstanceASG-o3DHi2HsGB7Y | AWS::AutoScaling::AutoScalingGroup |
 | LookupVPCInfo | 2024/08/09/[$LATEST]74897306b3a74abd98a9c637a27c19a7 | Custom::VPCInfo |
 | LowerCasePlusRandomLambda | amazon-ec2-gitlab-runner--LowerCasePlusRandomLambd-oGUYEJJRIG0O | AWS::Lambda::Function |
@@ -65,7 +67,7 @@ This command will provision a CloudFormation stack similar to [this link](https:
 | VPCInfoLambda | amazon-ec2-gitlab-runner-RnrASG-1TE6-VPCInfoLambda-kL65a1M75SYR | AWS::Lambda::Function |
 
 ## Shell-Based Installation Approach
-In the SGK environment, we opted to use shell scripts for installing GitLab Runner and Terraform directly on the EC2 instances rather than using Docker. This decision was based on the specific infrastructure and operational needs at SGK:
+Rather than using Docker, in your environment, you can use Shell (kernel) for installing GitLab Runner and Terraform directly on the EC2 instances. Using shell rather than container provides the following benefits:
 
 - **Simpler Debugging:** Direct installation via shell scripts simplifies the debugging process. If something goes wrong, engineers can SSH into the instance and troubleshoot directly rather than dealing with Docker container issues.
 - **Performance Considerations:** Running the runner directly on the EC2 instance reduces the overhead introduced by containerization, potentially improving performance.
@@ -107,7 +109,7 @@ gitlab-runner register \
   --url "https://gitlab.com/" \
   --registration-token "YOUR_REGISTRATION_TOKEN" \
   --executor "shell" \
-  --description "SGK GitLab Runner" \
+  --description "GitLab Runner" \
   --tag-list "shell,sgkci/cd" \
   --run-untagged="true" \
   --locked="false"
@@ -116,6 +118,9 @@ gitlab-runner register \
 A simple command:
 
 ```bash
+sudo gitlab-runner register --url https://gitlab.com/ --registration-token <Your registration token>
+
+Example: 
 sudo gitlab-runner register --url https://gitlab.com/ --registration-token GR1348941Du4BazUzERU5M1m_LeLU
 ```
 
@@ -126,9 +131,9 @@ This command registers the GitLab Runner to your GitLab project, allowing it to 
 Navigate to **Repo** → **Settings** → **CI/CD**. Your runner should show up. Click "Enable for this project," after which the runner should be visible.
 
 *Note: To ensure that the runner picks up your job, ensure that the right tag is in place, and you may need to disable the Instance Runners.*
-```
+
+If any step in this article is not clear or further information is needed, please check out our consulting services, where we have a deep talent pool that has good DevOps experience in tools such as GitLab, CodePipeline, Jenkins [ Refer Cloud Consulting](https://www.arinatechnologies.com/consulting) <br/>
 
 # Other Blogs
-[Azure Messaging: Service Bus, Event Hub & Event Grid](https://www.arinatechnologies.com/posts/az-messaging) <br/>
-[How to improve data transfer efficiency in Azure](https://www.arinatechnologies.com/posts/azure-data-transfer) <br/>
-[AWS vs Google vs Azure: Decoding the Ultimate Cloud Battle](https://www.arinatechnologies.com/posts/aws-gcp-azure) <br/>
+[Access CodeCommit/Git via AWS Identity Center](https://www.arinatechnologies.com/posts/codecommitgit) <br/>
+[How do I deploy ECS Task in a different account using CodePipeline that uses CodeDeploy](https://www.arinatechnologies.com/posts/codepipeline) <br/>
