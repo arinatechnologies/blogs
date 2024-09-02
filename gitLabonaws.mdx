@@ -13,7 +13,7 @@ This document outlines the steps taken to deploy and configure GitLab Runners, i
 ## Architecture
 The following diagram displays the solution architecture.
 
-![Architecture](https://raw.githubusercontent.com/arinatechnologies/blogs/f3a91c10ffdc5ea068ce76fca1e967c1ca856ea8/images/gitlabrunnersimage.webp)
+![Architecture](https://github.com/arinatechnologies/blogs/blob/0d061d2f4057c06b187ada5d2dde7c7d765d9abc/images/gitlabrunnersimage.png)
 
 AWS CloudFormation is used to create the infrastructure hosting the GitLab Runner. The main steps are as follows:
 <Video id="OuLrnbNW-7Y" title="Setting Up GitLab Runners on AWS Environment"/>
@@ -29,9 +29,9 @@ AWS CloudFormation is used to create the infrastructure hosting the GitLab Runne
 ### Customizing the CloudFormation Template
 The initial step in deploying GitLab Runners involved setting up the infrastructure using AWS CloudFormation. The standard CloudFormation template was customized to fit the unique requirements of the environment.
 
-**CloudFormation Template Location:** [GitLab Runner Template](https://github.com/arinatechnologies/blogs/blob/main/code/gitlab-runner/main.yml)
+**CloudFormation Template Location:** [GitLab Runner Template](https://sgk-runner-gitlab.s3.us-west-2.amazonaws.com/gitlab-runner.yaml)
 
-**CloudFormation Template Location:** [GitLab Runner Scaling Group / Cluster Template](https://github.com/arinatechnologies/blogs/blob/main/code/gitlab-runner/runner-scaling.yml)
+**CloudFormation Template Location:** [GitLab Runner Scaling Group / Cluster Template](https://github.com/arinatechnologies/blogs/raw/814769ea883b6dad85dcdd758c71f5edf17ce3e6/code/gitlab-runner/gitlab-runner.zip)
 
 
 For any automation requirement or issues, please reach out to us [ Contact Us](https://www.arinatechnologies.com/contact) <br/>
@@ -56,13 +56,13 @@ This command will provision a CloudFormation stack similar to [this link](https:
 
 | Logical ID | Physical ID | Type |
 | ---------- | ----------- | ---- |
-| ASGBucketPolicy | `arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGBucketPolicy` | AWS::IAM::ManagedPolicy |
+| ASGBucketPolicy | arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGBucketPolicy | AWS::IAM::ManagedPolicy |
 | ASGInstanceProfile | amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGInstanceProfile-MM31yammSlL2 | AWS::IAM::InstanceProfile |
 | ASGLaunchTemplate | lt-0ae6b1f22e6fb59d3 | AWS::EC2::LaunchTemplate |
 | ASGRebootRole | amazon-ec2-gitlab-runner-RnrASG-1TE6F-ASGRebootRole-qY5TrCFgM17Z | AWS::IAM::Role |
-| ASGSelfAccessPolicy | `arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGSelfAccessPolicy` | AWS::IAM::ManagedPolicy |
+| ASGSelfAccessPolicy | arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGSelfAccessPolicy | AWS::IAM::ManagedPolicy |
 | CFCustomResourceLambdaRole | amazon-ec2-gitlab-runner--CFCustomResourceLambdaRol-QGhwhUWsmzOs | AWS::IAM::Role |
-| EC2SelfAccessPolicy | `arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-EC2SelfAccessPolicy` | AWS::IAM::ManagedPolicy |
+| EC2SelfAccessPolicy | arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-EC2SelfAccessPolicy | AWS::IAM::ManagedPolicy |
 | InstanceASG | amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-InstanceASG-o3DHi2HsGB7Y | AWS::AutoScaling::AutoScalingGroup |
 | LookupVPCInfo | 2024/08/09/[$LATEST]74897306b3a74abd98a9c637a27c19a7 | Custom::VPCInfo |
 | LowerCasePlusRandomLambda | amazon-ec2-gitlab-runner--LowerCasePlusRandomLambd-oGUYEJJRIG0O | AWS::Lambda::Function |
@@ -113,7 +113,7 @@ gitlab-runner register \
   --registration-token "YOUR_REGISTRATION_TOKEN" \
   --executor "shell" \
   --description "GitLab Runner" \
-  --tag-list "shell,ci/cd" \
+  --tag-list "shell,sgkci/cd" \
   --run-untagged="true" \
   --locked="false"
 ```
