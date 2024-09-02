@@ -37,8 +37,7 @@ The initial step in deploying GitLab Runners involved setting up the infrastruct
 For any automation requirement or issues, please reach out to us [ Contact Us](https://www.arinatechnologies.com/contact) <br/>
 
 **Parameters used:**
-![Parameters](https://raw.githubusercontent.com/arinatechnologies/blogs/f3a91c10ffdc5ea068ce76fca1e967c1ca856ea8/images/parametermitlab.webp)
-
+![Parameters](https://github.com/arinatechnologies/blogs/commit/145ff3ac529cd5883e56acc20c1600fd97c76cd9#diff-5572aa29a3f5c28e2d56dacf550c662702f558ed96a03b029e43f60acd653e73)
 ### Deploying the CloudFormation Stack
 To deploy the CloudFormation stack, use the following command. This command assumes you have AWS CLI configured with the appropriate credentials:
 
@@ -61,6 +60,8 @@ This command will provision a CloudFormation stack similar to [this link](https:
 | ASGLaunchTemplate | lt-0ae6b1f22e6fb59d3 | AWS::EC2::LaunchTemplate |
 | ASGRebootRole | amazon-ec2-gitlab-runner-RnrASG-1TE6F-ASGRebootRole-qY5TrCFgM17Z | AWS::IAM::Role |
 | ASGSelfAccessPolicy | arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGSelfAccessPolicy | AWS::IAM::ManagedPolicy |
+| CFCustomResourceLambdaRole | amazon-ec2-gitlab-runner--CFCustomResourceLambdaRol-QGhwhUWsmzOs | AWS::IAM::Role |
+| EC2SelfAccessPolicy | arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-EC2SelfAccessPolicy | AWS::IAM::ManagedPolicy |
 | CFCustomResourceLambdaRole | amazon-ec2-gitlab-runner--CFCustomResourceLambdaRol-QGhwhUWsmzOs | AWS::IAM::Role |
 | EC2SelfAccessPolicy | arn:aws:iam::<account id>:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-EC2SelfAccessPolicy | AWS::IAM::ManagedPolicy |
 | InstanceASG | amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-InstanceASG-o3DHi2HsGB7Y | AWS::AutoScaling::AutoScalingGroup |
