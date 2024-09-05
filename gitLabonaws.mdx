@@ -16,7 +16,7 @@ The following diagram displays the solution architecture.
 ![Architecture](https://github.com/arinatechnologies/blogs/blob/0d061d2f4057c06b187ada5d2dde7c7d765d9abc/images/gitlabrunnersimage.png)
 
 AWS CloudFormation is used to create the infrastructure hosting the GitLab Runner. The main steps are as follows:
-<Video id="OuLrnbNW-7Y" title="Setting Up GitLab Runners on AWS Environment"/>
+<Video id="KYUYm3iLOv4" title="Setting Up GitLab Runners on AWS Environment"/>
 
 1. The user runs a deploy script to deploy the CloudFormation template. The template is parameterized, and the parameters are defined in a properties file. The properties file specifies the infrastructure configuration and the environment in which to deploy the template.
 2. The deploy script calls CloudFormation CreateStack API to create a GitLab Runner stack in the specified environment.
