@@ -1,22 +1,41 @@
 ---
-title: 'Step-by-Step Guide: Install and Configure GitLab on AWS EC2 | DevOps CI/CD with GitLab on AWS '
-date: '2024-09-3'
-image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/a1230c7dad61f35ee5d53b0234db4f665f5a43f5/images/gitlab%20thumbnail.webp'
-tags: ['GitLab','CI/CD','AWS','Git Bash','CloudFormation','GitLab Runner','CodeCommit','Terraform','AWS EC2','DevOps','Automation','Infrastructure as Code','Shell Scripting','Pipeline']
-
+title: "Step-by-Step Guide: Install and Configure GitLab on AWS EC2 | DevOps CI/CD with GitLab on AWS "
+date: "2024-09-3"
+image: "https://raw.githubusercontent.com/arinatechnologies/blogs/a1230c7dad61f35ee5d53b0234db4f665f5a43f5/images/gitlab%20thumbnail.webp"
+tags:
+  [
+    "GitLab",
+    "CI/CD",
+    "AWS",
+    "Git Bash",
+    "CloudFormation",
+    "GitLab Runner",
+    "CodeCommit",
+    "Terraform",
+    "AWS EC2",
+    "DevOps",
+    "Automation",
+    "Infrastructure as Code",
+    "Shell Scripting",
+    "Pipeline",
+  ]
 ---
+
 # Setting Up GitLab Runners on AWS Environment
 
 ## Introduction
+
 This document outlines the steps taken to deploy and configure GitLab Runners, including the installation of Terraform, ensuring that the application team can focus solely on writing pipelines.
 
 ## Architecture
+
 The following diagram displays the solution architecture.
 
 ![Architecture](https://github.com/arinatechnologies/blogs/blob/0d061d2f4057c06b187ada5d2dde7c7d765d9abc/images/gitlabrunnersimage.png)
 
 AWS CloudFormation is used to create the infrastructure hosting the GitLab Runner. The main steps are as follows:
-<Video id="KYUYm3iLOv4" title="Setting Up GitLab Runners on AWS Environment"/>
+
+<Video id="KYUYm3iLOv4" title="Setting Up GitLab Runners on AWS Environment" />
 
 1. The user runs a deploy script to deploy the CloudFormation template. The template is parameterized, and the parameters are defined in a properties file. The properties file specifies the infrastructure configuration and the environment in which to deploy the template.
 2. The deploy script calls CloudFormation CreateStack API to create a GitLab Runner stack in the specified environment.
@@ -27,18 +46,20 @@ AWS CloudFormation is used to create the infrastructure hosting the GitLab Runne
 ## Infrastructure Setup with CloudFormation
 
 ### Customizing the CloudFormation Template
+
 The initial step in deploying GitLab Runners involved setting up the infrastructure using AWS CloudFormation. The standard CloudFormation template was customized to fit the unique requirements of the environment.
 
 **CloudFormation Template Location:** [GitLab Runner Template](https://sgk-runner-gitlab.s3.us-west-2.amazonaws.com/gitlab-runner.yaml)
 
 **CloudFormation Template Location:** [GitLab Runner Scaling Group / Cluster Template](https://github.com/arinatechnologies/blogs/raw/814769ea883b6dad85dcdd758c71f5edf17ce3e6/code/gitlab-runner/gitlab-runner.zip)
 
-
 For any automation requirement or issues, please reach out to us [ Contact Us](https://www.arinatechnologies.com/contact) <br/>
 
 **Parameters used:**
 ![Parameters](https://github.com/arinatechnologies/blogs/commit/145ff3ac529cd5883e56acc20c1600fd97c76cd9#diff-5572aa29a3f5c28e2d56dacf550c662702f558ed96a03b029e43f60acd653e73)
+
 ### Deploying the CloudFormation Stack
+
 To deploy the CloudFormation stack, use the following command. This command assumes you have AWS CLI configured with the appropriate credentials:
 
 ```bash
@@ -52,6 +73,7 @@ aws cloudformation update-stack --stack-name amazon-ec2-gitlab-runner-demo1 --te
 ```
 
 This command will provision a CloudFormation stack similar to [this link](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/stackinfo?stackId=arn%3Aaws%3Acloudformation%3Aus-west-2%3A533267450200%3Astack%2Famazon-ec2-gitlab-runner%2Fce23d680-55ed-11ef-b4ec-02b5a44c5779) that creates the following resources:
+
 <table>
                                                 <tbody>
                                                 <tr>
@@ -61,7 +83,7 @@ This command will provision a CloudFormation stack similar to [this link](https:
                                                     </tr>
                                                     <tr>
                                                         <td>ASGBucketPolicy</td>
-                                                        <td>arn:aws:iam::{account id}:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGBucketPolicy</td>
+                                                        <td>arn:aws:iam::your-account-id:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGBucketPolicy</td>
                                                         <td>AWS::IAM::ManagedPolicy</td>
                                                     </tr>
                                                     <tr>
@@ -82,7 +104,7 @@ This command will provision a CloudFormation stack similar to [this link](https:
                                                     </tr>
                                                     <tr>
                                                         <td>ASGSelfAccessPolicy</td>
-                                                        <td>arn:aws:iam::{account id}:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGSelfAccessPolicy</td>
+                                                        <td>arn:aws:iam::your-account-id:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-ASGSelfAccessPolicy</td>
                                                         <td>AWS::IAM::ManagedPolicy</td>
                                                     </tr>
                                                     <tr>
@@ -92,7 +114,7 @@ This command will provision a CloudFormation stack similar to [this link](https:
                                                     </tr>
                                                     <tr>
                                                         <td>EC2SelfAccessPolicy</td>
-                                                        <td>arn:aws:iam::{account id}:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-EC2SelfAccessPolicy</td>
+                                                        <td>arn:aws:iam::your-account-id:policy/amazon-ec2-gitlab-runner-RnrASG-1TE6FTX28FEDB-EC2SelfAccessPolicy</td>
                                                         <td>AWS::IAM::ManagedPolicy</td>
                                                     </tr>
                                                     <tr>
@@ -122,16 +144,17 @@ This command will provision a CloudFormation stack similar to [this link](https:
                                                     </tr>
                                                 </tbody>
                                                     
-                                                </table> 
-
+                                                </table>
 
 ## Shell-Based Installation Approach
+
 Rather than using Docker, in your environment, you can use Shell (kernel) for installing GitLab Runner and Terraform directly on the EC2 instances. Using shell rather than container provides the following benefits:
 
 - **Simpler Debugging:** Direct installation via shell scripts simplifies the debugging process. If something goes wrong, engineers can SSH into the instance and troubleshoot directly rather than dealing with Docker container issues.
 - **Performance Considerations:** Running the runner directly on the EC2 instance reduces the overhead introduced by containerization, potentially improving performance.
 
 ### Installation Commands
+
 Below are the key commands used in the shell script for installing GitLab Runner and Terraform:
 
 ```bash
@@ -160,6 +183,7 @@ source ~/.bashrc
 ## Configuration and Usage
 
 ### Registering the GitLab Runner
+
 Once the GitLab Runner is installed, it needs to be registered with your GitLab instance. This process can be automated or done manually. Below is an example of how you can register the runner using the `gitlab-runner register` command:
 
 ```bash
@@ -179,19 +203,22 @@ A simple command:
 ```bash
 sudo gitlab-runner register --url https://gitlab.com/ --registration-token <Your registration token>
 
-Example: 
+Example:
 sudo gitlab-runner register --url https://gitlab.com/ --registration-token GR1348941Du4BazUzERU5M1m_LeLU
 ```
 
 This command registers the GitLab Runner to your GitLab project, allowing it to execute CI/CD pipelines directly on the EC2 instance using the shell executor.
 
 ### Attaching Runner to GitLab Repo
+
 ![Attaching Runner](https://github.com/arinatechnologies/blogs/blob/3e63990bdd4e596d9db2fcea2c03f0b6871cd029/images/gitlabrunners.png)
 Navigate to **Repo** → **Settings** → **CI/CD**. Your runner should show up. Click "Enable for this project," after which the runner should be visible.
-*Note: To ensure that the runner picks up your job, ensure that the right tag is in place, and you may need to disable the Instance Runners.*
+_Note: To ensure that the runner picks up your job, ensure that the right tag is in place, and you may need to disable the Instance Runners._
 
 If any step in this article is not clear or further information is needed, please check out our consulting services, where we have a deep talent pool that has good DevOps experience in tools such as GitLab, CodePipeline, Jenkins [ Refer Cloud Consulting](https://www.arinatechnologies.com/consulting) <br/>
 Ready to take your cloud infrastructure to the next level? Please reach out to us [ Contact Us](https://www.arinatechnologies.com/contact) <br/>
+
 # Other Blogs
+
 [Access CodeCommit/Git via AWS Identity Center](https://www.arinatechnologies.com/posts/codecommitgit) <br/>
 [How do I deploy ECS Task in a different account using CodePipeline that uses CodeDeploy](https://www.arinatechnologies.com/posts/codepipeline) <br/>
