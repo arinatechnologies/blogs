@@ -1,0 +1,94 @@
+---
+title: 'AWS RDS Backup Retention: How to Retain MySQL & PostgreSQL Database Data for Over 35 Days '
+date: '2024-09-10'
+image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/8f766924b94271c3dfceced9bf6b2bf1221b9d0f/images/databasedata35days.webp'
+tags: ['GitLab','CI/CD','AWS','Git Bash','CloudFormation','GitLab Runner','CodeCommit','Terraform','AWS EC2','DevOps','Automation','Infrastructure as Code','Shell Scripting','Pipeline']
+---
+## Managing Database Backups: Extending Retention Periods Beyond Defaults Using AWS RDS
+
+In today's fast-paced digital landscape, data is one of the most valuable assets a business can possess. Protecting this data is critical, and one of the key aspects of data protection is implementing a robust backup strategy. For those leveraging AWS Relational Database Service (RDS), this post will walk through extending the backup retention period beyond the default settings, which is crucial for organizations that require longer retention periods for compliance, disaster recovery, or data archival purposes.
+
+<Video id="BOxNbYeEbtA" title="AWS RDS Backup Retention: How to Retain MySQL & PostgreSQL Database Data for Over 35 Days"/>
+
+### Why are Backups Important?
+
+Before diving into the technical aspects, it’s essential to understand the importance of database backups. A solid backup strategy ensures your data is protected against the following:
+- **Accidental deletions** (caused by human error, also known as "fat-finger" mistakes)
+- **Hardware failures**
+- **Data corruption**
+- **Natural disasters or regional failures**
+
+The primary goal of backups is to ensure that you can restore your database and minimize downtime when unforeseen issues arise.
+
+### AWS RDS Backup Overview
+![AWS RDS](https://raw.githubusercontent.com/arinatechnologies/blogs/2007888a5e8948222dd6cbb10962d136c82a5f38/images/RDS%20Backup/amazon%20RDS.webp)
+AWS Relational Database Service (RDS) provides a managed database platform that takes care of routine database management tasks, including backups. RDS offers two types of backups:
+1. **Automated Backups**: These are managed by RDS and are automatically scheduled, providing point-in-time recovery capabilities.
+2. **Manual Snapshots**: You can manually create snapshots of your database at any point. Unlike automated backups, manual snapshots persist until explicitly deleted by the user.
+![Manual Snapshots](https://raw.githubusercontent.com/arinatechnologies/blogs/2007888a5e8948222dd6cbb10962d136c82a5f38/images/RDS%20Backup/RDSsnapshot%20manual.webp)
+By default, RDS allows a maximum retention period of 35 days for automated backups. However, certain businesses may need to retain backups for six months or even longer due to compliance requirements or operational policies.
+
+### Default Retention Period in RDS
+![Retention Period](https://raw.githubusercontent.com/arinatechnologies/blogs/2007888a5e8948222dd6cbb10962d136c82a5f38/images/RDS%20Backup/RDSbackupretention.webp)
+
+The default retention period for automated backups is up to 35 days. This is an important consideration when planning a backup strategy since retaining backups for longer periods will require custom configurations. This can be particularly challenging if you're using AWS services like RDS, where built-in functionalities have preset limits.
+
+But don’t worry, there’s a way to configure your backups for longer retention periods without needing to create custom solutions involving complex automation or Lambda functions.
+
+### Extending Backup Retention with AWS Backup Service
+
+To extend the retention period beyond the default 35 days in RDS, we can use AWS Backup, a centralized backup service that allows you to create, manage, and automate backups for various AWS services, including RDS. AWS Backup enables you to retain your backups for months or even years, and it provides additional features such as cross-region replication.
+
+#### Step-by-Step Guide: Extending RDS Backup Retention Period
+
+1. **Access AWS Backup Service**:
+   Begin by logging into the AWS Console and navigating to the AWS Backup Service.
+
+2. **Create a Backup Plan**:
+   You will need to create a backup plan tailored to your organization's requirements. In this case, we’ll create a plan to retain backups for more than 35 days (e.g., 90 days or longer).
+   
+   - Go to the “Backup Plans” section and create a new plan.
+   - Set a name for your plan, such as “RDS_Backup_90_Day_Retention.”
+   - Choose the backup frequency and retention period. For example, you can set a daily backup schedule with a 90-day retention period.
+   
+3. **Configure Continuous Backup**:
+   AWS Backup allows you to enable continuous backups for supported services like RDS. This feature ensures that your backups are constantly updated, and you can restore to any point in time.
+   
+   - Choose “Enable Continuous Backup.”
+   - Set the backup policy, including the lifecycle management and retention period for your snapshots. This could be set to 90 days or even longer based on your requirements.
+   
+4. **Assign Resources**:
+   After defining the backup plan, assign the appropriate resources (in this case, your RDS databases).
+   
+   - Under “Resource Assignment,” specify the RDS instances you want to include in this backup plan.
+   - Ensure that the correct region and database instances are selected.
+
+5. **Verify Backup Job**:
+   Once your plan is in place, the system will start backing up your RDS instances according to the defined schedule and retention policy.
+   
+   - You can monitor the progress of your backup jobs in the “Backup Jobs” section. Here, you’ll be able to see when jobs are completed, their size, and their retention policies.
+   
+6. **Cross-Region Replication (Optional)**:
+   If you need to ensure that your backups are stored in another AWS region (for disaster recovery or compliance reasons), you can enable cross-region replication. This feature allows you to copy your backups to another AWS region, adding another layer of redundancy and protection.
+   
+7. **Security Considerations**:
+   It’s important to ensure that your backups are secure. Here are a few best practices:
+   - **Encryption**: Ensure that your RDS snapshots are encrypted using AWS-managed or customer-managed encryption keys (CMKs).
+   - **Access Controls**: Set the appropriate AWS Identity and Access Management (IAM) policies to control who can create, delete, and restore backups.
+
+### Common Challenges and Solutions
+
+While AWS Backup provides a comprehensive solution, there are a few limitations:
+- **Costs**: If you enable continuous backups and retain them for extended periods, the storage costs could increase. However, AWS provides tiered pricing, which could help mitigate costs for long-term storage.
+- **Retention Limits**: While AWS Backup allows you to retain backups for extended periods, it’s important to consider that this requires proper resource management to avoid overspending on storage.
+  
+### Conclusion
+
+Extending your backup retention period beyond the default 35 days in AWS RDS can be crucial for businesses with compliance or operational needs. By leveraging AWS Backup, you can implement a flexible, secure, and scalable backup strategy that goes beyond the default settings without the need for complex workarounds or custom solutions. Proper configuration and ongoing monitoring of your backup jobs can ensure that your data is protected and recoverable in the event of any disaster or accidental deletion.
+
+If you need further guidance or face any specific challenges while setting up your backups, feel free to reach out or drop a comment, and we’ll be happy to help!
+ [ Refer Cloud Consulting](https://www.arinatechnologies.com/consulting) <br/>
+Ready to take your cloud infrastructure to the next level? Please reach out to us [ Contact Us](https://www.arinatechnologies.com/contact) <br/>
+# Other Blogs
+[Step-by-Step Guide: Install and Configure GitLab on AWS EC2 | DevOps CI/CD with GitLab on AWS](https://www.arinatechnologies.com/posts/gitLabonaws) <br/>
+[Simplifying AWS Notifications: A Guide to User Notifications](https://www.arinatechnologies.com/posts/user-notifications) <br/>
