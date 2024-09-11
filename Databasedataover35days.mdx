@@ -2,8 +2,9 @@
 title: 'AWS RDS Backup Retention: How to Retain MySQL & PostgreSQL Database Data for Over 35 Days '
 date: '2024-09-10'
 image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/8f766924b94271c3dfceced9bf6b2bf1221b9d0f/images/databasedata35days.webp'
-tags: ['GitLab','CI/CD','AWS','Git Bash','CloudFormation','GitLab Runner','CodeCommit','Terraform','AWS EC2','DevOps','Automation','Infrastructure as Code','Shell Scripting','Pipeline']
+tags: ['AWS RDS Backup Retention','MySQL Backup AWS RDS','AWS','Retain Database Data over 35 Days','Data Protection AWS RDS','AWS RDS Snapshot Retention','PostgreSQL Data Backup AWS','AWS Backup for MySQL and PostgreSQL','PostgreSQL','MySQL','Increase Backup Retention AWS']
 ---
+
 ## Managing Database Backups: Extending Retention Periods Beyond Defaults Using AWS RDS
 
 In today's fast-paced digital landscape, data is one of the most valuable assets a business can possess. Protecting this data is critical, and one of the key aspects of data protection is implementing a robust backup strategy. For those leveraging AWS Relational Database Service (RDS), this post will walk through extending the backup retention period beyond the default settings, which is crucial for organizations that require longer retention periods for compliance, disaster recovery, or data archival purposes.
@@ -33,7 +34,7 @@ By default, RDS allows a maximum retention period of 35 days for automated backu
 
 The default retention period for automated backups is up to 35 days. This is an important consideration when planning a backup strategy since retaining backups for longer periods will require custom configurations. This can be particularly challenging if you're using AWS services like RDS, where built-in functionalities have preset limits.
 
-But don’t worry, there’s a way to configure your backups for longer retention periods without needing to create custom solutions involving complex automation or Lambda functions.
+But dont worry, theres a way to configure your backups for longer retention periods without needing to create custom solutions involving complex automation or Lambda functions.
 
 ### Extending Backup Retention with AWS Backup Service
 
@@ -66,13 +67,13 @@ To extend the retention period beyond the default 35 days in RDS, we can use AWS
 5. **Verify Backup Job**:
    Once your plan is in place, the system will start backing up your RDS instances according to the defined schedule and retention policy.
    
-   - You can monitor the progress of your backup jobs in the “Backup Jobs” section. Here, you’ll be able to see when jobs are completed, their size, and their retention policies.
+   - You can monitor the progress of your backup jobs in the “Backup Jobs” section. Here, youll be able to see when jobs are completed, their size, and their retention policies.
    
 6. **Cross-Region Replication (Optional)**:
    If you need to ensure that your backups are stored in another AWS region (for disaster recovery or compliance reasons), you can enable cross-region replication. This feature allows you to copy your backups to another AWS region, adding another layer of redundancy and protection.
    
 7. **Security Considerations**:
-   It’s important to ensure that your backups are secure. Here are a few best practices:
+   Its important to ensure that your backups are secure. Here are a few best practices:
    - **Encryption**: Ensure that your RDS snapshots are encrypted using AWS-managed or customer-managed encryption keys (CMKs).
    - **Access Controls**: Set the appropriate AWS Identity and Access Management (IAM) policies to control who can create, delete, and restore backups.
 
@@ -80,7 +81,7 @@ To extend the retention period beyond the default 35 days in RDS, we can use AWS
 
 While AWS Backup provides a comprehensive solution, there are a few limitations:
 - **Costs**: If you enable continuous backups and retain them for extended periods, the storage costs could increase. However, AWS provides tiered pricing, which could help mitigate costs for long-term storage.
-- **Retention Limits**: While AWS Backup allows you to retain backups for extended periods, it’s important to consider that this requires proper resource management to avoid overspending on storage.
+- **Retention Limits**: While AWS Backup allows you to retain backups for extended periods, its important to consider that this requires proper resource management to avoid overspending on storage.
   
 ### Conclusion
 
