@@ -49,7 +49,7 @@ Once the delegated admin is defined, log into the management account.
 Conformance packs are pre-built or custom collections of AWS Config rules that ensure compliance with AWS best practices and security frameworks, such as CIS (Center for Internet Security) benchmarks or NIST (National Institute of Standards and Technology) guidelines.
 
 - From the conformance packs section, choose the relevant pack for your organization. For example, you can select packs for security best practices for services like **EC2** and **S3**.
-- Customize the conformance pack to match your organization’s needs. If multiple rules across different conformance packs overlap, you can create a custom pack to avoid redundancy and unnecessary costs.
+- Customize the conformance pack to match your organizations needs. If multiple rules across different conformance packs overlap, you can create a custom pack to avoid redundancy and unnecessary costs.
   
 ##### 4. **Create Aggregators for Organization-Wide Monitoring**
 ![Create Aggregators](https://raw.githubusercontent.com/arinatechnologies/blogs/ab4b164a5cbc613ae0f6b35c0c3f20217e01357d/images/awsorganization-wideconfig/createaggregators.webp)
@@ -57,7 +57,7 @@ Conformance packs are pre-built or custom collections of AWS Config rules that e
 Once the conformance packs are deployed, you will need to create aggregators to collect compliance data from across the organization. Aggregators allow you to view resource configurations and compliance status from a single point, regardless of how many accounts you are managing.
 
 - In AWS Config, create an aggregator for your organization.
-- Select **Organization Aggregator** and specify the organization’s root account.
+- Select **Organization Aggregator** and specify the organizations root account.
 - Choose the regions you want to monitor, depending on where your AWS resources are deployed.
   
 ##### 5. **Monitor Compliance Across All Accounts**
@@ -71,16 +71,16 @@ After deploying the conformance packs and setting up the aggregators, you can be
   
 ##### 6. **Cost Optimization with Custom Conformance Packs**
 
-Each rule evaluation within a conformance pack has associated costs. To ensure you're not overspending on redundant evaluations, it’s crucial to create custom conformance packs that only include necessary rules.
+Each rule evaluation within a conformance pack has associated costs. To ensure you're not overspending on redundant evaluations, its crucial to create custom conformance packs that only include necessary rules.
 
-- Evaluate your organization’s needs and remove any redundant rules across multiple services.
+- Evaluate your organizations needs and remove any redundant rules across multiple services.
 - Focus on creating conformance packs tailored to specific services your organization uses, such as **EC2** or **CloudFront**, to avoid unnecessary charges.
   
 ##### 7. **Automate Regular Compliance Checks**
 
 You can automate the compliance evaluation process by scheduling regular checks. AWS Config allows you to set up these evaluations as per your organization’s needs, ensuring that all accounts adhere to security and best practice guidelines.
 
-- Set up recurring evaluations based on your organization’s compliance requirements.
+- Set up recurring evaluations based on your organizations compliance requirements.
 - Use Systems Manager to schedule and monitor these checks.
   
 #### Conclusion
