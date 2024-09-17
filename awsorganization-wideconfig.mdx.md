@@ -1,0 +1,96 @@
+---
+title: 'Mastering AWS Organization-Wide Config: Streamline Compliance with AWS Policies and Systems Manager'
+date: '2024-09-16'
+image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/b7da5f59bc01ed4093f151ddcb2a09f6b4a45b4a/images/awsorganization-wideconfig.webp'
+tags: ['AWS Config','AWS Organization','AWS','Cloud Compliance','Cloud Security','Cloud Management','AWS Config Aggregator','AWS Conformance Packs','AWS Resource Monitoring','AWS Systems Manager','Multi-Account AWS Management']
+---
+Managing multiple AWS accounts within an organization can be challenging, particularly when it comes to applying consistent configurations, security policies, and compliance rules across various accounts. AWS Config is an invaluable service for monitoring and assessing how resources comply with internal best practices and AWS guidelines. However, deploying AWS Config across an organization can quickly become overwhelming when working with numerous accounts.
+
+In this blog post, we will guide you through setting up AWS Config for your organization, ensuring a centralized configuration process. This setup eliminates the need for manual configurations in each account, streamlining management and enhancing security.
+<Video id="xng2I4si9js" title="Mastering AWS Organization-Wide Config: Streamline Compliance with AWS Policies and Systems Manager"/>
+
+#### What is AWS Config?
+![AWS Config](https://raw.githubusercontent.com/arinatechnologies/blogs/ab4b164a5cbc613ae0f6b35c0c3f20217e01357d/images/awsorganization-wideconfig/awsconfig%20(2).webp)
+
+AWS Config is a service that allows you to assess, audit, and evaluate the configurations of your AWS resources. It simplifies compliance auditing, security analysis, resource change tracking, and troubleshooting. AWS Config continuously monitors and records your AWS resource configurations, allowing you to compare the current state of resources against desired configurations or rules.
+
+#### Why Set Up AWS Config Across an Organization?
+
+While setting up AWS Config for individual accounts is straightforward, managing a large organization with numerous accounts can become complex. This is where AWS Config's organization-level setup comes into play. With this setup, you can ensure that the entire organization follows a standardized configuration policy, saving time and effort in managing each account manually.
+
+Some benefits of organization-level AWS Config include:
+- Centralized control over security configurations
+- Reduced risk of configuration drift
+- Cost savings by avoiding redundant rules across accounts
+- Enhanced visibility into compliance status across all accounts
+
+#### Step-by-Step Guide to Setting Up AWS Config for Your Organization
+![Delegated Admin Account](https://raw.githubusercontent.com/arinatechnologies/blogs/ab4b164a5cbc613ae0f6b35c0c3f20217e01357d/images/awsorganization-wideconfig/delegatedadministrator.webp)
+
+##### 1. **Create a Delegated Admin Account**
+The first step is to create a dedicated admin account. This will be the central management point for your organization. The delegated admin will handle the configuration of AWS Config across all accounts.
+
+- Sign in to your AWS Management Console.
+- Navigate to the AWS Config console.
+- Select the account that will act as your management account. This account will manage all configurations across the organization.
+  
+##### 2. **Access the Management Account**
+Once the delegated admin is defined, log into the management account.
+
+- Open **AWS Systems Manager**.
+- ![Quick Setup](https://raw.githubusercontent.com/arinatechnologies/blogs/ab4b164a5cbc613ae0f6b35c0c3f20217e01357d/images/awsorganization-wideconfig/awssystem%20managerquicksetup.webp)
+- Go to the **Quick Setup** section.
+- ![Conformance Packs](https://raw.githubusercontent.com/arinatechnologies/blogs/ab4b164a5cbc613ae0f6b35c0c3f20217e01357d/images/awsorganization-wideconfig/chooseconformancepack.webp)
+- Under the configuration type, choose **Conformance Packs**. These packs contain sets of AWS Config rules designed for specific security and compliance purposes.
+
+##### 3. **Deploy Conformance Packs**
+![Conformance Packs](https://raw.githubusercontent.com/arinatechnologies/blogs/ab4b164a5cbc613ae0f6b35c0c3f20217e01357d/images/awsorganization-wideconfig/deploymentquicksetup.webp)
+
+Conformance packs are pre-built or custom collections of AWS Config rules that ensure compliance with AWS best practices and security frameworks, such as CIS (Center for Internet Security) benchmarks or NIST (National Institute of Standards and Technology) guidelines.
+
+- From the conformance packs section, choose the relevant pack for your organization. For example, you can select packs for security best practices for services like **EC2** and **S3**.
+- Customize the conformance pack to match your organization’s needs. If multiple rules across different conformance packs overlap, you can create a custom pack to avoid redundancy and unnecessary costs.
+  
+##### 4. **Create Aggregators for Organization-Wide Monitoring**
+![Create Aggregators](https://raw.githubusercontent.com/arinatechnologies/blogs/ab4b164a5cbc613ae0f6b35c0c3f20217e01357d/images/awsorganization-wideconfig/createaggregators.webp)
+
+Once the conformance packs are deployed, you will need to create aggregators to collect compliance data from across the organization. Aggregators allow you to view resource configurations and compliance status from a single point, regardless of how many accounts you are managing.
+
+- In AWS Config, create an aggregator for your organization.
+- Select **Organization Aggregator** and specify the organization’s root account.
+- Choose the regions you want to monitor, depending on where your AWS resources are deployed.
+  
+##### 5. **Monitor Compliance Across All Accounts**
+![Compliance ](https://raw.githubusercontent.com/arinatechnologies/blogs/ab4b164a5cbc613ae0f6b35c0c3f20217e01357d/images/awsorganization-wideconfig/compliantconformancepack.webp)
+
+After deploying the conformance packs and setting up the aggregators, you can begin monitoring the compliance status of each account.
+
+- In AWS Config, navigate to the **Config Aggregator** dashboard.
+- Here, you will see all your accounts and their compliance statuses based on the conformance packs you've deployed.
+- Identify which accounts are compliant or non-compliant. You can further drill down to see which specific resources or rules are causing compliance issues.
+  
+##### 6. **Cost Optimization with Custom Conformance Packs**
+
+Each rule evaluation within a conformance pack has associated costs. To ensure you're not overspending on redundant evaluations, it’s crucial to create custom conformance packs that only include necessary rules.
+
+- Evaluate your organization’s needs and remove any redundant rules across multiple services.
+- Focus on creating conformance packs tailored to specific services your organization uses, such as **EC2** or **CloudFront**, to avoid unnecessary charges.
+  
+##### 7. **Automate Regular Compliance Checks**
+
+You can automate the compliance evaluation process by scheduling regular checks. AWS Config allows you to set up these evaluations as per your organization’s needs, ensuring that all accounts adhere to security and best practice guidelines.
+
+- Set up recurring evaluations based on your organization’s compliance requirements.
+- Use Systems Manager to schedule and monitor these checks.
+  
+#### Conclusion
+
+Setting up AWS Config across an entire organization may seem daunting, but the process is streamlined by using delegated admin accounts, conformance packs, and aggregators. By deploying custom conformance packs, you ensure that each account follows the organization's best practices, reducing both security risks and costs associated with redundant rule evaluations.
+
+##### Remember, AWS Config helps centralize management, simplifies compliance, and gives you a comprehensive view of your resources across all AWS accounts. Implementing it at the organizational level empowers your team to maintain a secure and efficient cloud environment.
+--- 
+ [ Refer Cloud Consulting](https://www.arinatechnologies.com/consulting) <br/>
+Ready to take your cloud infrastructure to the next level? Please reach out to us [ Contact Us](https://www.arinatechnologies.com/contact) <br/>
+# Other Blogs
+[Step-by-Step Guide: Install and Configure GitLab on AWS EC2 | DevOps CI/CD with GitLab on AWS](https://www.arinatechnologies.com/posts/gitLabonaws) <br/>
+[Simplifying AWS Notifications: A Guide to User Notifications](https://www.arinatechnologies.com/posts/user-notifications) <br/>
