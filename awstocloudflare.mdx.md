@@ -1,0 +1,85 @@
+---
+title: 'How to Transfer a Website Domain from AWS Route 53 to Cloudflare: A Step-by-Step Guide'
+date: '2024-09-23'
+image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/c62afd4b56064386a9bca4304f2998b17a484561/images/awstocloudflare.webp'
+tags: ['Domain Transfer', 'AWS Route 53', 'Cloudflare', 'DNS Management', 'Website Hosting','Cloud Management','Transfer Domain from AWS to Cloudflare','AWS Route 53 Domain Transfer','Cloudflare Domain Management','DNS Transfer to Cloudflare']
+
+---
+How to transfer a domain from AWS Route 53 to Cloudflare. This process might seem a bit complicated, but we'll break it down into manageable steps to ensure a smooth transition.
+
+If you haven’t seen our previous video on transferring a domain from GoDaddy to AWS, you can check it out for reference. Now, let's dive into the process of moving a domain from AWS to Cloudflare.
+[Refer How To Transfer Your Domain from GoDaddy to AWS](https://www.arinatechnologies.com/posts/godaddy-aws)
+## Step 1: Preparing the Domain for Transfer
+![AWS Config](https://raw.githubusercontent.com/arinatechnologies/blogs/445678d36fdfea685c9e441b563bd471c98b9235/images/aws%20to%20cloudflare/route53.webp)
+Before we proceed, ensure you have:
+- Access to your AWS Route 53 account.
+- A Cloudflare account ready for the transfer.
+<Video id="MxZej0rjInc" title="How to Transfer a Website Domain from AWS Route 53 to Cloudflare "/>
+In AWS Route 53:
+![AWS Route 53](https://raw.githubusercontent.com/arinatechnologies/blogs/445678d36fdfea685c9e441b563bd471c98b9235/images/aws%20to%20cloudflare/registerdomains.webp)
+1. Navigate to the **Registered Domains** section in the AWS Management Console.
+2. Find the domain you want to transfer.
+3. Before initiating the transfer, disable **Auto-Renew** for this domain. This prevents automatic renewal during the transfer process.
+4. Turn off the **Transfer Lock** to allow other registrars, like Cloudflare, to accept the domain. This change may take a few minutes to propagate.
+
+## Step 2: Obtain the Authorization Code
+![Authorization Code](https://raw.githubusercontent.com/arinatechnologies/blogs/445678d36fdfea685c9e441b563bd471c98b9235/images/aws%20to%20cloudflare/authorizationcode.webp)
+![Transfer Out](https://raw.githubusercontent.com/arinatechnologies/blogs/445678d36fdfea685c9e441b563bd471c98b9235/images/aws%20to%20cloudflare/transferout.webp)
+1. In the **Registered Domains** section, look for the **Transfer Out** option.
+2. Click on **Transfer to Another Registrar** and request the **Authorization Code**. AWS will generate a code for you. Copy this code, as it will be needed to authorize the transfer to Cloudflare.
+
+## Step 3: Starting the Transfer on Cloudflare
+![Domain Registration](https://raw.githubusercontent.com/arinatechnologies/blogs/445678d36fdfea685c9e441b563bd471c98b9235/images/aws%20to%20cloudflare/domainregistering.webp)
+1. Go to [Cloudflare](https://www.cloudflare.com) and log into your account.
+2. In the Cloudflare dashboard, navigate to the **Domain Registration** section.
+![Transfer Domain](https://raw.githubusercontent.com/arinatechnologies/blogs/445678d36fdfea685c9e441b563bd471c98b9235/images/aws%20to%20cloudflare/transferdomains.webp) 
+3. Choose the **Transfer Domain** option and enter the domain name you wish to transfer. Click **Continue**.
+4. If you haven't already added the domain in Cloudflare, you'll be prompted to do so now. Enter the domain name and click **Continue**.
+
+## Step 4: Updating Nameservers in AWS Route 53
+![Nameservers](https://raw.githubusercontent.com/arinatechnologies/blogs/445678d36fdfea685c9e441b563bd471c98b9235/images/aws%20to%20cloudflare/nameservers.webp)
+To successfully transfer your domain, you need to update the nameservers:
+1. Go back to your AWS Route 53 account.
+2. Navigate to the **Registered Domains** section and select your domain.
+![Edit Name Servers](https://raw.githubusercontent.com/arinatechnologies/blogs/445678d36fdfea685c9e441b563bd471c98b9235/images/aws%20to%20cloudflare/editnameservers.webp)
+3. Click on **Edit Name Servers**. Update the nameservers to the ones provided by Cloudflare.
+4. *Always keep a backup of your original nameserver settings in case you need to revert changes.*
+5. Save the changes. Note that DNS propagation can take up to 24 hours.
+
+## Step 5: Validate the Nameservers
+
+- After a few hours, return to your Cloudflare dashboard. Cloudflare will automatically validate the updated nameservers.
+- Once validated, your domain will be marked as **Ready to Transfer** in Cloudflare.
+
+## Step 6: Finalize the Transfer in Cloudflare
+![Cloudflare](https://raw.githubusercontent.com/arinatechnologies/blogs/445678d36fdfea685c9e441b563bd471c98b9235/images/aws%20to%20cloudflare/requestauthorization.webp)
+1. In the Cloudflare dashboard, select the domain that is ready for transfer.
+2. Enter the **Authorization Code** you copied from AWS Route 53.
+3. Review the pricing details and add a payment method in Cloudflare to cover the transfer fee.
+4. Confirm and proceed with the transfer. Cloudflare will then initiate the transfer process.
+
+## Step 7: Approve the Transfer in AWS Route 53
+![Approve](https://raw.githubusercontent.com/arinatechnologies/blogs/445678d36fdfea685c9e441b563bd471c98b9235/images/aws%20to%20cloudflare/approve.webp)
+AWS will send an email to the domain's registered email address to approve the transfer:
+1. Check your email and click the link provided to approve the domain transfer. This step is crucial to confirm that you consent to the transfer.
+2. Approve the transfer in the AWS console to expedite the process.
+
+## Step 8: Monitoring the Transfer
+![Active](https://raw.githubusercontent.com/arinatechnologies/blogs/445678d36fdfea685c9e441b563bd471c98b9235/images/aws%20to%20cloudflare/managedomains.webp)
+- The transfer might take a few hours to complete. You can monitor the status in the Cloudflare dashboard.
+- Once the transfer is complete, the domain status in Cloudflare will change to **Active**.
+
+## Step 9: Post-Transfer Configurations
+
+1. Verify that the domain is properly set up in Cloudflare and that the DNS records are configured correctly.
+2. Adjust any additional settings in Cloudflare, such as automatic renewals and domain locks.
+
+## Conclusion
+
+Congratulations! You've successfully transferred your domain from AWS Route 53 to Cloudflare. Remember, it's always a good idea to keep backups of your original settings and follow each step carefully to avoid any interruptions.
+--- 
+ [ Refer Cloud Consulting](https://www.arinatechnologies.com/consulting) <br/>
+Ready to take your cloud infrastructure to the next level? Please reach out to us [ Contact Us](https://www.arinatechnologies.com/contact) <br/>
+# Other Blogs
+[Step-by-Step Guide: Install and Configure GitLab on AWS EC2 | DevOps CI/CD with GitLab on AWS](https://www.arinatechnologies.com/posts/gitLabonaws) <br/>
+[Simplifying AWS Notifications: A Guide to User Notifications](https://www.arinatechnologies.com/posts/user-notifications) <br/>
