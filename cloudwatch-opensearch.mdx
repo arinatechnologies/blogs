@@ -1,13 +1,11 @@
 ---
-title: 'How to Export AWS CloudWatch Logs to OpenSearch(Elasticsearch) Integration:A Complete Guide'
+title: 'How to Export AWS CloudWatch Logs to OpenSearch(Elasticsearch):A Complete Guide'
 date: '2024-09-29'
 image: 'https://raw.githubusercontent.com/arinatechnologies/blogs/f8cb218a053afcdca7c93dcea55c3780ea0cfc53/images/awscloudwatchlogtoopensearch.webp'
-tags: ['AWS CloudWatch', 'OpenSearch', 'Elasticsearch', 'Log Management', 'AWS Lambda','Cloud Management','CloudWatch Logs Export','AWS IAM Roles','Cloudflare Domain Management','Cloud Monitoring','Cloud Logging Solutions','AWS Cloud Infrastructure','DevOps Tools']
+tags: ['AWS CloudWatch', 'OpenSearch', 'Elasticsearch', 'Log Management', 'AWS Lambda','Cloud Management','AWS IAM Roles','Cloud Logging Solutions','AWS Cloud Infrastructure']
 ---
 Cloud-based applications generate massive amounts of log data, and handling this efficiently is critical. AWS CloudWatch is widely used to monitor log data, but for heavy-duty search and analysis, integrating it with OpenSearch (formerly Elasticsearch) provides enhanced performance and cost efficiency.
 
-In this guide, I'll walk you through exporting AWS CloudWatch logs to OpenSearch, step-by-step, including common pitfalls and solutions.
-<Video id="Yeait-I_2Vk" title="How to Export AWS CloudWatch Logs to OpenSearch(Elasticsearch) Integration:A Complete Guide "/>
 ### Why Export CloudWatch Logs to OpenSearch?
 
 AWS CloudWatch is great for monitoring logs, but it has limitations when dealing with large datasets:
@@ -29,7 +27,7 @@ First, we need to create an OpenSearch cluster that will receive and store the C
 3. **Choose Instance Type**:
    - Select **M5 family** instances, as they provide a good balance between cost and performance.
 4. **Set Access Options**:
-   - For this demo, we'll choose **Public Access** for ease of configuration, but in production, it’s best to use **VPC Access** for security.
+   - For this demo, we'll choose **Public Access** for ease of configuration, but in production, it's best to use **VPC Access** for security.
    - Choose **IPv4**.
 5. **Configure Master User**:
    - Set up a master user with a username and password.
@@ -37,6 +35,10 @@ First, we need to create an OpenSearch cluster that will receive and store the C
    - Click **Create Domain** and wait for the cluster to be provisioned (this can take around 30 minutes).
 
 Once the OpenSearch cluster is active, you'll have access to the OpenSearch dashboard (previously known as Kibana).
+<br/>
+<Video id="Yeait-I_2Vk" title="How to Export AWS CloudWatch Logs to OpenSearch(Elasticsearch) Integration:A Complete Guide "/>
+
+<br/>
 ### Step 2: Configure AWS CloudWatch to Export Logs
 
 Now that we have our OpenSearch cluster, lets set up AWS CloudWatch to export logs.
@@ -48,7 +50,7 @@ Now that we have our OpenSearch cluster, lets set up AWS CloudWatch to export lo
    - Select **Subscription Filters** and create a new filter.
    - Set **OpenSearch** as the destination.
 3. **Create Lambda Function**:
-   - You’ll need to create a Lambda function to handle the log export. We'll configure permissions in the next step.
+   - You'll need to create a Lambda function to handle the log export. We'll configure permissions in the next step.
 ### Step 3: Set Up IAM Roles for Lambda
 
 To give Lambda the necessary permissions to push logs to OpenSearch, we need to create an IAM role.
@@ -96,23 +98,7 @@ Once everything is set up, verify that logs are flowing into OpenSearch.
 
 2. **Common Issues**:
    - **403 Forbidden Errors**: This can happen if the IAM role doesn't have sufficient permissions. Ensure that your IAM role has the correct access to OpenSearch and CloudWatch.
-### Step 6: Managing Multiple Log Groups
 
-If you're exporting multiple log groups, it's essential to ensure that each log group maps to a different index in OpenSearch.
-
-1. **Modify Lambda Code for Multiple Log Groups**:
-   - You'll need to update your Lambda function code to distinguish between log groups and send logs to separate indices.
-   - Here's an example:
-
-   ```python
-   if log_group == "app-log-group-1":
-       index_name = "app-log-group-1-index"
-   elif log_group == "app-log-group-2":
-       index_name = "app-log-group-2-index"
-   ```
-
-2. **Avoid Mixing Data**:
-   - Ensure that logs from different sources are kept separate to avoid confusion.
 ### Step 7: Create User Roles in OpenSearch
 
 For better security and user management, create roles in OpenSearch that limit users to specific indices.
