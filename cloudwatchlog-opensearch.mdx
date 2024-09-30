@@ -19,7 +19,7 @@ Let's dive into how you can set up OpenSearch and export CloudWatch logs for bet
 <Video id="-OQsVT9GwqI" title="How to Export AWS CloudWatch Logs to OpenSearch(Elasticsearch) Integration:A Complete Guide "/>
 
 ### **Step 1: Create an OpenSearch Cluster**
-![Delegating](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/delgadministartion.webp)
+![OpenSearch Cluster](https://raw.githubusercontent.com/arinatechnologies/blogs/2edfee2f12f4b94d534c9dd5aeed99463eb7b12e/images/cloudwatchlog-opensearch/opensearch%20create.webp)
 
 
 Before exporting logs, we need an OpenSearch cluster set up in AWS. Here's how you can create one:
@@ -35,7 +35,7 @@ Before exporting logs, we need an OpenSearch cluster set up in AWS. Here's how y
 Once you've completed the setup, the OpenSearch domain will take a few minutes to become active. You'll know the domain is ready when its status changes to "Active" in the AWS console.
 
 ### **Step 2: Create a Lambda Function for Log Export**
-![Delegating](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/delgadministartion.webp)
+![Lambda Function](https://raw.githubusercontent.com/arinatechnologies/blogs/2edfee2f12f4b94d534c9dd5aeed99463eb7b12e/images/cloudwatchlog-opensearch/lamba%20role%20created.webp)
 
 
 Once OpenSearch is up and running, the next step is to automate the process of sending CloudWatch logs to OpenSearch. You'll do this by creating a Lambda function.
@@ -72,14 +72,14 @@ Once OpenSearch is up and running, the next step is to automate the process of s
    ```
 
 4. **Set the subscription filter**:
-![Delegating](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/delgadministartion.webp)
+![subscription filter](https://raw.githubusercontent.com/arinatechnologies/blogs/2edfee2f12f4b94d534c9dd5aeed99463eb7b12e/images/cloudwatchlog-opensearch/subscption%20filter.webp)
 
    - Go to CloudWatch Logs and choose the log group you want to export.
    - Create a subscription filter that triggers your Lambda function whenever new logs are generated.
 
 
 ### **Step 3: Indexing Logs in OpenSearch**
-![Delegating](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/delgadministartion.webp)
+![Indexing Logs](https://raw.githubusercontent.com/arinatechnologies/blogs/2edfee2f12f4b94d534c9dd5aeed99463eb7b12e/images/cloudwatchlog-opensearch/indexing.webp)
 
 
 Now that the logs are being sent to OpenSearch, you need to configure how they are indexed for searching.
@@ -100,7 +100,7 @@ One of the major advantages of using OpenSearch is the ability to create visual 
 3. **Set up alerts** for certain log patterns (e.g., errors, security breaches) so that you are notified immediately when they occur.
 
 ### **Step 5: Managing Users and Permissions**
-![Delegating](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/delgadministartion.webp)
+![Managing Users and Permissions](https://raw.githubusercontent.com/arinatechnologies/blogs/2edfee2f12f4b94d534c9dd5aeed99463eb7b12e/images/cloudwatchlog-opensearch/permission.webp)
 
 
 In larger organizations, different users may need access to different sets of logs. OpenSearch allows you to manage access at the user level.
