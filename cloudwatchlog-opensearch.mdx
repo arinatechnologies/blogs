@@ -6,7 +6,7 @@ tags: ['AWS CloudWatch', 'OpenSearch', 'Elasticsearch', 'Log Management', 'AWS L
 ---
 **Introduction:**
 Managing log data in AWS CloudWatch is essential for monitoring and debugging your applications, but as the volume of logs increases, CloudWatch can become less efficient for searching and storing data long-term. This blog will explore how you can resolve these challenges by exporting your CloudWatch logs to OpenSearch, an AWS service optimized for searching, visualizing, and analyzing large log datasets.
-<Video id="-OQsVT9GwqI" title="How to Export AWS CloudWatch Logs to OpenSearch(Elasticsearch) Integration:A Complete Guide "/>
+
 **Why Export CloudWatch Logs to OpenSearch?**
 
 CloudWatch is designed primarily for monitoring applications and infrastructure. However, as log data grows, the search and storage costs become high, and search efficiency degrades. OpenSearch, previously known as Elasticsearch, is more suited for large-scale log search and analysis. OpenSearch provides:
@@ -16,10 +16,11 @@ CloudWatch is designed primarily for monitoring applications and infrastructure.
 3. Better data visualization and exploration tools.
 
 Let's dive into how you can set up OpenSearch and export CloudWatch logs for better performance and management.
-
----
+<Video id="-OQsVT9GwqI" title="How to Export AWS CloudWatch Logs to OpenSearch(Elasticsearch) Integration:A Complete Guide "/>
 
 ### **Step 1: Create an OpenSearch Cluster**
+![Delegating](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/delgadministartion.webp)
+
 
 Before exporting logs, we need an OpenSearch cluster set up in AWS. Here's how you can create one:
 
@@ -33,9 +34,9 @@ Before exporting logs, we need an OpenSearch cluster set up in AWS. Here's how y
 
 Once you've completed the setup, the OpenSearch domain will take a few minutes to become active. You'll know the domain is ready when its status changes to "Active" in the AWS console.
 
----
-
 ### **Step 2: Create a Lambda Function for Log Export**
+![Delegating](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/delgadministartion.webp)
+
 
 Once OpenSearch is up and running, the next step is to automate the process of sending CloudWatch logs to OpenSearch. You'll do this by creating a Lambda function.
 
@@ -71,12 +72,15 @@ Once OpenSearch is up and running, the next step is to automate the process of s
    ```
 
 4. **Set the subscription filter**:
+![Delegating](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/delgadministartion.webp)
+
    - Go to CloudWatch Logs and choose the log group you want to export.
    - Create a subscription filter that triggers your Lambda function whenever new logs are generated.
 
----
 
 ### **Step 3: Indexing Logs in OpenSearch**
+![Delegating](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/delgadministartion.webp)
+
 
 Now that the logs are being sent to OpenSearch, you need to configure how they are indexed for searching.
 
@@ -87,8 +91,6 @@ Now that the logs are being sent to OpenSearch, you need to configure how they a
    
 3. **Test the setup** by running queries in the OpenSearch Dashboard to ensure logs are searchable.
 
----
-
 ### **Step 4: Visualizing Logs in OpenSearch**
 
 One of the major advantages of using OpenSearch is the ability to create visual dashboards.
@@ -97,9 +99,9 @@ One of the major advantages of using OpenSearch is the ability to create visual 
 2. **Create visualizations** like bar charts, line graphs, and pie charts to help you better understand the data.
 3. **Set up alerts** for certain log patterns (e.g., errors, security breaches) so that you are notified immediately when they occur.
 
----
-
 ### **Step 5: Managing Users and Permissions**
+![Delegating](https://raw.githubusercontent.com/arinatechnologies/blogs/a5282c37969dbc4f29cc9c666dcf397141a2058a/images/centralizedbackupsinaws/delgadministartion.webp)
+
 
 In larger organizations, different users may need access to different sets of logs. OpenSearch allows you to manage access at the user level.
 
@@ -110,9 +112,6 @@ In larger organizations, different users may need access to different sets of lo
    
    1. Go to "Security" and click on "Roles."
    2. Create a new role, assign permissions for specific indices (like read, write, or manage), and map users to the role.
-
----
-
 ### **Step 6: Troubleshooting Common Issues**
 
 #### Issue: Logs Not Appearing in OpenSearch
