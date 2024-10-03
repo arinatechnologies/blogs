@@ -42,19 +42,102 @@ When managing large volumes of AWS CloudWatch logs, the built-in tools may fall 
 ![AWS Lambda service](https://raw.githubusercontent.com/arinatechnologies/blogs/016fe3536c346a5b1b759ae7c515d82a11e08f5b/images/cloudwatchlog-opensearch/lambda%20service%20choose.webp)  
    - Choose the AWS Lambda service.
 2. **Attach VPC and OpenSearch Permissions**:
-   - Add the necessary policies for Lambda to access VPC and OpenSearch.
+   - Add AWSLambdaVPCAccessExecutionRole policy .
 3. **Add Inline Policy**:
 ![Inline Policy](https://raw.githubusercontent.com/arinatechnologies/blogs/016fe3536c346a5b1b759ae7c515d82a11e08f5b/images/cloudwatchlog-opensearch/inline%20policy.webp)  
    - Create an inline policy allowing OpenSearch access (index permissions, bulk data access, etc.).
+
+Following policy shows example, where it is recommended to narrow the policy from es:* only to required permission.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "OpensearchAccess",
+            "Effect": "Allow",
+            "Action": "es:*",
+            "Resource": "arn:aws:es:us-east-1:<account-id>:domain/<cluster-name>"
+        }
+    ]
+}
+```
+
+The role should look like below:
+
+
 4. **Save the Role**: Ensure the role is configured properly with access to both OpenSearch and CloudWatch logs.
 
-## Step 4: Create a Lambda Function
+## Step 4: Edit the Lambda Function
 ![Lambda Function](https://raw.githubusercontent.com/arinatechnologies/blogs/2edfee2f12f4b94d534c9dd5aeed99463eb7b12e/images/cloudwatchlog-opensearch/lamba%20role%20created.webp)
-1. **Set Up Lambda**:
-   - Create a new Lambda function.
-   - Use a runtime like Python or Node.js, depending on your preference.
-2. **Edit the Lambda Code**:
+
+1. **Edit the Lambda Code**:
    - Update the code to handle exporting CloudWatch logs to specific OpenSearch indices. Modify the default index name and ensure it handles the log data properly.
+
+
+![Managing Users and Permissions](https://raw.githubusercontent.com/arinatechnologies/blogs/2edfee2f12f4b94d534c9dd5aeed99463eb7b12e/images/cloudwatchlog-opensearch/permission.webp)
+2. **Modify Lambda for Multiple Log Groups**:
+   - If you have multiple log groups, modify the Lambda function code to create separate indices for each log group.
+   - Update the code to check the log group name and route it to a specific index in OpenSearch.
+3. **Deploy the Updates**: Ensure the Lambda function properly handles log exports from multiple log groups.
+
+In function transform(payload)  around line 52, update to add additional log groups or change the index name, as shown:
+
+```
+function transform(payload) {
+    if (payload.messageType === 'CONTROL_MESSAGE') {
+        return null;
+    }
+
+    var bulkRequestBody = '';
+
+    payload.logEvents.forEach(function(logEvent) {
+        var timestamp = new Date(1 * logEvent.timestamp);
+        
+        // Initialize indexName variable
+        var indexName;
+
+        // index name format: cwl-YYYY.MM.DD
+        if (payload.logGroup === '<log-group-1>') {
+            indexName = [
+                'cw-log-group-1-' + timestamp.getUTCFullYear(), // year
+                ('0' + (timestamp.getUTCMonth() + 1)).slice(-2),   // month
+                ('0' + timestamp.getUTCDate()).slice(-2)           // day
+            ].join('.');
+
+        }
+
+        else {
+            // index name format: cw-trans-ext-trig-YYYY.MM.DD
+            indexName = [
+                'cw-all-other-logs-' + timestamp.getUTCFullYear(), // year
+                ('0' + (timestamp.getUTCMonth() + 1)).slice(-2),   // month
+                ('0' + timestamp.getUTCDate()).slice(-2)           // day
+            ].join('.');
+        }
+
+        // var source = buildSource(logEvent.message, logEvent.extractedFields);
+        var source = {};
+        source['@id'] = logEvent.id;
+        source['@timestamp'] = new Date(1 * logEvent.timestamp).toISOString();
+        source['@message'] = logEvent.message;
+        source['@owner'] = payload.owner;
+        source['@log_group'] = payload.logGroup;
+        source['@log_stream'] = payload.logStream;
+
+        var action = { "index": {} };
+        action.index._index = indexName;
+        action.index._id = logEvent.id;
+
+        bulkRequestBody += [
+            JSON.stringify(action),
+            JSON.stringify(source),
+        ].join('\n') + '\n';
+    });
+    return bulkRequestBody;
+}
+```
+
 3. **Deploy the Function**: Once the code is set up, deploy it and link it to your log group subscription.
 
 ## Step 5: Debugging and Monitoring
@@ -64,17 +147,22 @@ When managing large volumes of AWS CloudWatch logs, the built-in tools may fall 
    - Open the OpenSearch dashboard and check if the logs are properly flowing into the indices.
 2. **Handle Common Errors**:
    - If no logs appear, check the Lambda function for errors.
-   - Enable “Debug” mode in the function for better error visibility.
+     Where in line 12, you can update following line:
+
+     ```
+     var logFailedResponses = false;
+
+     ```
+
+   to 
+     ```
+     var logFailedResponses = true;
+     ```
    - Ensure that the Lambda role has the correct permissions and that the OpenSearch cluster is properly configured.
 
-## Step 6: Managing Multiple Log Groups
-![Managing Users and Permissions](https://raw.githubusercontent.com/arinatechnologies/blogs/2edfee2f12f4b94d534c9dd5aeed99463eb7b12e/images/cloudwatchlog-opensearch/permission.webp)
-1. **Modify Lambda for Multiple Log Groups**:
-   - If you have multiple log groups, modify the Lambda function code to create separate indices for each log group.
-   - Update the code to check the log group name and route it to a specific index in OpenSearch.
-2. **Deploy the Updates**: Ensure the Lambda function properly handles log exports from multiple log groups.
+# Steps for Dashboard
 
-## Step 7: Set Up OpenSearch Users and Roles
+## Step 1: Set Up OpenSearch Users and Roles
 
 1. **Create OpenSearch Users**:
 ![security section](https://raw.githubusercontent.com/arinatechnologies/blogs/016fe3536c346a5b1b759ae7c515d82a11e08f5b/images/cloudwatchlog-opensearch/security.webp)
@@ -88,7 +176,7 @@ When managing large volumes of AWS CloudWatch logs, the built-in tools may fall 
 3. **Test User Access**:
    - Log in as the user and ensure they can only access their assigned indices.
 
-## Step 8: Test and Monitor
+## Step 2: Test and Monitor
 
 1. **Run Test Queries**:
 ![Dev Tools](https://raw.githubusercontent.com/arinatechnologies/blogs/016fe3536c346a5b1b759ae7c515d82a11e08f5b/images/cloudwatchlog-opensearch/run%20the%20quiery.webp)
